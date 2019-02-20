@@ -32,10 +32,28 @@
     "@aws-cdk/aws-lambda" "^0.24.1"
     "@aws-cdk/cdk" "^0.24.1"
 
+"@aws-cdk/aws-applicationautoscaling@^0.24.1":
+  version "0.24.1"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-applicationautoscaling/-/aws-applicationautoscaling-0.24.1.tgz#2181e43f94a4d896fcf6d981b42d3be3c73849b0"
+  integrity sha512-DJXtVk6HPeTgAMeT/7aCxh6/n1snc9NMjtYg+7IOTUjFv1IKzDF7VT+uA+TXZEKoH5fFH0cQ1kdJkXlJW/zFFg==
+  dependencies:
+    "@aws-cdk/aws-autoscaling-common" "^0.24.1"
+    "@aws-cdk/aws-cloudwatch" "^0.24.1"
+    "@aws-cdk/aws-iam" "^0.24.1"
+    "@aws-cdk/cdk" "^0.24.1"
+
 "@aws-cdk/aws-autoscaling-api@^0.24.1":
   version "0.24.1"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-autoscaling-api/-/aws-autoscaling-api-0.24.1.tgz#4e95441466fef36dcca34181d9503435614d38ae"
   integrity sha512-5ut5E3dugxn8WBx1uWStq8ING7oJqSmu3T6I2QfS4S42J1cE6DYAGBJQB1YXIba3EmU9z7b/wjJYA2NJ9niAag==
+  dependencies:
+    "@aws-cdk/aws-iam" "^0.24.1"
+    "@aws-cdk/cdk" "^0.24.1"
+
+"@aws-cdk/aws-autoscaling-common@^0.24.1":
+  version "0.24.1"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-autoscaling-common/-/aws-autoscaling-common-0.24.1.tgz#89d009b4928c3cf73902466be374c58a1cf396ea"
+  integrity sha512-0Fn9Fo3ZoqvmfNIcxqc0djxCsCzYrSOs+GN91CmY+dMvh9xKLq76bjjqQZoQg/oZE+wOFC6ALuBsYeZneAKFrw==
   dependencies:
     "@aws-cdk/aws-iam" "^0.24.1"
     "@aws-cdk/cdk" "^0.24.1"
@@ -61,6 +79,15 @@
   integrity sha512-TwNEPv8TY3+Re9e4JCv673tTZV7y2FVWWw55WxBYnxmUkpZ3zmw2DJRecZGgfbUrvMrrcUcYlH+L58Lc5ypWTQ==
   dependencies:
     "@aws-cdk/aws-events" "^0.24.1"
+    "@aws-cdk/aws-iam" "^0.24.1"
+    "@aws-cdk/cdk" "^0.24.1"
+
+"@aws-cdk/aws-dynamodb@^0.24.1":
+  version "0.24.1"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-dynamodb/-/aws-dynamodb-0.24.1.tgz#62e5dffe532671c7ac6f5adf6ba76340657ba37f"
+  integrity sha512-caP2SNORVCSpFASnDkfygD6c3q73Cy4Nz1RtZxLwZFydcDzqTqTiCexzBl9mlDoybmZ8FZlfSwjNaKk8Yiavww==
+  dependencies:
+    "@aws-cdk/aws-applicationautoscaling" "^0.24.1"
     "@aws-cdk/aws-iam" "^0.24.1"
     "@aws-cdk/cdk" "^0.24.1"
 
