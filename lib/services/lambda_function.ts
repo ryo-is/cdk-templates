@@ -1,4 +1,3 @@
-
 import cdk = require("@aws-cdk/cdk");
 import lambda = require("@aws-cdk/aws-lambda");
 
