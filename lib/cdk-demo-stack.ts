@@ -54,10 +54,10 @@ export class CdkDemoStack extends cdk.Stack {
     const demoApi = CreateApiGateway(this, "CdkAPIDemo", "AWS-CDKのデモ");
 
     /**
-     * Add GET method to APIGateway
+     * Add GET and POST method to APIGateway
      */
     AddMethod(demoApi, "GET", handler);
     AddResourceAndMethod(demoApi, "demo", "GET", handler);
-    AddResourceAndMethod(demoApi, "postDemo", "POST", postDemoHandler);
+    AddResourceAndMethod(demoApi, "postDemo", "POST", postDemoHandler)
   }
 }

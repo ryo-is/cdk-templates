@@ -4,9 +4,9 @@ import lambda = require("@aws-cdk/aws-lambda");
 
 /**
  * Create APIGateway
- * @param self
- * @param apiName
- * @param apiDescription
+ * @param {cdk.Construct} self
+ * @param {String} apiName
+ * @param {String} apiDescription
  */
 export function CreateApiGateway(self: cdk.Construct, apiName: string, apiDescription: string) {
   return new apigateway.RestApi(self, apiName, {
@@ -17,9 +17,9 @@ export function CreateApiGateway(self: cdk.Construct, apiName: string, apiDescri
 
 /**
  * Add Method to APIGateway
- * @param api
- * @param method
- * @param handler
+ * @param {apigateway.RestApi} api
+ * @param {String} method
+ * @param {lambda.IFunction} handler
  */
 export function AddMethod(api: apigateway.RestApi, method: string, handler: lambda.IFunction) {
   const integration = new apigateway.LambdaIntegration(handler);
@@ -29,10 +29,10 @@ export function AddMethod(api: apigateway.RestApi, method: string, handler: lamb
 
 /**
  * Add Resource and Method to APIGateway
- * @param api
- * @param resource
- * @param method
- * @param handler
+ * @param {apigateway.RestApi} api
+ * @param {String} resource
+ * @param {String} method
+ * @param {lambda.IFunction} handler
  */
 export function AddResourceAndMethod(api: apigateway.RestApi, resource: string , method: string, handler: lambda.IFunction) {
   const addResourceApi = api.root.addResource(resource);
@@ -43,6 +43,7 @@ export function AddResourceAndMethod(api: apigateway.RestApi, resource: string ,
 
 /**
  * Active APIGateway CORS Setting
+ * @param {apigateway.Resource} apiRoot
  */
 function AddOptions(apiRoot: apigateway.Resource) {
   const options = apiRoot.addMethod("OPTIONS", new apigateway.MockIntegration({

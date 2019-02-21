@@ -3,9 +3,9 @@ import lambda = require("@aws-cdk/aws-lambda");
 
 /**
  * Create Lambda Function
- * @param self
- * @param functionName
- * @param handler
+ * @param {cdk.Construct} self
+ * @param {String} functionName
+ * @param {String} handler
  */
 export function CreateLambdaFunction(self: cdk.Construct, functionName: string, handler: string) {
   return new lambda.Function(self, functionName, {
