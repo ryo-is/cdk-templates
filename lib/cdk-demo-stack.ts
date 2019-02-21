@@ -1,48 +1,53 @@
 import cdk = require("@aws-cdk/cdk");
-// import s3 = require("@aws-cdk/aws-s3");
+import iam = require("@aws-cdk/aws-iam");
 import apigateway = require("@aws-cdk/aws-apigateway");
-import lambda = require("@aws-cdk/aws-lambda");
 import dynamodb = require("@aws-cdk/aws-dynamodb");
+
+import { CreateLambdaFunction } from "./services/lambda_function";
+import { CreateDynamoDB } from "./services/dynamodb";
 
 export class CdkDemoStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    /**
-     * Lambda Function
-     */
-    const handler = new lambda.Function(this, "CdkLambdaDemo", {
-      functionName: "CdkLambdaDemoFunction",
-      runtime: lambda.Runtime.NodeJS810,
-      code: lambda.Code.directory("resources"),
-      handler: "index.demo",
-      environment: {
-        TZ: "Asia/Tokyo"
+    const handler = CreateLambdaFunction(this, "CdkLambdaDemoFunction", "index.demo");
+
+    const tableParams: dynamodb.TableProps[] = [
+      {
+        tableName: "CDKDemoTable",
+        partitionKey: {
+          name: "ID",
+          type: dynamodb.AttributeType.String
+        },
+        sortKey: {
+          name: "record_time",
+          type: dynamodb.AttributeType.String
+        }
       }
-    });
+    ];
+    const table = CreateDynamoDB(this, tableParams[0]);
 
     /**
-     * DynamoDB Table
+     * Create IAM Policy Statement
      */
-    const table = new dynamodb.Table(this, "CDKDemoTable", {
-      tableName: "CDKDemoTable",
-      partitionKey: {
-        name: "ID",
-        type: dynamodb.AttributeType.String
-      },
-      sortKey: {
-        name: "record_time",
-        type: dynamodb.AttributeType.String
-      }
-    });
+    const statement = new iam.PolicyStatement().allow()
+                      .addActions(
+                        "dynamodb:PutItem",
+                        "dynamodb:UpdateItem",
+                        "dynamodb:Query",
+                        "dynamodb:Scan"
+                      )
+                      .addResource(
+                        table.tableArn
+                      );
 
     /**
-     * Attach to DynamoDB Read and Write Role to Lambda
+     * Attach role to Lambda
      */
-    table.grantReadWriteData(handler.role);
+    handler.addToRolePolicy(statement);
 
     /**
-     * APIGateway
+     * Create APIGateway
      */
     const api = new apigateway.RestApi(this, "CdkAPIDemo", {
       restApiName: "Cdk Demo",
@@ -55,6 +60,12 @@ export class CdkDemoStack extends cdk.Stack {
     const getIntegration = new apigateway.LambdaIntegration(handler);
     api.root.addMethod("GET", getIntegration);
 
+    const demo = api.root.addResource("demo");
+    demo.addMethod("GET", getIntegration);
+
+    /**
+     * Active APIGateway CORS
+     */
     const options = api.root.addMethod("OPTIONS", new apigateway.MockIntegration({
       integrationResponses: [{
         statusCode: "200",
