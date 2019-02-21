@@ -11,6 +11,7 @@ export class CdkDemoStack extends cdk.Stack {
     super(scope, id, props);
 
     const handler = CreateLambdaFunction(this, "CdkLambdaDemoFunction", "index.demo");
+    const postDemoHandler = CreateLambdaFunction(this, "CdkLambdaPostDemoFunction", "index.postDemo");
 
     const tableParams: dynamodb.TableProps[] = [
       {
@@ -45,6 +46,7 @@ export class CdkDemoStack extends cdk.Stack {
      * Attach role to Lambda
      */
     handler.addToRolePolicy(statement);
+    postDemoHandler.addToRolePolicy(statement);
 
     /**
      * Create APIGateway
@@ -56,5 +58,6 @@ export class CdkDemoStack extends cdk.Stack {
      */
     AddMethod(demoApi, "GET", handler);
     AddResourceAndMethod(demoApi, "demo", "GET", handler);
+    AddResourceAndMethod(demoApi, "postDemo", "POST", postDemoHandler);
   }
 }
