@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "bin": {
-    "cdk-demo": "bin/cdk-demo.js",
-    "serverless-demo": "bin/serverless-demo.js"
+    "cdk-demo": "bin/cdk-demo.js"
   },
   "scripts": {
     "build": "tsc",

@@ -1,17 +1,17 @@
 import cdk = require("@aws-cdk/cdk");
-import iam = require("@aws-cdk/aws-iam");
 import dynamodb = require("@aws-cdk/aws-dynamodb");
 
-import { CreateLambdaFunction } from "./services/lambda_function/creator";
-import { CreateDynamoDB } from "./services/dynamodb/creator";
-import { CreateApiGateway, AddMethod, AddResourceAndMethod } from "./services/apigateway/creator";
+import { LambdaFunctionCreator } from "./services/lambda_function/creator";
+import { DynamoDBCreator } from "./services/dynamodb/creator";
+import { APIGatewayCreator } from "./services/apigateway/creator";
+import { IAMCreator } from "./services/iam/creator";
 
 export class CdkDemoStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const handler = CreateLambdaFunction(this, "CdkLambdaDemoFunction", "index.demo");
-    const postDemoHandler = CreateLambdaFunction(this, "CdkLambdaPostDemoFunction", "index.postDemo");
+    const handler = LambdaFunctionCreator.CreateLambdaFunction(this, "CdkLambdaDemoFunction", "index.demo");
+    const postDemoHandler = LambdaFunctionCreator.CreateLambdaFunction(this, "CdkLambdaPostDemoFunction", "index.postDemo");
 
     const tableParams: dynamodb.TableProps[] = [
       {
@@ -26,21 +26,12 @@ export class CdkDemoStack extends cdk.Stack {
         }
       }
     ];
-    const table = CreateDynamoDB(this, tableParams[0]);
+    const table = DynamoDBCreator.CreateDynamoDB(this, tableParams[0]);
 
     /**
      * Create IAM Policy Statement
      */
-    const statement = new iam.PolicyStatement().allow()
-                      .addActions(
-                        "dynamodb:PutItem",
-                        "dynamodb:UpdateItem",
-                        "dynamodb:Query",
-                        "dynamodb:Scan"
-                      )
-                      .addResource(
-                        table.tableArn
-                      );
+    const statement = IAMCreator.CreateDDBReadWriteRoleStatement(table.tableArn);
 
     /**
      * Attach role to Lambda
@@ -51,13 +42,13 @@ export class CdkDemoStack extends cdk.Stack {
     /**
      * Create APIGateway
      */
-    const demoApi = CreateApiGateway(this, "CdkAPIDemo", "AWS-CDKのデモ");
+    const demoApi = APIGatewayCreator.CreateApiGateway(this, "CdkAPIDemo", "AWS-CDKのデモ");
 
     /**
      * Add GET and POST method to APIGateway
      */
-    AddMethod(demoApi, "GET", handler);
-    AddResourceAndMethod(demoApi, "demo", "GET", handler);
-    AddResourceAndMethod(demoApi, "postDemo", "POST", postDemoHandler)
+    APIGatewayCreator.AddMethod(demoApi, "GET", handler);
+    APIGatewayCreator.AddResourceAndMethod(demoApi, "demo", "GET", handler);
+    APIGatewayCreator.AddResourceAndMethod(demoApi, "postDemo", "POST", postDemoHandler)
   }
 }
