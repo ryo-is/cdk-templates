@@ -2,9 +2,9 @@ import cdk = require("@aws-cdk/cdk");
 import iam = require("@aws-cdk/aws-iam");
 import dynamodb = require("@aws-cdk/aws-dynamodb");
 
-import { CreateLambdaFunction } from "./services/lambda_function";
-import { CreateDynamoDB } from "./services/dynamodb";
-import { CreateApiGateway, AddMethod, AddResourceAndMethod } from "./services/apigateway";
+import { CreateLambdaFunction } from "./services/lambda_function/creator";
+import { CreateDynamoDB } from "./services/dynamodb/creator";
+import { CreateApiGateway, AddMethod, AddResourceAndMethod } from "./services/apigateway/creator";
 
 export class CdkDemoStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
