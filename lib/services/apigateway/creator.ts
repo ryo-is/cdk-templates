@@ -20,11 +20,14 @@ export function CreateApiGateway(self: cdk.Construct, apiName: string, apiDescri
  * @param {apigateway.RestApi} api
  * @param {String} method
  * @param {lambda.IFunction} handler
+ * @param {Boolean} cors
  */
-export function AddMethod(api: apigateway.RestApi, method: string, handler: lambda.IFunction) {
+export function AddMethod(api: apigateway.RestApi, method: string, handler: lambda.IFunction, cors: boolean = true) {
   const integration = new apigateway.LambdaIntegration(handler);
   api.root.addMethod(method, integration);
-  AddOptions((api.root) as apigateway.Resource);
+  if (cors) {
+    AddOptions((api.root) as apigateway.Resource);
+  }
 }
 
 /**
@@ -33,12 +36,15 @@ export function AddMethod(api: apigateway.RestApi, method: string, handler: lamb
  * @param {String} resource
  * @param {String} method
  * @param {lambda.IFunction} handler
+ * @param {Boolean} cors
  */
-export function AddResourceAndMethod(api: apigateway.RestApi, resource: string , method: string, handler: lambda.IFunction) {
+export function AddResourceAndMethod(api: apigateway.RestApi, resource: string , method: string, handler: lambda.IFunction, cors: boolean = true) {
   const addResourceApi = api.root.addResource(resource);
   const integration = new apigateway.LambdaIntegration(handler);
   addResourceApi.addMethod(method, integration);
-  AddOptions(addResourceApi);
+  if (cors) {
+    AddOptions(addResourceApi);
+  }
 }
 
 /**
