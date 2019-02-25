@@ -7,15 +7,15 @@ import { S3Creator } from "./services/s3/creator";
 import { APIGatewayCreator } from "./services/apigateway/creator";
 import { IAMCreator } from "./services/iam/creator";
 
-export class CdkDemoStack extends cdk.Stack {
+export class CdkStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
     /**
      * Create Lambda Function
      */
-    const handler = LambdaFunctionCreator.CreateLambdaFunction(this, "CdkLambdaDemoFunction", "index.demo");
-    const postDemoHandler = LambdaFunctionCreator.CreateLambdaFunction(this, "CdkLambdaPostDemoFunction", "index.postDemo");
+    const getHandler = LambdaFunctionCreator.CreateLambdaFunction(this, "CdkLambdaGetFunction", "index.get");
+    const postHandler = LambdaFunctionCreator.CreateLambdaFunction(this, "CdkLambdaPostFunction", "index.post");
 
     /**
      * Create DynamoDB Table
@@ -38,7 +38,7 @@ export class CdkDemoStack extends cdk.Stack {
     /**
      *
      */
-    S3Creator.CreateS3Bucket(this, "cdk-demo-bucket");
+    S3Creator.CreateS3Bucket(this, "cdk-stack-bucket");
 
     /**
      * Create IAM Policy Statement
@@ -48,24 +48,24 @@ export class CdkDemoStack extends cdk.Stack {
     /**
      * Attach role to Lambda
      */
-    handler.addToRolePolicy(statement);
-    postDemoHandler.addToRolePolicy(statement);
+    getHandler.addToRolePolicy(statement);
+    postHandler.addToRolePolicy(statement);
 
     /**
      * Create APIGateway
      */
-    const demoApi = APIGatewayCreator.CreateApiGateway(this, "CdkAPIDemo", "AWS-CDKのデモ");
+    const api = APIGatewayCreator.CreateApiGateway(this, "CdkADeployedPI", "AWS-CDKでデプロイしたAPIGateway");
 
     /**
      * Create APIGateway Authorizer
      */
-    const demoApiAuthorizer = APIGatewayCreator.CreateAuthorizer(this, "CdkAPIDemoAuthorizer", demoApi);
+    const apiAuthorizer = APIGatewayCreator.CreateAuthorizer(this, "CdkAPIAuthorizer", api);
 
     /**
      * Add GET and POST method to APIGateway
      */
-    APIGatewayCreator.AddMethod(demoApi, "GET", handler, demoApiAuthorizer);
-    APIGatewayCreator.AddResourceAndMethod(demoApi, "demo", "GET", handler, demoApiAuthorizer);
-    APIGatewayCreator.AddResourceAndMethod(demoApi, "postDemo", "POST", postDemoHandler, demoApiAuthorizer)
+    APIGatewayCreator.AddMethod(api, "GET", getHandler, apiAuthorizer);
+    APIGatewayCreator.AddResourceAndMethod(api, "get", "GET", getHandler, apiAuthorizer);
+    APIGatewayCreator.AddResourceAndMethod(api, "post", "POST", postHandler, apiAuthorizer)
   }
 }

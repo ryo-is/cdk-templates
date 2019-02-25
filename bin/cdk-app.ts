@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import "source-map-support/register";
 import cdk = require("@aws-cdk/cdk");
-import { CdkDemoStack } from "../lib/cdk-demo-stack";
+import { CdkStack } from "../lib/cdk-stack";
 
 const app = new cdk.App();
-new CdkDemoStack(app, 'CdkDemoStack');
+new CdkStack(app, "CdkStack");
 app.run();
