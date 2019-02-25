@@ -2,6 +2,9 @@
 *.d.ts
 node_modules
 yarn-error.log
-
 cognito_arn.ts
 cloudformation.yaml
+
+# Lambda Source Codes
+!/resources/index.js
+!/resources/*/*.js
