@@ -1,6 +1,7 @@
 *.js
 *.d.ts
 node_modules
+yarn-error.log
 
 cognito_arn.ts
 cloudformation.yaml
