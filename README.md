@@ -20,10 +20,10 @@ AWSCDKのサンプルコード
 ## ディレクトリ
 
 ### `/bin`
-MainとなるTSファイル (このプロジェクトの場合は `cdk-demo.ts` ) がある。
+MainとなるTSファイル (このプロジェクトの場合は `cdk-app.ts` ) がある。
 
 ### `/lib`
-CloudFormationのStackとなるTSファイル (このプロジェクトの場合は `cdk-demo-stack.ts`) がある。基本的にこのTSファイルを編集して、Cloudformationのテンプレートに変換する。
+CloudFormationのStackとなるTSファイル (このプロジェクトの場合は `cdk-stack.ts`) がある。基本的にこのTSファイルを編集して、Cloudformationのテンプレートに変換する。
 
 ### `/lib/services`
 各サービスを作成する関数をそれぞれ分けて用意している。 `サービス名/creator.ts` 内にClassを用意しているので、StackとなるTSファイルからimportして使う。(ex: `lambda_function/creator.ts`)
