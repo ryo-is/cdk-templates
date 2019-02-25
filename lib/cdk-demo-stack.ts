@@ -10,9 +10,15 @@ export class CdkDemoStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
+    /**
+     * Create Lambda Function
+     */
     const handler = LambdaFunctionCreator.CreateLambdaFunction(this, "CdkLambdaDemoFunction", "index.demo");
     const postDemoHandler = LambdaFunctionCreator.CreateLambdaFunction(this, "CdkLambdaPostDemoFunction", "index.postDemo");
 
+    /**
+     * Create DynamoDB Table
+     */
     const tableParams: dynamodb.TableProps[] = [
       {
         tableName: "CDKDemoTable",
@@ -45,10 +51,15 @@ export class CdkDemoStack extends cdk.Stack {
     const demoApi = APIGatewayCreator.CreateApiGateway(this, "CdkAPIDemo", "AWS-CDKのデモ");
 
     /**
+     * Create APIGateway Authorizer
+     */
+    const demoApiAuthorizer = APIGatewayCreator.CreateAuthorizer(this, "CdkAPIDemoAuthorizer", demoApi);
+
+    /**
      * Add GET and POST method to APIGateway
      */
-    APIGatewayCreator.AddMethod(demoApi, "GET", handler);
-    APIGatewayCreator.AddResourceAndMethod(demoApi, "demo", "GET", handler);
-    APIGatewayCreator.AddResourceAndMethod(demoApi, "postDemo", "POST", postDemoHandler)
+    APIGatewayCreator.AddMethod(demoApi, "GET", handler, demoApiAuthorizer);
+    APIGatewayCreator.AddResourceAndMethod(demoApi, "demo", "GET", handler, demoApiAuthorizer);
+    APIGatewayCreator.AddResourceAndMethod(demoApi, "postDemo", "POST", postDemoHandler, demoApiAuthorizer)
   }
 }

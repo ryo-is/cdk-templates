@@ -1,5 +1,5 @@
 Arguments: 
-  /Users/ryosukeizumi/.anyenv/envs/nodenv/versions/10.15.1/bin/node /usr/local/Cellar/yarn/1.13.0/libexec/bin/yarn.js add day.js
+  /Users/ryosukeizumi/.anyenv/envs/nodenv/versions/10.15.1/bin/node /usr/local/Cellar/yarn/1.13.0/libexec/bin/yarn.js add @aws-sdk/assert
 
 PATH: 
   /Users/ryosukeizumi/.anyenv/envs/nodenv/versions/10.15.1/bin:/Users/ryosukeizumi/.anyenv/envs/nodenv/libexec:/Users/ryosukeizumi/.anyenv/envs/nodenv/plugins/nodenv-vars/bin:/Users/ryosukeizumi/.anyenv/envs/nodenv/plugins/nodenv-default-packages/bin:/Users/ryosukeizumi/.anyenv/envs/nodenv/plugins/node-build/bin:/Users/ryosukeizumi/.pyenv/shims:/Users/ryosukeizumi/.anyenv/bin:/Users/ryosukeizumi/.anyenv/envs/nodenv/shims:/Users/ryosukeizumi/.anyenv/envs/nodenv/bin:/Users/ryosukeizumi/.anyenv/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/opt/go/libexec/bin:/Users/ryosukeizumi/dev/golang/bin:/Users/ryosukeizumi/.pyenv/shims
@@ -14,7 +14,7 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/day.js: Not found
+  Error: https://registry.yarnpkg.com/@aws-sdk%2fassert: Not found
       at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:66255:18)
       at Request.self.callback (/usr/local/Cellar/yarn/1.13.0/libexec/lib/cli.js:129397:22)
       at Request.emit (events.js:189:13)
@@ -32,8 +32,7 @@ npm manifest:
     "version": "0.1.0",
     "private": true,
     "bin": {
-      "cdk-demo": "bin/cdk-demo.js",
-      "serverless-demo": "bin/serverless-demo.js"
+      "cdk-demo": "bin/cdk-demo.js"
     },
     "scripts": {
       "build": "tsc",
@@ -47,10 +46,13 @@ npm manifest:
     },
     "dependencies": {
       "@aws-cdk/aws-apigateway": "^0.24.1",
+      "@aws-cdk/aws-dynamodb": "^0.24.1",
+      "@aws-cdk/aws-iam": "^0.24.1",
       "@aws-cdk/aws-lambda": "^0.24.1",
       "@aws-cdk/aws-s3": "^0.24.1",
       "@aws-cdk/cdk": "^0.24.1",
       "aws-sdk": "^2.406.0",
+      "dayjs": "^1.8.6",
       "source-map-support": "^0.5.9"
     }
   }
@@ -93,10 +95,28 @@ Lockfile:
       "@aws-cdk/aws-lambda" "^0.24.1"
       "@aws-cdk/cdk" "^0.24.1"
   
+  "@aws-cdk/aws-applicationautoscaling@^0.24.1":
+    version "0.24.1"
+    resolved "https://registry.yarnpkg.com/@aws-cdk/aws-applicationautoscaling/-/aws-applicationautoscaling-0.24.1.tgz#2181e43f94a4d896fcf6d981b42d3be3c73849b0"
+    integrity sha512-DJXtVk6HPeTgAMeT/7aCxh6/n1snc9NMjtYg+7IOTUjFv1IKzDF7VT+uA+TXZEKoH5fFH0cQ1kdJkXlJW/zFFg==
+    dependencies:
+      "@aws-cdk/aws-autoscaling-common" "^0.24.1"
+      "@aws-cdk/aws-cloudwatch" "^0.24.1"
+      "@aws-cdk/aws-iam" "^0.24.1"
+      "@aws-cdk/cdk" "^0.24.1"
+  
   "@aws-cdk/aws-autoscaling-api@^0.24.1":
     version "0.24.1"
     resolved "https://registry.yarnpkg.com/@aws-cdk/aws-autoscaling-api/-/aws-autoscaling-api-0.24.1.tgz#4e95441466fef36dcca34181d9503435614d38ae"
     integrity sha512-5ut5E3dugxn8WBx1uWStq8ING7oJqSmu3T6I2QfS4S42J1cE6DYAGBJQB1YXIba3EmU9z7b/wjJYA2NJ9niAag==
+    dependencies:
+      "@aws-cdk/aws-iam" "^0.24.1"
+      "@aws-cdk/cdk" "^0.24.1"
+  
+  "@aws-cdk/aws-autoscaling-common@^0.24.1":
+    version "0.24.1"
+    resolved "https://registry.yarnpkg.com/@aws-cdk/aws-autoscaling-common/-/aws-autoscaling-common-0.24.1.tgz#89d009b4928c3cf73902466be374c58a1cf396ea"
+    integrity sha512-0Fn9Fo3ZoqvmfNIcxqc0djxCsCzYrSOs+GN91CmY+dMvh9xKLq76bjjqQZoQg/oZE+wOFC6ALuBsYeZneAKFrw==
     dependencies:
       "@aws-cdk/aws-iam" "^0.24.1"
       "@aws-cdk/cdk" "^0.24.1"
@@ -122,6 +142,15 @@ Lockfile:
     integrity sha512-TwNEPv8TY3+Re9e4JCv673tTZV7y2FVWWw55WxBYnxmUkpZ3zmw2DJRecZGgfbUrvMrrcUcYlH+L58Lc5ypWTQ==
     dependencies:
       "@aws-cdk/aws-events" "^0.24.1"
+      "@aws-cdk/aws-iam" "^0.24.1"
+      "@aws-cdk/cdk" "^0.24.1"
+  
+  "@aws-cdk/aws-dynamodb@^0.24.1":
+    version "0.24.1"
+    resolved "https://registry.yarnpkg.com/@aws-cdk/aws-dynamodb/-/aws-dynamodb-0.24.1.tgz#62e5dffe532671c7ac6f5adf6ba76340657ba37f"
+    integrity sha512-caP2SNORVCSpFASnDkfygD6c3q73Cy4Nz1RtZxLwZFydcDzqTqTiCexzBl9mlDoybmZ8FZlfSwjNaKk8Yiavww==
+    dependencies:
+      "@aws-cdk/aws-applicationautoscaling" "^0.24.1"
       "@aws-cdk/aws-iam" "^0.24.1"
       "@aws-cdk/cdk" "^0.24.1"
   
@@ -653,6 +682,11 @@ Lockfile:
     integrity sha512-YbKCNLPPP4inc0E5If4OaalBc7gpaM2MRv77Pv2VThVComLKfbGYtJcdDCViDyp1Wd4SebhHLz94vp91zbK6bw==
     dependencies:
       "@types/node" "^8.0.7"
+  
+  dayjs@^1.8.6:
+    version "1.8.6"
+    resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.6.tgz#b7a8ccfef173dae03e83a05a58788c9dbe948a35"
+    integrity sha512-NLhaSS1/wWLRFy0Kn/VmsAExqll2zxRUPmPbqJoeMKQrFxG+RT94VMSE+cVljB6A76/zZkR0Xub4ihTHQ5HgGg==
   
   debug@3.1.0:
     version "3.1.0"

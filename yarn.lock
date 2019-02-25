@@ -12,6 +12,16 @@
     source-map-support "^0.5.6"
     yaml "^1.1.0"
 
+"@aws-cdk/assert@^0.24.1":
+  version "0.24.1"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/assert/-/assert-0.24.1.tgz#8e4120a167785bf93f97faa415926a65b70ba417"
+  integrity sha512-/G8d/98nDZ1pCIKEZC57F+735FzpQyUXTdtyDWz6LZKgmOtJBTfv1gCavx6QSqxMUhem4EUi2y9QHjED9Kr2kg==
+  dependencies:
+    "@aws-cdk/cdk" "^0.24.1"
+    "@aws-cdk/cloudformation-diff" "^0.24.1"
+    "@aws-cdk/cx-api" "^0.24.1"
+    source-map-support "^0.5.6"
+
 "@aws-cdk/assets@^0.24.1":
   version "0.24.1"
   resolved "https://registry.yarnpkg.com/@aws-cdk/assets/-/assets-0.24.1.tgz#118a94c76058df676a87eddf09db34b6330c1fb1"
