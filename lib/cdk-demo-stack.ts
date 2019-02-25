@@ -3,6 +3,7 @@ import dynamodb = require("@aws-cdk/aws-dynamodb");
 
 import { LambdaFunctionCreator } from "./services/lambda_function/creator";
 import { DynamoDBCreator } from "./services/dynamodb/creator";
+import { S3Creator } from "./services/s3/creator";
 import { APIGatewayCreator } from "./services/apigateway/creator";
 import { IAMCreator } from "./services/iam/creator";
 
@@ -33,6 +34,11 @@ export class CdkDemoStack extends cdk.Stack {
       }
     ];
     const table = DynamoDBCreator.CreateDynamoDB(this, tableParams[0]);
+
+    /**
+     *
+     */
+    S3Creator.CreateS3Bucket(this, "cdk-demo-bucket");
 
     /**
      * Create IAM Policy Statement

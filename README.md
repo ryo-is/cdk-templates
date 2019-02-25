@@ -7,6 +7,8 @@ AWSCDKのサンプルコード
 * LambdaFunction
 * APIGateway
 * DynamoDB
+* S3
+* IAM
 
 ## デプロイまでの流れ
 
