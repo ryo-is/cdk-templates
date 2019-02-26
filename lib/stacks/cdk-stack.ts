@@ -4,11 +4,11 @@ import dynamodb = require("@aws-cdk/aws-dynamodb");
 import iam = require("@aws-cdk/aws-iam");
 import apigateway = require("@aws-cdk/aws-apigateway");
 
-import { LambdaFunctionCreator } from "./services/lambda_function/creator";
-import { DynamoDBCreator } from "./services/dynamodb/creator";
-import { S3Creator } from "./services/s3/creator";
-import { APIGatewayCreator } from "./services/apigateway/creator";
-import { IAMCreator } from "./services/iam/creator";
+import { LambdaFunctionCreator } from "../services/lambda_function/creator";
+import { DynamoDBCreator } from "../services/dynamodb/creator";
+import { S3Creator } from "../services/s3/creator";
+import { APIGatewayCreator } from "../services/apigateway/creator";
+import { IAMCreator } from "../services/iam/creator";
 
 export class CdkStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {

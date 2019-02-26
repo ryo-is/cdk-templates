@@ -3,9 +3,9 @@ import codepipeline = require("@aws-cdk/aws-codepipeline");
 import codecommit = require("@aws-cdk/aws-codecommit");
 import codebuild = require("@aws-cdk/aws-codebuild");
 
-import { CodePipelineCreator } from "./services/codepipeline/creator";
-import { CodeCommitCreator } from "./services/codecommit/creator";
-import { CodeBuildCreator } from "./services/codebuild/creator";
+import { CodePipelineCreator } from "../services/codepipeline/creator";
+import { CodeCommitCreator } from "../services/codecommit/creator";
+import { CodeBuildCreator } from "../services/codebuild/creator";
 
 export class CdkPipelineStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
