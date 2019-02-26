@@ -1,5 +1,8 @@
 import cdk = require("@aws-cdk/cdk");
+import lambda = require("@aws-cdk/aws-lambda");
 import dynamodb = require("@aws-cdk/aws-dynamodb");
+import iam = require("@aws-cdk/aws-iam");
+import apigateway = require("@aws-cdk/aws-apigateway");
 
 import { LambdaFunctionCreator } from "./services/lambda_function/creator";
 import { DynamoDBCreator } from "./services/dynamodb/creator";
@@ -14,8 +17,8 @@ export class CdkStack extends cdk.Stack {
     /**
      * Create Lambda Function
      */
-    const getHandler = LambdaFunctionCreator.CreateLambdaFunction(this, "CdkLambdaGetFunction", "index.get");
-    const postHandler = LambdaFunctionCreator.CreateLambdaFunction(this, "CdkLambdaPostFunction", "index.post");
+    const getHandler: lambda.Function = LambdaFunctionCreator.CreateLambdaFunction(this, "CdkLambdaGetFunction", "index.get");
+    const postHandler: lambda.Function = LambdaFunctionCreator.CreateLambdaFunction(this, "CdkLambdaPostFunction", "index.post");
 
     /**
      * Create DynamoDB Table
@@ -33,7 +36,7 @@ export class CdkStack extends cdk.Stack {
         }
       }
     ];
-    const table = DynamoDBCreator.CreateDynamoDB(this, tableParams[0]);
+    const table: dynamodb.Table = DynamoDBCreator.CreateDynamoDB(this, tableParams[0]);
 
     /**
      * Create S3 bucket
@@ -43,7 +46,7 @@ export class CdkStack extends cdk.Stack {
     /**
      * Create IAM Policy Statement
      */
-    const statement = IAMCreator.CreateDDBReadWriteRoleStatement(table.tableArn);
+    const statement: iam.PolicyStatement = IAMCreator.CreateDDBReadWriteRoleStatement(table.tableArn);
 
     /**
      * Attach role to Lambda
@@ -54,12 +57,12 @@ export class CdkStack extends cdk.Stack {
     /**
      * Create APIGateway
      */
-    const api = APIGatewayCreator.CreateApiGateway(this, "CdkADeployedPI", "AWS-CDKでデプロイしたAPIGateway");
+    const api: apigateway.RestApi = APIGatewayCreator.CreateApiGateway(this, "CdkADeployedPI", "AWS-CDKでデプロイしたAPIGateway");
 
     /**
      * Create APIGateway Authorizer
      */
-    const apiAuthorizer = APIGatewayCreator.CreateAuthorizer(this, "CdkAPIAuthorizer", api);
+    const apiAuthorizer: apigateway.CfnAuthorizer = APIGatewayCreator.CreateAuthorizer(this, "CdkAPIAuthorizer", api);
 
     /**
      * Add GET and POST method to APIGateway

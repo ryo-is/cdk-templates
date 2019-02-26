@@ -8,6 +8,6 @@ export class DynamoDBCreator {
    * @param {dynamodb.TableProps} tableParam
    */
   static CreateDynamoDB(self: cdk.Construct, tableParam: dynamodb.TableProps) {
-    return  new dynamodb.Table(self, (tableParam.tableName) as string, tableParam);
+    return new dynamodb.Table(self, (tableParam.tableName) as string, tableParam);
   }
 }
