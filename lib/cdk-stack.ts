@@ -36,7 +36,7 @@ export class CdkStack extends cdk.Stack {
     const table = DynamoDBCreator.CreateDynamoDB(this, tableParams[0]);
 
     /**
-     *
+     * Create S3 bucket
      */
     S3Creator.CreateS3Bucket(this, "cdk-stack-bucket");
 
@@ -66,6 +66,6 @@ export class CdkStack extends cdk.Stack {
      */
     APIGatewayCreator.AddMethod(api, "GET", getHandler, apiAuthorizer);
     APIGatewayCreator.AddResourceAndMethod(api, "get", "GET", getHandler, apiAuthorizer);
-    APIGatewayCreator.AddResourceAndMethod(api, "post", "POST", postHandler, apiAuthorizer)
+    APIGatewayCreator.AddResourceAndMethod(api, "post", "POST", postHandler, apiAuthorizer);
   }
 }
