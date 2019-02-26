@@ -1,9 +1,9 @@
 {
-  "name": "cdk-demo",
+  "name": "cdk-templates",
   "version": "0.1.0",
   "private": true,
   "bin": {
-    "cdk-demo": "bin/cdk-demo.js"
+    "cdk-app": "bin/cdk-app.js"
   },
   "scripts": {
     "build": "tsc",
@@ -16,9 +16,17 @@
     "typescript": "^3.1.2"
   },
   "dependencies": {
+    "@aws-cdk/alexa-ask": "^0.24.1",
     "@aws-cdk/assert": "^0.24.1",
     "@aws-cdk/aws-apigateway": "^0.24.1",
+    "@aws-cdk/aws-cloudformation": "^0.24.1",
+    "@aws-cdk/aws-cloudtrail": "^0.24.1",
+    "@aws-cdk/aws-codebuild": "^0.24.1",
+    "@aws-cdk/aws-codecommit": "^0.24.1",
+    "@aws-cdk/aws-codedeploy": "^0.24.1",
+    "@aws-cdk/aws-codepipeline": "^0.24.1",
     "@aws-cdk/aws-dynamodb": "^0.24.1",
+    "@aws-cdk/aws-ecr": "^0.24.1",
     "@aws-cdk/aws-iam": "^0.24.1",
     "@aws-cdk/aws-lambda": "^0.24.1",
     "@aws-cdk/aws-s3": "^0.24.1",
