@@ -203,6 +203,15 @@
     "@aws-cdk/aws-sns" "^0.24.1"
     "@aws-cdk/cdk" "^0.24.1"
 
+"@aws-cdk/aws-cognito@^0.24.1":
+  version "0.24.1"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-cognito/-/aws-cognito-0.24.1.tgz#d53733292f327980b02ac9226061093ac09a6ea7"
+  integrity sha512-Z9NtV10MUQMI5XdY0EwDN7UXpfzGtZ15dZKRJMQ6AQcKc0uO9AF2S8eTJSU5FilWV95VJOJiBvMemXO+xqZkdQ==
+  dependencies:
+    "@aws-cdk/aws-iam" "^0.24.1"
+    "@aws-cdk/aws-lambda" "^0.24.1"
+    "@aws-cdk/cdk" "^0.24.1"
+
 "@aws-cdk/aws-dynamodb@^0.24.1":
   version "0.24.1"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-dynamodb/-/aws-dynamodb-0.24.1.tgz#62e5dffe532671c7ac6f5adf6ba76340657ba37f"
