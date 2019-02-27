@@ -10,6 +10,7 @@ AWSCDKのサンプルコード
 * APIGateway
 * DynamoDB
 * S3
+* KinesisStreams
 * IAM
 
 ### CdkPipelineStack

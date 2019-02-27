@@ -268,6 +268,16 @@
   dependencies:
     "@aws-cdk/cdk" "^0.24.1"
 
+"@aws-cdk/aws-kinesis@^0.24.1":
+  version "0.24.1"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-kinesis/-/aws-kinesis-0.24.1.tgz#95ebba74865dc35bedbe808cbd52bc70d5570b1d"
+  integrity sha512-jz2xHVJCjnTc2wIgD9ihBGA0i0xw1HWk9lZWNjEww3JGtjIqMvEYFzJbCxdNt6FLwLIbqaD1GCngvImedOErVg==
+  dependencies:
+    "@aws-cdk/aws-iam" "^0.24.1"
+    "@aws-cdk/aws-kms" "^0.24.1"
+    "@aws-cdk/aws-logs" "^0.24.1"
+    "@aws-cdk/cdk" "^0.24.1"
+
 "@aws-cdk/aws-kms@^0.24.1":
   version "0.24.1"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-kms/-/aws-kms-0.24.1.tgz#77546b5861166e83e3c2dd4008654b0c9f4c0890"
