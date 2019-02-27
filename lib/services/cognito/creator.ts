@@ -25,14 +25,19 @@ export class CognitoCreator {
           attributeDataType: "String",
           required: true
         }
-      ]
+      ],
+      autoVerifiedAttributes: ["email"],
+      emailVerificationSubject: "Your verification code",
+      emailVerificationMessage: "Your verification code is {####}"
     });
-    // return new cognito.UserPool(self, id, {
-    //   poolName: id,
-    //   autoVerifiedAttributes: [cognito.UserPoolAttribute.Email]
-    // });
   }
 
+  /**
+   * Create Cognito UserPool Client
+   * @param {cdk.Construct} self
+   * @param {String} id
+   * @param {cognito.CfnUserPool} userPool
+   */
   static CreateUserPoolClient(self: cdk.Construct, id: string, userPool: cognito.CfnUserPool) {
     new cognito.CfnUserPoolClient(self, id, {
       clientName: id,

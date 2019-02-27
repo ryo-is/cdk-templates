@@ -1,7 +1,7 @@
 import cdk = require("@aws-cdk/cdk");
 import apigateway = require("@aws-cdk/aws-apigateway");
 import lambda = require("@aws-cdk/aws-lambda");
-import cognitoArn = require("../../../cognito_arn");
+import cognitoArn = require("../cognito/cognito_arn");
 
 export class APIGatewayCreator {
   /**
