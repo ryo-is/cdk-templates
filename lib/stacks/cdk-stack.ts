@@ -6,10 +6,10 @@ import apigateway = require("@aws-cdk/aws-apigateway");
 
 import { LambdaFunctionCreator } from "../services/lambda_function/creator";
 import { DynamoDBCreator } from "../services/dynamodb/creator";
-// import { S3Creator } from "../services/s3/creator";
+import { S3Creator } from "../services/s3/creator";
 import { APIGatewayCreator } from "../services/apigateway/creator";
 import { IAMCreator } from "../services/iam/creator";
-// import { KinesisStreamsCreator } from "../services/kinesis/creator";
+import { KinesisStreamsCreator } from "../services/kinesis/creator";
 
 export class CdkStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
@@ -42,12 +42,12 @@ export class CdkStack extends cdk.Stack {
     /**
      * Create S3 bucket
      */
-    // S3Creator.CreateS3Bucket(this, "cdk-stack-bucket");
+    S3Creator.CreateS3Bucket(this, "cdk-stack-bucket");
 
     /**
      * Create KinesisStreams
      */
-    // KinesisStreamsCreator.CreateKinesisStream(this, "CdkKinesisStream", 1);
+    KinesisStreamsCreator.CreateKinesisStream(this, "CdkKinesisStream", 1);
 
     /**
      * Create IAM Policy Statement
