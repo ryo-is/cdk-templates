@@ -17,6 +17,6 @@ export class LambdaFunctionCreator {
       environment: {
         TZ: "Asia/Tokyo"
       }
-    })
+    });
   }
 }
