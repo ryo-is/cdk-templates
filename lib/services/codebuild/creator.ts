@@ -1,5 +1,5 @@
 import cdk = require("@aws-cdk/cdk");
-import codepipeline = require("@aws-cdk/aws-codepipeline");
+import cpapi = require("@aws-cdk/aws-codepipeline-api");
 import codebuild = require("@aws-cdk/aws-codebuild");
 
 export class CodeBuildCreator {
@@ -28,11 +28,15 @@ export class CodeBuildCreator {
 
   /**
    * Add CodePipeline Build Stage
-   * @param {codebuild.Project} project
-   * @param {codepipeline.Stage} stage
-   * @param {String} id
+   * @param {codepipeline.Stage} buildStage
+   * @param {cpapi.SourceAction} sourceAction
+   * @param {codebuild.Project} buildProject
    */
-  static AddBuildAction(project: codebuild.Project, stage: codepipeline.Stage, id: string) {
-    project.addToPipeline(stage, id);
+  static AddBuildAction(buildStage: cpapi.IStage, sourceAction: cpapi.SourceAction, buildProject: codebuild.Project) {
+    buildStage.addAction(new codebuild.PipelineBuildAction({
+      actionName: "Build",
+      inputArtifact: sourceAction.outputArtifact,
+      project: buildProject
+    }));
   }
 }

@@ -1,5 +1,6 @@
 import cdk = require("@aws-cdk/cdk");
 import codepipeline = require("@aws-cdk/aws-codepipeline");
+import cpapi = require("@aws-cdk/aws-codepipeline-api");
 import codecommit = require("@aws-cdk/aws-codecommit");
 import codebuild = require("@aws-cdk/aws-codebuild");
 
@@ -19,8 +20,8 @@ export class CdkPipelineStack extends cdk.Stack {
     /**
      * Add Pipeline Stage
      */
-    const sourceStage: codepipeline.Stage = CodePipelineCreator.AddStage(pipeline, "Source");
-    const buildStage: codepipeline.Stage = CodePipelineCreator.AddStage(pipeline, "Build");
+    const sourceStage: cpapi.IStage = CodePipelineCreator.AddStage(pipeline, "Source");
+    const buildStage: cpapi.IStage = CodePipelineCreator.AddStage(pipeline, "Build");
 
     /**
      * Create CodeCommit Repository
@@ -28,18 +29,19 @@ export class CdkPipelineStack extends cdk.Stack {
     const repo: codecommit.Repository = CodeCommitCreator.CreateRepository(this, "CdkRepository");
 
     /**
-     * Add CodePipeline Source Stage
-     */
-    CodeCommitCreator.AddSourceAction(repo, sourceStage, "PipelineSourceAction", "develop");
-
-    /**
      * Create CodeBuild Project
      */
     const buildProject: codebuild.Project = CodeBuildCreator.CreateCodeBuild(this, "CdkCodeBuildProject");
 
     /**
+     * Add CodePipeline Source Stage
+     */
+    const sourceAction: cpapi.SourceAction = CodeCommitCreator.CreateSourceAction(repo, "develop");
+    CodeCommitCreator.AddSourceAction(sourceStage, sourceAction);
+
+    /**
      * Add CodePipeline Build Stage
      */
-    CodeBuildCreator.AddBuildAction(buildProject, buildStage, "PipelineBuildAction");
+    CodeBuildCreator.AddBuildAction(buildStage, sourceAction, buildProject);
   }
 }

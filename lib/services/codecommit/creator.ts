@@ -1,6 +1,6 @@
 import cdk = require("@aws-cdk/cdk");
 import codecommit = require("@aws-cdk/aws-codecommit");
-import codepipeline = require("@aws-cdk/aws-codepipeline");
+import cpapi = require("@aws-cdk/aws-codepipeline-api");
 
 export class CodeCommitCreator {
   /**
@@ -15,20 +15,25 @@ export class CodeCommitCreator {
   }
 
   /**
-   * Add CodePipeline Source Stage
+   * Create CodePipeline Source Stage
    * @param {codecommit.Repository} repo
-   * @param {codepipeline.Stage} sourceStage
-   * @param {String} id
    * @param {String} targetBranch
    */
-  static AddSourceAction(
-    repo: codecommit.Repository,
-    sourceStage: codepipeline.Stage,
-    id: string,
-    targetBranch: string) {
-      repo.addToPipeline(sourceStage, id, {
+  static CreateSourceAction(repo: codecommit.Repository, targetBranch: string) {
+      return new codecommit.PipelineSourceAction({
+        actionName: "Source",
+        outputArtifactName: "SourceArtifact",
         branch: targetBranch,
-        outputArtifactName: "App"
+        repository: repo
       })
+  }
+
+  /**
+   * Add CodePipeline Source Stage
+   * @param {cpapi.IStage} sourceStage
+   * @param {cpapi.SourceAction} sourceAction
+   */
+  static AddSourceAction(sourceStage: cpapi.IStage, sourceAction: cpapi.SourceAction) {
+    sourceStage.addAction(sourceAction);
   }
 }

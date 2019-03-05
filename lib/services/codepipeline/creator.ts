@@ -19,6 +19,8 @@ export class CodePipelineCreator {
    * @param {String} stageName
    */
   static AddStage(pipeline: codepipeline.Pipeline, stageName: string) {
-    return pipeline.addStage(stageName);
+    return pipeline.addStage({
+      name: stageName
+    });
   }
 }
