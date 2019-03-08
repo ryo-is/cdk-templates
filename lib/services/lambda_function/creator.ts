@@ -12,11 +12,15 @@ export class LambdaFunctionCreator {
     return new lambda.Function(self, functionName, {
       functionName: functionName,
       runtime: lambda.Runtime.NodeJS810,
-      code: lambda.Code.directory("resources"),
+      code: lambda.Code.directory("resources/js"),
       handler: handler,
       environment: {
         TZ: "Asia/Tokyo"
       }
     });
   }
+
+  // static CreatePythonLambdaFunction() {
+
+  // }
 }
