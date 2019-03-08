@@ -20,7 +20,17 @@ export class LambdaFunctionCreator {
     });
   }
 
-  // static CreatePythonLambdaFunction() {
-
-  // }
+  static CreatePythonRuntimeLambdaFunction(self: cdk.Construct, functionName: string, handler: string) {
+    return new lambda.Function(self, functionName, {
+      functionName: functionName,
+      runtime: lambda.Runtime.Python37,
+      code: lambda.Code.directory("resources/python"),
+      handler: handler,
+      memorySize: 256,
+      timeout: 29,
+      environment: {
+        TZ: "Asia/Tokyo"
+      }
+    });
+  }
 }

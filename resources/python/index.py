@@ -2,9 +2,10 @@
 Lambda Function runtime Python3.7
 """
 import sys
-from typing import Dict, Any, List
-import datetime
-from dateutil.parser import parse
+# from typing import Dict, Any, List
+from datetime import datetime
+import boto3
+# from dateutil.parser import parse
 from lambda_types import LambdaDict, LambdaContext
 
 def handler(event: LambdaDict, context: LambdaContext) -> LambdaDict:
@@ -28,37 +29,18 @@ def handler(event: LambdaDict, context: LambdaContext) -> LambdaDict:
     # contextの中身
     print(context)
 
-    print(event['key1'] if 'key1' in event else 'ValueX1')
-    print('実行されているLambda関数の名前: {}'.format(context.function_name))
-
-
-    # Pythonでの型情報に関して===============
-    count: int = 20
-    print('数値型です: {}'.format(count))
-
-    msg: str = 'こんにちは'
-    print('文字列型です: {}'.format(msg))
-
-    list_a: List[int] = [5, 12, 23]
-    print('配列です: {}'.format(list_a))
-
-    dict_a: Dict[str, str] = {'cat': 'nyaa!'}
-    print('辞書型です: {}'.format(dict_a))
-
-    none: None = None
-    if none is None:
-        print('Noneです: {}'.format(none))
-
-    variable: Any = {'object': {'name': 'taro', 'age': 29}}
-    print('Any型です: {}'.format(variable))
-
-
-    # c標準で使えるライブラリを使ってみた=========
-    # TODO: dateutilについて他の例を追加する
-    now: datetime.datetime = parse('Sat Oct 11 17:13:46 UTC 2019')
-    today = now.date()
-    print(today)
+    try:
+        dynamodb = boto3.resource('dynamodb')
+        table = dynamodb.Table('CDKPythonLambdaStackTable')
+        table.put_item(
+            Item={
+                'ID': 'test',
+                'record_time': datetime.now().strftime('%Y/%m/%d %H:%M:%S'),
+            }
+        )
+    except Exception as err:
+        print(err)
 
     # 戻り値===============================
-    message: str = 'Hello World'
+    message: str = 'Success!!'
     return {'message': message}

@@ -103,7 +103,8 @@ disable=print-statement,
         xreadlines-attribute,
         deprecated-sys-function,
         exception-escape,
-        comprehension-escape
+        comprehension-escape,
+        broad-except
 
 # 以下の項目を有効にする
 enable=c-extension-no-member, invalid-string-quote
