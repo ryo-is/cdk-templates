@@ -1,0 +1,379 @@
+[MASTER]
+
+# Pylintで除外するファイルやディレクトリの一覧、カンマで複数記述可能
+ignore=.venv, lambda_types.py
+
+# マルチプロセスでPylintを実行するかどうか、0を指定した場合は、自動的にプロセス数が決定される
+jobs=1
+
+# Pickle collected data for later comparisons.
+persistent=yes
+
+# よくある設定ミスを推測して出力するかどうか
+suggestion-mode=yes
+
+# 任意のC拡張のコードを実行するかどうか
+unsafe-load-any-extension=no
+
+# 基本はシングルクォート、トリプルはダブルクォート、docstringはダブルクォート
+load-plugins=pylint_quotes
+string-quote=single
+triple-quote=double
+docstring-quote=double
+
+[MESSAGES CONTROL]
+
+# 以下の項目を無効に設定する
+disable=print-statement,
+        parameter-unpacking,
+        unpacking-in-except,
+        old-raise-syntax,
+        backtick,
+        long-suffix,
+        old-ne-operator,
+        old-octal-literal,
+        import-star-module-level,
+        non-ascii-bytes-literal,
+        raw-checker-failed,
+        bad-inline-option,
+        locally-disabled,
+        locally-enabled,
+        file-ignored,
+        suppressed-message,
+        useless-suppression,
+        deprecated-pragma,
+        use-symbolic-message-instead,
+        apply-builtin,
+        basestring-builtin,
+        buffer-builtin,
+        cmp-builtin,
+        coerce-builtin,
+        execfile-builtin,
+        file-builtin,
+        long-builtin,
+        raw_input-builtin,
+        reduce-builtin,
+        standarderror-builtin,
+        unicode-builtin,
+        xrange-builtin,
+        coerce-method,
+        delslice-method,
+        getslice-method,
+        setslice-method,
+        no-absolute-import,
+        old-division,
+        dict-iter-method,
+        dict-view-method,
+        next-method-called,
+        metaclass-assignment,
+        indexing-exception,
+        raising-string,
+        reload-builtin,
+        oct-method,
+        hex-method,
+        nonzero-method,
+        cmp-method,
+        input-builtin,
+        round-builtin,
+        intern-builtin,
+        unichr-builtin,
+        map-builtin-not-iterating,
+        zip-builtin-not-iterating,
+        range-builtin-not-iterating,
+        filter-builtin-not-iterating,
+        using-cmp-argument,
+        eq-without-hash,
+        div-method,
+        idiv-method,
+        rdiv-method,
+        exception-message-attribute,
+        invalid-str-codec,
+        sys-max-int,
+        bad-python3-import,
+        deprecated-string-function,
+        deprecated-str-translate-call,
+        deprecated-itertools-function,
+        deprecated-types-field,
+        next-method-defined,
+        dict-items-not-iterating,
+        dict-keys-not-iterating,
+        dict-values-not-iterating,
+        deprecated-operator-function,
+        deprecated-urllib-function,
+        xreadlines-attribute,
+        deprecated-sys-function,
+        exception-escape,
+        comprehension-escape
+
+# 以下の項目を有効にする
+enable=c-extension-no-member, invalid-string-quote
+
+
+[REPORTS]
+
+# 表示を色付きで表示するように設定
+output-format=colorized
+
+# レポートメッセージを全て表示するように
+reports=yes
+
+
+[REFACTORING]
+
+# 関数のネストの深さの最大値
+max-nested-blocks=5
+
+# returnを返さない関数に対して、sys.exitをreturnとして扱う
+never-returning-functions=sys.exit
+
+
+[LOGGING]
+
+# ロギングモジュールの引数が、ロギング関数の適切なフォーマットにになっているか確認する
+logging-modules=logging
+
+
+[SPELLING]
+
+# スペルミスに対して、表示する好補数の最大値
+max-spelling-suggestions=4
+
+# スペルミスをチェックしない単語、コンマ区切りで複数指定可能
+spelling-ignore-words=
+
+
+
+[MISCELLANEOUS]
+
+# 以下に指定した文字列がコメントにあった場合、Pylintの警告に含める
+notes=FIXME,
+      XXX,
+      TODO
+
+
+[TYPECHECK]
+
+# コンテキストマネージャを生成するデコレータのリスト
+contextmanager-decorators=contextlib.contextmanager
+
+# クラスなどのメンバが見つからない時に警告を出すかどうか
+ignore-none=yes
+
+# Pylintの推論において、不透明なオブジェクトが返された場合に、警告を出すかどうか
+ignore-on-opaque-inference=yes
+
+# メンバ属性をチェックしないクラスの一覧
+ignored-classes=optparse.Values,thread._local,_thread._local
+
+# 麺座属性をチェックしないモジュールの一覧
+ignored-modules=
+
+# 行方不明のメンバーに対して可能な限りヒントを出すかどうか
+missing-member-hint=yes
+
+# 行方不明のメンバー名に一致すると見なされるために名前が持つべき最小編集距離
+missing-member-hint-distance=1
+
+# 行方不明のメンバーにヒントを示すときに考慮に入れるべき類似の名前の総数
+missing-member-max-choices=1
+
+
+[VARIABLES]
+
+# 未使用のグローバル変数を違反として扱うかどうか
+allow-global-unused-variables=yes
+
+# 組み込み変数などを再定義できるモジュールの一覧
+redefining-builtins-modules=six.moves,past.builtins,future.builtins,builtins,io
+
+
+[FORMAT]
+
+# Expected format of line ending, e.g. empty (any line ending), LF or CRLF.
+expected-line-ending-format=
+
+# Regexp for a line that is allowed to be longer than the limit.
+ignore-long-lines=^\s*(# )?<?https?://\S+>?$
+
+# インデントはスペース4個
+indent-after-paren=4
+
+# インデントはスペース4個
+indent-string='    '
+
+# 1行の最大文字数は90文字
+max-line-length=90
+
+# モジュールの最大行数は1000行
+max-module-lines=1000
+
+# 空白のチェックを行わないもの
+no-space-check=trailing-comma,
+               dict-separator
+
+# クラスの中身を、クラス宣言と同じ行に書くことは禁止
+single-line-class-stmt=no
+
+# IF文を1行で書くことは禁止
+single-line-if-stmt=no
+
+
+[BASIC]
+
+# 引数名の命名スタイル
+argument-naming-style=snake_case
+
+# 引数名の命名スタイル（正規表現）
+argument-rgx=[a-z_][a-z0-9_]{2,30}$
+
+# 属性名の命名スタイル
+attr-naming-style=snake_case
+
+# 属性名の命名スタイル（正規表現）
+attr-rgx=[a-z_][a-z0-9_]{2,30}$
+
+# Bad variable names which should always be refused, separated by a comma.
+bad-names=foo,
+          bar,
+          baz,
+          toto,
+          tutu,
+          tata
+
+# クラスの属性名の命名スタイル（制限なし）
+class-attribute-naming-style=any
+
+# クラスの属性名の命名スタイル（正規表現）
+#class-attribute-rgx=
+
+# クラス名の命名スタイル
+class-naming-style=PascalCase
+
+# クラスの命名スタイル（正規表現）
+class-rgx=[A-Z_][a-zA-Z0-9]+$
+
+# 定数の命名スタイル
+const-naming-style=UPPER_CASE
+
+# 定数の命名スタイル（正規表現）
+const-rgx=(([A-Z_][A-Z1-9_]*)|(__.*__))$
+
+# docstringの記述を免除される関数の最小行数、全ての関数にdocstring付与が必要に設定
+docstring-min-length=-1
+
+# 関数の命名スタイル
+function-naming-style=snake_case
+
+# 関数の命名スタイル（正規表現）
+function-rgx=[a-z_][a-z0-9_]{2,30}$
+
+# 常に使用可能な変数名
+good-names=i,
+           j,
+           k,
+           ex,
+           Run,
+           _
+
+# Include a hint for the correct naming format with invalid-name.
+include-naming-hint=no
+
+# Naming style matching correct inline iteration names.
+inlinevar-naming-style=any
+
+# Regular expression matching correct inline iteration names. Overrides
+# inlinevar-naming-style.
+inlinevar-rgx=[A-Za-z_][A-Za-z0-9_]*$
+
+# メソッドの命名スタイル
+method-naming-style=snake_case
+
+# メソッドの命名スタイル（正規表現）
+method-rgx=[a-z_][a-z0-9_]{2,30}$
+
+# モジュールの命名スタイル
+module-naming-style=snake_case
+
+# モジュールの命名スタイル（正規表現）
+module-rgx=(([a-z_][a-z0-9_]*)|([A-Z][a-zA-Z0-9]+))$
+
+# docstringを免除する関数やクラス名
+no-docstring-rgx=__.*__
+
+# プロパティを生成するデコレータのリスト
+property-classes=abc.abstractproperty
+
+# 変数の命名スタイル
+variable-naming-style=snake_case
+
+# 変数の命名スタイル（正規表現）
+variable-rgx=[a-z_][a-z0-9_]{2,30}$
+
+
+[IMPORTS]
+
+# __all__を定義するモジュールからのワイルドカードインポートを許可しない
+allow-wildcard-with-all=no
+
+# 使用すべきではない廃止予定のモジュール
+deprecated-modules=regsub,
+                   string,
+                   TERMIOS,
+                   Bastion,
+                   rexec
+
+# サードパーティのライブラリとわかるように、インポートの順番を強制するする
+known-third-party=enchant
+
+
+[CLASSES]
+
+# インスタンスの属性を宣言するために使用されるメソッド名
+defining-attr-methods=__init__
+
+# 保護されたアクセスの警告から除外されるべきメンバー名の一覧
+exclude-protected=_asdict,
+                  _fields,
+                  _replace,
+                  _source,
+                  _make
+
+# クラスメソッドの最初の引数に有効な名前のリスト
+valid-classmethod-first-arg=cls
+
+# メタクラスクラスメソッドの最初の引数に有効な名前のリスト
+valid-metaclass-classmethod-first-arg=cls
+
+
+[DESIGN]
+
+# 関数/メソッドの最大引数を12に制限
+max-args=12
+
+# クラスの最大属性数を20に制限
+max-attributes=20
+
+# IF文の比較の最大数を5に制限
+max-bool-expr=5
+
+# 関数/メソッド本体の最大分岐数を12に制限
+max-branches=12
+
+# 関数/メソッド本体の最大ローカル変数を30に制限
+max-locals=30
+
+# クラスの最大親数を7に制限
+max-parents=7
+
+# クラスのパブリックメソッドの最大数を20に制限
+max-public-methods=20
+
+# 関数/メソッド本体の最大リターン数を12に制限
+max-returns=12
+
+# 関数/メソッド本体の行の最大数、一旦コメントアウト
+#max-statements=60
+
+# クラスのパブリックメソッドの最小数
+min-public-methods=0
+
