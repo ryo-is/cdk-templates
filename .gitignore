@@ -7,5 +7,6 @@ cloudformation.yaml
 /output
 
 # Lambda Source Codes
+!/resources/
 !/resources/js/index.js
 !/resources/js/*/*.js
