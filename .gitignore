@@ -7,6 +7,10 @@ cloudformation.yaml
 /output
 
 # Lambda Source Codes
-!/resources
+!resources
 !/resources/js/index.js
 !/resources/js/*/*.js
+
+# python
+.mypy_cache
+.vscode
