@@ -91,6 +91,7 @@ export class APIGatewayCreator {
    * @param {apigateway.Resource} apiRoot
    */
   private static AddOptions(apiRoot: apigateway.Resource) {
+    apiRoot.
     const options = apiRoot.addMethod("OPTIONS", new apigateway.MockIntegration({
       integrationResponses: [{
         statusCode: "200",
@@ -105,19 +106,19 @@ export class APIGatewayCreator {
       requestTemplates: {
         "application/json": "{\"statusCode\": 200}"
       }
-    }));
-    const methodResource = (options as cdk.Construct).node.findChild("Resource") as apigateway.CfnMethod;
-    methodResource.propertyOverrides.methodResponses = [{
-      statusCode: "200",
-      responseModels: {
-        "application/json": "Empty"
-      },
-      responseParameters: {
-        "method.response.header.Access-Control-Allow-Headers": true,
-        "method.response.header.Access-Control-Allow-Origin": true,
-        "method.response.header.Access-Control-Allow-Credentials": true,
-        "method.response.header.Access-Control-Allow-Methods": true,
-      }
-    }];
+    }), {
+      methodResponses: [{
+        statusCode: "200",
+        responseParameters: {
+          "method.response.header.Access-Control-Allow-Headers": true,
+          "method.response.header.Access-Control-Allow-Origin": true,
+          "method.response.header.Access-Control-Allow-Credentials": true,
+          "method.response.header.Access-Control-Allow-Methods": true,
+        },
+        responseModels: {
+          "application/json": new apigateway.EmptyModel()
+        },
+      }]
+    });
   }
 }
