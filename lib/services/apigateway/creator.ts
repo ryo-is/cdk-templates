@@ -91,8 +91,7 @@ export class APIGatewayCreator {
    * @param {apigateway.Resource} apiRoot
    */
   private static AddOptions(apiRoot: apigateway.Resource) {
-    apiRoot.
-    const options = apiRoot.addMethod("OPTIONS", new apigateway.MockIntegration({
+    apiRoot.addMethod("OPTIONS", new apigateway.MockIntegration({
       integrationResponses: [{
         statusCode: "200",
         responseParameters: {

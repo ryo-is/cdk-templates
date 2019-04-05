@@ -1,5 +1,5 @@
 import cdk = require("@aws-cdk/cdk");
-import cpapi = require("@aws-cdk/aws-codepipeline-api");
+import cpapi = require("@aws-cdk/aws-codepipeline");
 import codebuild = require("@aws-cdk/aws-codebuild");
 
 export class CodeBuildCreator {

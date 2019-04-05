@@ -1,6 +1,6 @@
 import cdk = require("@aws-cdk/cdk");
 import codecommit = require("@aws-cdk/aws-codecommit");
-import cpapi = require("@aws-cdk/aws-codepipeline-api");
+import cpapi = require("@aws-cdk/aws-codepipeline");
 
 export class CodeCommitCreator {
   /**

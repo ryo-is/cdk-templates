@@ -178,6 +178,24 @@
     "@aws-cdk/aws-s3" "^0.28.0"
     "@aws-cdk/cdk" "^0.28.0"
 
+"@aws-cdk/aws-codepipeline-actions@^0.28.0":
+  version "0.28.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-codepipeline-actions/-/aws-codepipeline-actions-0.28.0.tgz#08f1d9c995ad3fbf97b9d5b4e1bebf1b9454a74d"
+  integrity sha512-ayqNUzNhtYQYGiWnTzui8sK0qRCMPvLV8W9kj4jQRIffr1iKXFJa+LdFZTRTvCADWyL57uds/OCM7a5ex8tgVg==
+  dependencies:
+    "@aws-cdk/aws-cloudformation" "^0.28.0"
+    "@aws-cdk/aws-codebuild" "^0.28.0"
+    "@aws-cdk/aws-codecommit" "^0.28.0"
+    "@aws-cdk/aws-codedeploy" "^0.28.0"
+    "@aws-cdk/aws-codepipeline" "^0.28.0"
+    "@aws-cdk/aws-ecr" "^0.28.0"
+    "@aws-cdk/aws-events" "^0.28.0"
+    "@aws-cdk/aws-iam" "^0.28.0"
+    "@aws-cdk/aws-lambda" "^0.28.0"
+    "@aws-cdk/aws-s3" "^0.28.0"
+    "@aws-cdk/aws-sns" "^0.28.0"
+    "@aws-cdk/cdk" "^0.28.0"
+
 "@aws-cdk/aws-codepipeline@^0.28.0":
   version "0.28.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-codepipeline/-/aws-codepipeline-0.28.0.tgz#115f92fef72937edfe6d594e0e13aa2720caa80b"
