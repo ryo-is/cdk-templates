@@ -1,6 +1,5 @@
 import cdk = require("@aws-cdk/cdk");
 import codepipeline = require("@aws-cdk/aws-codepipeline");
-import codepipeline_actions = require("@aws-cdk/aws-codepipeline-actions");
 import codecommit = require("@aws-cdk/aws-codecommit");
 import codebuild = require("@aws-cdk/aws-codebuild");
 
