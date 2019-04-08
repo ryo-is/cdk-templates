@@ -2,6 +2,7 @@
 Lambda Function runtime Python3.7
 """
 import sys
+import json
 # from typing import Dict, Any, List
 # from datetime import datetime
 # import boto3
@@ -43,4 +44,10 @@ def handler(event: LambdaDict, context: LambdaContext) -> LambdaDict:
 
     # 戻り値===============================
     message: str = 'Success!!'
-    return {'message': message}
+    response_body = {
+        'statusCode': 200,
+        'body': json.dumps({'result': 200, 'msg': message}),
+        'headers': {'Access-Control-Allow-Origin': '*'}
+    }
+    print(response_body)
+    return response_body

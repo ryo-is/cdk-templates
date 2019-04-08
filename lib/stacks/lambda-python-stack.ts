@@ -16,8 +16,14 @@ export class PythonLambdaStack extends cdk.Stack {
     const lambdaFunction: lambda.Function = LambdaFunctionCreator.CreatePythonRuntimeLambdaFunction(this, "CdkPythonLambda", "index.handler")
     const apiGateway: apigateway.RestApi = APIGatewayCreator.CreateApiGateway(this, "CdkADeployedPI", "AWS-CDKでデプロイしたAPIGateway")
 
-    const integration = new apigateway.LambdaIntegration(lambdaFunction)
-    apiGateway.root.addResource("get").addMethod("GET", integration)
+    const integration: apigateway.Integration = new apigateway.LambdaIntegration(lambdaFunction)
+    const getResourceApi: apigateway.Resource = apiGateway.root.addResource("get")
+    getResourceApi.addMethod("GET", integration)
+    APIGatewayCreator.AddOptions(getResourceApi)
+
+    const postResourceApi: apigateway.Resource = apiGateway.root.addResource("post")
+    postResourceApi.addMethod("POST", integration)
+    APIGatewayCreator.AddOptions(postResourceApi)
 
     // const tableParams: dynamodb.TableProps[] = [
     //   {

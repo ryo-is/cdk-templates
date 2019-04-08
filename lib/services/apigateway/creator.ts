@@ -90,7 +90,7 @@ export class APIGatewayCreator {
    * Active APIGateway CORS Setting
    * @param {apigateway.Resource} apiRoot
    */
-  private static AddOptions(apiRoot: apigateway.Resource) {
+   static AddOptions(apiRoot: apigateway.Resource) {
     apiRoot.addMethod("OPTIONS", new apigateway.MockIntegration({
       integrationResponses: [{
         statusCode: "200",
