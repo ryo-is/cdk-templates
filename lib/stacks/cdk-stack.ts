@@ -76,5 +76,11 @@ export class CdkStack extends cdk.Stack {
     APIGatewayCreator.AddMethod(api, "GET", getHandler, apiAuthorizer);
     APIGatewayCreator.AddResourceAndMethod(api, "get", "GET", getHandler, apiAuthorizer);
     APIGatewayCreator.AddResourceAndMethod(api, "post", "POST", postHandler, apiAuthorizer);
+
+
+    new apigateway.Method(this, id, {
+      resource: api.root,
+      httpMethod: "GET"
+    })
   }
 }
