@@ -14,18 +14,24 @@ export class PythonLambdaStack extends cdk.Stack {
     super(scope, id, props);
 
     const lambdaFunction: lambda.Function = LambdaFunctionCreator.CreatePythonRuntimeLambdaFunction(this, "CdkPythonLambda", "index.handler")
-    const lambdaFunctionImport: lambda.IFunction = lambda.Function.import(this, "PostLambda", {
-      functionArn: "arn:aws:lambda:ap-northeast-1:795622185554:function:CdkPythonLambda"
-    })
+    // const lambdaFunctionImport: lambda.IFunction = lambda.Function.import(this, "PostLambda", {
+    //   functionArn: "arn:aws:lambda:ap-northeast-1:795622185554:function:CdkPythonLambda"
+    // })
     const apiGateway: apigateway.RestApi = APIGatewayCreator.CreateApiGateway(this, "CdkADeployedPI", "AWS-CDKでデプロイしたAPIGateway")
 
     const usagePlan: apigateway.CfnUsagePlan = new apigateway.CfnUsagePlan(this, "CDKUsagePlan", {
+      throttle: {
+        burstLimit: 5000,
+        rateLimit: 10000
+      },
       apiStages: [{
         apiId: apiGateway.restApiId,
         stage: (apiGateway.deploymentStage as apigateway.Stage).stageName
       }]
     })
-    const apiKey: apigateway.CfnApiKey = new apigateway.CfnApiKey(this, "CDKApiKey")
+    const apiKey: apigateway.CfnApiKey = new apigateway.CfnApiKey(this, "CDKApiKey", {
+      enabled: true
+    })
     new apigateway.CfnUsagePlanKey(this, "CDKUsagePlanKey", {
       keyId: apiKey.apiKeyId,
       keyType: "API_KEY",
@@ -33,9 +39,11 @@ export class PythonLambdaStack extends cdk.Stack {
     })
 
     const integration: apigateway.Integration = new apigateway.LambdaIntegration(lambdaFunction)
-    const postIntegration: apigateway.Integration = new apigateway.LambdaIntegration(lambdaFunctionImport)
+    const postIntegration: apigateway.Integration = new apigateway.LambdaIntegration(lambdaFunction)
     const getResourceApi: apigateway.Resource = apiGateway.root.addResource("getReq")
-    getResourceApi.addMethod("GET", integration)
+    getResourceApi.addMethod("GET", integration, {
+      apiKeyRequired: false,
+    })
     APIGatewayCreator.AddOptions(getResourceApi)
 
     const postResourceApi: apigateway.Resource = apiGateway.root.addResource("postReq")
