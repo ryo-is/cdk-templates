@@ -15,6 +15,7 @@ export class CdkPipelineStack extends cdk.Stack {
      * Create CodePipeline
      */
     const pipeline: codepipeline.Pipeline = CodePipelineCreator.CreatePipeline(this, "CdkCodePipeline");
+    const pipelineArtifact: codepipeline.Artifact = new codepipeline.Artifact("OutputArtifact");
 
     /**
      * Add Pipeline Stage
@@ -35,12 +36,12 @@ export class CdkPipelineStack extends cdk.Stack {
     /**
      * Add CodePipeline Source Stage
      */
-    const sourceAction: codepipeline.SourceAction = CodeCommitCreator.CreateSourceAction(repo, "develop");
+    const sourceAction: codepipeline.Action = CodeCommitCreator.CreateSourceAction(repo, pipelineArtifact, "develop");
     CodeCommitCreator.AddSourceAction(sourceStage, sourceAction);
 
     /**
      * Add CodePipeline Build Stage
      */
-    CodeBuildCreator.AddBuildAction(buildStage, sourceAction, buildProject);
+    CodeBuildCreator.AddBuildAction(buildStage, pipelineArtifact, buildProject);
   }
 }
