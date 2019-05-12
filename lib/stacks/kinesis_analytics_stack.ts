@@ -21,8 +21,8 @@ export class KinesisAnalyticsStack extends cdk.Stack {
             }
           },
           kinesisStreamsInput: {
-            resourceArn: "arn:aws:kinesis:us-west-2:853419781618:stream/rideologyCloudStreams",
-            roleArn: "arn:aws:iam::853419781618:role/service-role/kinesis-analytics-summarize_riding_log_high-us-west-2"
+            resourceArn: "arn:aws:kinesis:us-west-2:xxxxxxxxxxxx:stream/rideologyCloudStreams",
+            roleArn: "arn:aws:iam::xxxxxxxxxxxx:role/service-role/kinesis-analytics-summarize_riding_log_high-us-west-2"
           },
           namePrefix: "hoge"
         }
