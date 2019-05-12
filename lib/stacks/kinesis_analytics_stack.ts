@@ -27,6 +27,7 @@ export class KinesisAnalyticsStack extends cdk.Stack {
           namePrefix: "hoge"
         }
       ],
+      applicationCode: ``
     })
   }
 }
