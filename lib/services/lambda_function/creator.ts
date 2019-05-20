@@ -1,5 +1,5 @@
-import cdk = require("@aws-cdk/cdk");
-import lambda = require("@aws-cdk/aws-lambda");
+import cdk = require("@aws-cdk/cdk")
+import lambda = require("@aws-cdk/aws-lambda")
 
 export class LambdaFunctionCreator {
   /**
@@ -17,7 +17,7 @@ export class LambdaFunctionCreator {
       environment: {
         TZ: "Asia/Tokyo"
       }
-    });
+    })
   }
 
   static CreatePythonRuntimeLambdaFunction(self: cdk.Construct, functionName: string, handler: string) {
@@ -31,6 +31,6 @@ export class LambdaFunctionCreator {
       environment: {
         TZ: "Asia/Tokyo"
       }
-    });
+    })
   }
 }

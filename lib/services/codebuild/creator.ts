@@ -1,8 +1,8 @@
-import cdk = require("@aws-cdk/cdk");
-import cpapi = require("@aws-cdk/aws-codepipeline");
-import codebuild = require("@aws-cdk/aws-codebuild");
-import codepipeline = require("@aws-cdk/aws-codepipeline");
-import codepipeline_actions = require("@aws-cdk/aws-codepipeline-actions");
+import cdk = require("@aws-cdk/cdk")
+import cpapi = require("@aws-cdk/aws-codepipeline")
+import codebuild = require("@aws-cdk/aws-codebuild")
+import codepipeline = require("@aws-cdk/aws-codepipeline")
+import codepipeline_actions = require("@aws-cdk/aws-codepipeline-actions")
 
 export class CodeBuildCreator {
   /**
@@ -25,7 +25,7 @@ export class CodeBuildCreator {
           }
         }
       }
-    });
+    })
   }
 
   /**
@@ -39,6 +39,6 @@ export class CodeBuildCreator {
       actionName: "Build",
       input: outputArtifact,
       project: buildProject
-    }));
+    }))
   }
 }

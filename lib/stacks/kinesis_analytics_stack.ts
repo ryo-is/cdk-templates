@@ -41,7 +41,7 @@ export class KinesisAnalyticsStack extends cdk.Stack {
         "roll_rate" double,
         "throttle_position" double,
         "boost_pressure" double,
-        "gear_position" INTEGER);
+        "gear_position" INTEGER)
 
         CREATE OR REPLACE PUMP "STREAM_PUMP" AS INSERT INTO "RIDING_LOG_HIGH_STREAM"
         SELECT STREAM
@@ -61,7 +61,7 @@ export class KinesisAnalyticsStack extends cdk.Stack {
         max("gear_position") over RSW
         FROM "SOURCE_SQL_STREAM_001"
         where "riding_log_type" similar to '%high%'
-        window RSW as (partition by "user_and_bikeID"  ROWS 1 preceding);`
+        window RSW as (partition by "user_and_bikeID"  ROWS 1 preceding)`
     })
   }
 }

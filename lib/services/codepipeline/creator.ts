@@ -1,5 +1,5 @@
-import cdk = require("@aws-cdk/cdk");
-import codepipeline = require("@aws-cdk/aws-codepipeline");
+import cdk = require("@aws-cdk/cdk")
+import codepipeline = require("@aws-cdk/aws-codepipeline")
 
 export class CodePipelineCreator {
   /**
@@ -10,7 +10,7 @@ export class CodePipelineCreator {
   static CreatePipeline(self: cdk.Construct, pipelineName: string) {
     return new codepipeline.Pipeline(self, pipelineName, {
       pipelineName: pipelineName
-    });
+    })
   }
 
   /**
@@ -21,6 +21,6 @@ export class CodePipelineCreator {
   static AddStage(pipeline: codepipeline.Pipeline, stageName: string) {
     return pipeline.addStage({
       name: stageName
-    });
+    })
   }
 }

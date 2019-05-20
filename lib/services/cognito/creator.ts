@@ -1,5 +1,5 @@
-import cdk = require("@aws-cdk/cdk");
-import cognito = require("@aws-cdk/aws-cognito");
+import cdk = require("@aws-cdk/cdk")
+import cognito = require("@aws-cdk/aws-cognito")
 
 export class CognitoCreator {
   /**
@@ -29,7 +29,7 @@ export class CognitoCreator {
       autoVerifiedAttributes: ["email"],
       emailVerificationSubject: "Your verification code",
       emailVerificationMessage: "Your verification code is {####}"
-    });
+    })
   }
 
   /**
@@ -42,6 +42,6 @@ export class CognitoCreator {
     new cognito.CfnUserPoolClient(self, id, {
       clientName: id,
       userPoolId: userPool.userPoolId
-    });
+    })
   }
 }

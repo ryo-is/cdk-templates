@@ -1,4 +1,4 @@
-import iam = require("@aws-cdk/aws-iam");
+import iam = require("@aws-cdk/aws-iam")
 
 export class IAMCreator {
   static CreateDDBReadWriteRoleStatement(tableArn: string) {
@@ -11,6 +11,6 @@ export class IAMCreator {
       )
       .addResource(
         tableArn
-      );
+      )
   }
 }

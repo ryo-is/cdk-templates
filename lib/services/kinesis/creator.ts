@@ -1,5 +1,5 @@
-import cdk = require("@aws-cdk/cdk");
-import kinesis = require("@aws-cdk/aws-kinesis");
+import cdk = require("@aws-cdk/cdk")
+import kinesis = require("@aws-cdk/aws-kinesis")
 
 export class KinesisStreamsCreator {
   /**
@@ -12,6 +12,6 @@ export class KinesisStreamsCreator {
     new kinesis.Stream(self, id, {
       streamName: id,
       shardCount: shardCount
-    });
+    })
   }
 }

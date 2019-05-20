@@ -1,7 +1,7 @@
-import cdk = require("@aws-cdk/cdk");
-import apigateway = require("@aws-cdk/aws-apigateway");
-import lambda = require("@aws-cdk/aws-lambda");
-import cognitoArn = require("../cognito/cognito_arn");
+import cdk = require("@aws-cdk/cdk")
+import apigateway = require("@aws-cdk/aws-apigateway")
+import lambda = require("@aws-cdk/aws-lambda")
+import cognitoArn = require("../cognito/cognito_arn")
 
 export class APIGatewayCreator {
   /**
@@ -14,7 +14,7 @@ export class APIGatewayCreator {
     return new apigateway.RestApi(self, apiName, {
       restApiName: apiName,
       description: apiDescription
-    });
+    })
   }
 
   /**
@@ -30,7 +30,7 @@ export class APIGatewayCreator {
       identitySource: "method.request.header.Authorization",
       providerArns: [cognitoArn.default.arn],
       type: "COGNITO_USER_POOLS"
-    });
+    })
   }
 
   /**
@@ -47,14 +47,14 @@ export class APIGatewayCreator {
     handler: lambda.IFunction,
     authorizer: apigateway.CfnAuthorizer,
     cors: boolean = true) {
-    const integration = new apigateway.LambdaIntegration(handler);
+    const integration = new apigateway.LambdaIntegration(handler)
     const option: apigateway.MethodOptions = {
       authorizationType: apigateway.AuthorizationType.Cognito,
       authorizerId: authorizer.authorizerId
     }
-    api.root.addMethod(method, integration, option);
+    api.root.addMethod(method, integration, option)
     if (cors) {
-      APIGatewayCreator.AddOptions((api.root) as apigateway.Resource);
+      APIGatewayCreator.AddOptions((api.root) as apigateway.Resource)
     }
   }
 
@@ -74,15 +74,15 @@ export class APIGatewayCreator {
     handler: lambda.IFunction,
     authorizer: apigateway.CfnAuthorizer,
     cors: boolean = true) {
-    const addResourceApi = api.root.addResource(resource);
-    const integration = new apigateway.LambdaIntegration(handler);
+    const addResourceApi = api.root.addResource(resource)
+    const integration = new apigateway.LambdaIntegration(handler)
     const option: apigateway.MethodOptions = {
       authorizationType: apigateway.AuthorizationType.Cognito,
       authorizerId: authorizer.authorizerId
     }
-    addResourceApi.addMethod(method, integration, option);
+    addResourceApi.addMethod(method, integration, option)
     if (cors) {
-      APIGatewayCreator.AddOptions(addResourceApi);
+      APIGatewayCreator.AddOptions(addResourceApi)
     }
   }
 
@@ -118,6 +118,6 @@ export class APIGatewayCreator {
           "application/json": new apigateway.EmptyModel()
         },
       }]
-    });
+    })
   }
 }
