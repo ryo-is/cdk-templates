@@ -10,7 +10,7 @@ export class KansaitsDemoStack extends cdk.Stack {
     const demoLambda: lambda.Function = new lambda.Function(this, "demoLambda", {
       functionName: "KansaitsDemoLambda",
       runtime: lambda.Runtime.Python37,
-      code: lambda.Code.directory("resources/python"),
+      code: lambda.Code.asset("resources/python"),
       handler: "index.handler",
       memorySize: 128,
       timeout: 29
