@@ -13,4 +13,14 @@ export class IAMCreator {
         tableArn
       )
   }
+
+  static CreateS3GetObjectRoleStatement(s3Arn: string) {
+    return new iam.PolicyStatement().allow()
+      .addActions(
+        "s3:GetObject"
+      )
+      .addResource(
+        s3Arn
+      )
+  }
 }

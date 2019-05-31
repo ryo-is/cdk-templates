@@ -14,6 +14,8 @@ export class LambdaFunctionCreator {
       runtime: lambda.Runtime.NodeJS810,
       code: lambda.Code.directory("resources/js"),
       handler: handler,
+      memorySize: 256,
+      timeout: 300,
       environment: {
         TZ: "Asia/Tokyo"
       }
