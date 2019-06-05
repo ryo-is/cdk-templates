@@ -1,0 +1,398 @@
+{
+  "Resources": {
+    "demoLambdaServiceRole76EF9407": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "lambda.",
+                      {
+                        "Ref": "AWS::URLSuffix"
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "KansaitsDemoStack/demoLambda/ServiceRole/Resource"
+      }
+    },
+    "demoLambdaA55DA906": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "demoLambdaCodeS3Bucket1A7D73AD"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "demoLambdaCodeS3VersionKey63B84B31"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "demoLambdaCodeS3VersionKey63B84B31"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "demoLambdaServiceRole76EF9407",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.7",
+        "FunctionName": "KansaitsDemoLambda",
+        "MemorySize": 128,
+        "Timeout": 29
+      },
+      "DependsOn": [
+        "demoLambdaServiceRole76EF9407"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "KansaitsDemoStack/demoLambda/Resource",
+        "aws:asset:path": "asset.fa946b4889e8b36af836e0e4aa15a6b27b0b9aa059aa4b1b2a9ef7c6a6bf9486",
+        "aws:asset:property": "Code"
+      }
+    },
+    "demoLambdaApiPermissionGETgetE6F0C7E9": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "demoLambdaA55DA906",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "demoAPID9DC020C"
+              },
+              "/",
+              {
+                "Ref": "demoAPIDeploymentStageprod47FE47A9"
+              },
+              "/GET/get"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "KansaitsDemoStack/demoLambda/ApiPermission.GET..get"
+      }
+    },
+    "demoLambdaApiPermissionTestGETgetB5165468": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "demoLambdaA55DA906",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "demoAPID9DC020C"
+              },
+              "/test-invoke-stage/GET/get"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "KansaitsDemoStack/demoLambda/ApiPermission.Test.GET..get"
+      }
+    },
+    "demoAPID9DC020C": {
+      "Type": "AWS::ApiGateway::RestApi",
+      "Properties": {
+        "Name": "KansaitsDemoAPIGateway"
+      },
+      "Metadata": {
+        "aws:cdk:path": "KansaitsDemoStack/demoAPI/Resource"
+      }
+    },
+    "demoAPIDeployment761DF7F2196727043e8762313a09a79b40e03128": {
+      "Type": "AWS::ApiGateway::Deployment",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "demoAPID9DC020C"
+        },
+        "Description": "Automatically created by the RestApi construct"
+      },
+      "DependsOn": [
+        "demoAPIgetGETDF7C89EF",
+        "demoAPIget5502D839"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "KansaitsDemoStack/demoAPI/Deployment/Resource"
+      }
+    },
+    "demoAPIDeploymentStageprod47FE47A9": {
+      "Type": "AWS::ApiGateway::Stage",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "demoAPID9DC020C"
+        },
+        "DeploymentId": {
+          "Ref": "demoAPIDeployment761DF7F2196727043e8762313a09a79b40e03128"
+        },
+        "StageName": "prod"
+      },
+      "Metadata": {
+        "aws:cdk:path": "KansaitsDemoStack/demoAPI/DeploymentStage.prod/Resource"
+      }
+    },
+    "demoAPICloudWatchRole71F00073": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "apigateway.",
+                      {
+                        "Ref": "AWS::URLSuffix"
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "KansaitsDemoStack/demoAPI/CloudWatchRole/Resource"
+      }
+    },
+    "demoAPIAccount9FAA87B1": {
+      "Type": "AWS::ApiGateway::Account",
+      "Properties": {
+        "CloudWatchRoleArn": {
+          "Fn::GetAtt": [
+            "demoAPICloudWatchRole71F00073",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "demoAPID9DC020C"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "KansaitsDemoStack/demoAPI/Account"
+      }
+    },
+    "demoAPIget5502D839": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "demoAPID9DC020C",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "get",
+        "RestApiId": {
+          "Ref": "demoAPID9DC020C"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "KansaitsDemoStack/demoAPI/Default/get/Resource"
+      }
+    },
+    "demoAPIgetGETDF7C89EF": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "ResourceId": {
+          "Ref": "demoAPIget5502D839"
+        },
+        "RestApiId": {
+          "Ref": "demoAPID9DC020C"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "demoLambdaA55DA906",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "KansaitsDemoStack/demoAPI/Default/get/GET/Resource"
+      }
+    }
+  },
+  "Parameters": {
+    "demoLambdaCodeS3Bucket1A7D73AD": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"KansaitsDemoStack/demoLambda/Code\""
+    },
+    "demoLambdaCodeS3VersionKey63B84B31": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"KansaitsDemoStack/demoLambda/Code\""
+    },
+    "demoLambdaCodeArtifactHash2BF08DF1": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"KansaitsDemoStack/demoLambda/Code\""
+    }
+  },
+  "Outputs": {
+    "demoAPIEndpoint12CBD52A": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "demoAPID9DC020C"
+            },
+            ".execute-api.",
+            {
+              "Ref": "AWS::Region"
+            },
+            ".",
+            {
+              "Ref": "AWS::URLSuffix"
+            },
+            "/",
+            {
+              "Ref": "demoAPIDeploymentStageprod47FE47A9"
+            },
+            "/"
+          ]
+        ]
+      }
+    }
+  }
+}

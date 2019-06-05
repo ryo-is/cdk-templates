@@ -1,0 +1,764 @@
+{
+  "Resources": {
+    "CdkPythonLambdaServiceRoleD9772A17": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "lambda.",
+                      {
+                        "Ref": "AWS::URLSuffix"
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkPythonLambda/ServiceRole/Resource"
+      }
+    },
+    "CdkPythonLambdaServiceRoleDefaultPolicy37287F81": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:Query",
+                "dynamodb:Scan"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "CDKPythonLambdaStackTableE0C4B2FA",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "CdkPythonLambdaServiceRoleDefaultPolicy37287F81",
+        "Roles": [
+          {
+            "Ref": "CdkPythonLambdaServiceRoleD9772A17"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkPythonLambda/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "CdkPythonLambda9137E5C9": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "CdkPythonLambdaCodeS3BucketF7AB723B"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "CdkPythonLambdaCodeS3VersionKeyD7153B03"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "CdkPythonLambdaCodeS3VersionKeyD7153B03"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "CdkPythonLambdaServiceRoleD9772A17",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.7",
+        "Environment": {
+          "Variables": {
+            "TZ": "Asia/Tokyo"
+          }
+        },
+        "FunctionName": "CdkPythonLambda",
+        "MemorySize": 256,
+        "Timeout": 29
+      },
+      "DependsOn": [
+        "CdkPythonLambdaServiceRoleDefaultPolicy37287F81",
+        "CdkPythonLambdaServiceRoleD9772A17"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkPythonLambda/Resource",
+        "aws:asset:path": "asset.fa946b4889e8b36af836e0e4aa15a6b27b0b9aa059aa4b1b2a9ef7c6a6bf9486",
+        "aws:asset:property": "Code"
+      }
+    },
+    "CdkPythonLambdaApiPermissionGETgetReq04A77DF9": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "CdkPythonLambda9137E5C9",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "CdkADeployedPI74C1F74A"
+              },
+              "/",
+              {
+                "Ref": "CdkADeployedPIDeploymentStageprod5D6822EB"
+              },
+              "/GET/getReq"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkPythonLambda/ApiPermission.GET..getReq"
+      }
+    },
+    "CdkPythonLambdaApiPermissionTestGETgetReqA3C608C8": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "CdkPythonLambda9137E5C9",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "CdkADeployedPI74C1F74A"
+              },
+              "/test-invoke-stage/GET/getReq"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkPythonLambda/ApiPermission.Test.GET..getReq"
+      }
+    },
+    "CdkPythonLambdaApiPermissionPOSTpostReq7D85B686": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "CdkPythonLambda9137E5C9",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "CdkADeployedPI74C1F74A"
+              },
+              "/",
+              {
+                "Ref": "CdkADeployedPIDeploymentStageprod5D6822EB"
+              },
+              "/POST/postReq"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkPythonLambda/ApiPermission.POST..postReq"
+      }
+    },
+    "CdkPythonLambdaApiPermissionTestPOSTpostReq3304487A": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "CdkPythonLambda9137E5C9",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "CdkADeployedPI74C1F74A"
+              },
+              "/test-invoke-stage/POST/postReq"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkPythonLambda/ApiPermission.Test.POST..postReq"
+      }
+    },
+    "CdkADeployedPI74C1F74A": {
+      "Type": "AWS::ApiGateway::RestApi",
+      "Properties": {
+        "Description": "AWS-CDKでデプロイしたAPIGateway",
+        "Name": "CdkADeployedPI"
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkADeployedPI/Resource"
+      }
+    },
+    "CdkADeployedPIDeployment2A856147969f7cdb316600924674ff4d9923ff18": {
+      "Type": "AWS::ApiGateway::Deployment",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "CdkADeployedPI74C1F74A"
+        },
+        "Description": "Automatically created by the RestApi construct"
+      },
+      "DependsOn": [
+        "CdkADeployedPIgetReqGETD1D991F7",
+        "CdkADeployedPIgetReqOPTIONS20551589",
+        "CdkADeployedPIgetReq5675DAC2",
+        "CdkADeployedPIpostReqOPTIONS089A956A",
+        "CdkADeployedPIpostReqPOSTB01FDD85",
+        "CdkADeployedPIpostReq937A50B4"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkADeployedPI/Deployment/Resource"
+      }
+    },
+    "CdkADeployedPIDeploymentStageprod5D6822EB": {
+      "Type": "AWS::ApiGateway::Stage",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "CdkADeployedPI74C1F74A"
+        },
+        "DeploymentId": {
+          "Ref": "CdkADeployedPIDeployment2A856147969f7cdb316600924674ff4d9923ff18"
+        },
+        "StageName": "prod"
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkADeployedPI/DeploymentStage.prod/Resource"
+      }
+    },
+    "CdkADeployedPICloudWatchRoleDC21FFFC": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "apigateway.",
+                      {
+                        "Ref": "AWS::URLSuffix"
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkADeployedPI/CloudWatchRole/Resource"
+      }
+    },
+    "CdkADeployedPIAccount188C86DC": {
+      "Type": "AWS::ApiGateway::Account",
+      "Properties": {
+        "CloudWatchRoleArn": {
+          "Fn::GetAtt": [
+            "CdkADeployedPICloudWatchRoleDC21FFFC",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "CdkADeployedPI74C1F74A"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkADeployedPI/Account"
+      }
+    },
+    "CdkADeployedPIgetReq5675DAC2": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "CdkADeployedPI74C1F74A",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "getReq",
+        "RestApiId": {
+          "Ref": "CdkADeployedPI74C1F74A"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkADeployedPI/Default/getReq/Resource"
+      }
+    },
+    "CdkADeployedPIgetReqGETD1D991F7": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "GET",
+        "ResourceId": {
+          "Ref": "CdkADeployedPIgetReq5675DAC2"
+        },
+        "RestApiId": {
+          "Ref": "CdkADeployedPI74C1F74A"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "CdkPythonLambda9137E5C9",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkADeployedPI/Default/getReq/GET/Resource"
+      }
+    },
+    "CdkADeployedPIgetReqOPTIONS20551589": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "OPTIONS",
+        "ResourceId": {
+          "Ref": "CdkADeployedPIgetReq5675DAC2"
+        },
+        "RestApiId": {
+          "Ref": "CdkADeployedPI74C1F74A"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Credentials": "'false'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE'"
+              },
+              "StatusCode": "200"
+            }
+          ],
+          "PassthroughBehavior": "NEVER",
+          "RequestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "ResponseModels": {
+              "application/json": "Empty"
+            },
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Credentials": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "StatusCode": "200"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkADeployedPI/Default/getReq/OPTIONS/Resource"
+      }
+    },
+    "CdkADeployedPIpostReq937A50B4": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "CdkADeployedPI74C1F74A",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "postReq",
+        "RestApiId": {
+          "Ref": "CdkADeployedPI74C1F74A"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkADeployedPI/Default/postReq/Resource"
+      }
+    },
+    "CdkADeployedPIpostReqPOSTB01FDD85": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "ResourceId": {
+          "Ref": "CdkADeployedPIpostReq937A50B4"
+        },
+        "RestApiId": {
+          "Ref": "CdkADeployedPI74C1F74A"
+        },
+        "ApiKeyRequired": true,
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "CdkPythonLambda9137E5C9",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkADeployedPI/Default/postReq/POST/Resource"
+      }
+    },
+    "CdkADeployedPIpostReqOPTIONS089A956A": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "OPTIONS",
+        "ResourceId": {
+          "Ref": "CdkADeployedPIpostReq937A50B4"
+        },
+        "RestApiId": {
+          "Ref": "CdkADeployedPI74C1F74A"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Credentials": "'false'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE'"
+              },
+              "StatusCode": "200"
+            }
+          ],
+          "PassthroughBehavior": "NEVER",
+          "RequestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "ResponseModels": {
+              "application/json": "Empty"
+            },
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Credentials": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "StatusCode": "200"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CdkADeployedPI/Default/postReq/OPTIONS/Resource"
+      }
+    },
+    "CDKUsagePlan": {
+      "Type": "AWS::ApiGateway::UsagePlan",
+      "Properties": {
+        "ApiStages": [
+          {
+            "ApiId": {
+              "Ref": "CdkADeployedPI74C1F74A"
+            },
+            "Stage": {
+              "Ref": "CdkADeployedPIDeploymentStageprod5D6822EB"
+            }
+          }
+        ],
+        "Throttle": {
+          "BurstLimit": 5000,
+          "RateLimit": 10000
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CDKUsagePlan"
+      }
+    },
+    "CDKApiKey": {
+      "Type": "AWS::ApiGateway::ApiKey",
+      "Properties": {
+        "Enabled": true
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CDKApiKey"
+      }
+    },
+    "CDKUsagePlanKey": {
+      "Type": "AWS::ApiGateway::UsagePlanKey",
+      "Properties": {
+        "KeyId": {
+          "Ref": "CDKApiKey"
+        },
+        "KeyType": "API_KEY",
+        "UsagePlanId": {
+          "Ref": "CDKUsagePlan"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CDKUsagePlanKey"
+      }
+    },
+    "CDKPythonLambdaStackTableE0C4B2FA": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "KeySchema": [
+          {
+            "AttributeName": "ID",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "record_time",
+            "KeyType": "RANGE"
+          }
+        ],
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "ID",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "record_time",
+            "AttributeType": "S"
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5
+        },
+        "TableName": "CDKPythonLambdaStackTable"
+      },
+      "Metadata": {
+        "aws:cdk:path": "PythonLambdaStack/CDKPythonLambdaStackTable/Resource"
+      }
+    }
+  },
+  "Parameters": {
+    "CdkPythonLambdaCodeS3BucketF7AB723B": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"PythonLambdaStack/CdkPythonLambda/Code\""
+    },
+    "CdkPythonLambdaCodeS3VersionKeyD7153B03": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"PythonLambdaStack/CdkPythonLambda/Code\""
+    },
+    "CdkPythonLambdaCodeArtifactHashA0F5D8C2": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"PythonLambdaStack/CdkPythonLambda/Code\""
+    }
+  },
+  "Outputs": {
+    "CdkADeployedPIEndpointAFAC03B2": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "CdkADeployedPI74C1F74A"
+            },
+            ".execute-api.",
+            {
+              "Ref": "AWS::Region"
+            },
+            ".",
+            {
+              "Ref": "AWS::URLSuffix"
+            },
+            "/",
+            {
+              "Ref": "CdkADeployedPIDeploymentStageprod5D6822EB"
+            },
+            "/"
+          ]
+        ]
+      }
+    }
+  }
+}

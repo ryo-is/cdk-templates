@@ -1,0 +1,33 @@
+{
+  "Resources": {
+    "kinesisAnalytics": {
+      "Type": "AWS::KinesisAnalytics::Application",
+      "Properties": {
+        "Inputs": [
+          {
+            "InputSchema": {
+              "RecordColumns": [
+                {
+                  "Name": "user_and_bikeID",
+                  "SqlType": "VARCHAR(16)"
+                }
+              ],
+              "RecordFormat": {
+                "RecordFormatType": "JSON"
+              }
+            },
+            "KinesisStreamsInput": {
+              "ResourceARN": "arn:aws:kinesis:us-west-2:xxxxxxxxxxxx:stream/rideologyCloudStreams",
+              "RoleARN": "arn:aws:iam::xxxxxxxxxxxx:role/service-role/kinesis-analytics-summarize_riding_log_high-us-west-2"
+            },
+            "NamePrefix": "hoge"
+          }
+        ],
+        "ApplicationCode": "CREATE OR REPLACE STREAM \"RIDING_LOG_HIGH_STREAM\" (\n        \"count\" INTEGER,\n        \"user_and_bikeID\" VARCHAR(16),\n        \"riding_log_type\" VARCHAR(8),\n        \"record_time\" TIMESTAMP,\n        \"engine_RPM\" decimal(9,4),\n        \"wheel_speed\" double,\n        \"acceleration\" double,\n        \"lean_angle\" double,\n        \"wheelie_angle\" double,\n        \"yaw_rate_reserve\" double,\n        \"roll_rate\" double,\n        \"throttle_position\" double,\n        \"boost_pressure\" double,\n        \"gear_position\" INTEGER)\n\n        CREATE OR REPLACE PUMP \"STREAM_PUMP\" AS INSERT INTO \"RIDING_LOG_HIGH_STREAM\"\n        SELECT STREAM\n        COUNT(*) over RSW,\n        \"user_and_bikeID\",\n        max(\"riding_log_type\") over RSW,\n        max(\"record_time\") over RSW,\n        avg(\"engine_RPM\") over RSW,\n        avg(\"wheel_speed\") over RSW,\n        avg(\"acceleration\") over RSW,\n        avg(\"lean_angle\") over RSW,\n        avg(\"wheelie_angle\") over RSW,\n        avg(\"yaw_rate_reserve\") over RSW,\n        avg(\"roll_rate\") over RSW,\n        avg(\"throttle_position\") over RSW,\n        avg(\"boost_pressure\") over RSW,\n        max(\"gear_position\") over RSW\n        FROM \"SOURCE_SQL_STREAM_001\"\n        where \"riding_log_type\" similar to '%high%'\n        window RSW as (partition by \"user_and_bikeID\"  ROWS 1 preceding)"
+      },
+      "Metadata": {
+        "aws:cdk:path": "KinesisAnalyticsStack/kinesisAnalytics"
+      }
+    }
+  }
+}
