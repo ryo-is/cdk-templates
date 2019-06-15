@@ -16,9 +16,10 @@
     "inlineSourceMap": true,
     "inlineSources": true,
     "experimentalDecorators": true,
+    "outDir": "./dist",
     "strictPropertyInitialization":false
   },
-  "exclude": [
-    "./lambda-src/**"
+  "include": [
+      "./src/**/*.ts"
   ]
 }
