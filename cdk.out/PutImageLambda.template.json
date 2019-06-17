@@ -1,0 +1,453 @@
+{
+  "Resources": {
+    "putimagetos3ServiceRole8ED843EB": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "lambda.",
+                      {
+                        "Ref": "AWS::URLSuffix"
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PutImageLambda/put_image_to_s3/ServiceRole/Resource"
+      }
+    },
+    "putimagetos3E19D298C": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "putimagetos3CodeS3BucketFD82AE45"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "putimagetos3CodeS3VersionKeyB62F5513"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "putimagetos3CodeS3VersionKeyB62F5513"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "putimagetos3ServiceRole8ED843EB",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs10.x",
+        "Environment": {
+          "Variables": {
+            "TZ": "Asia/Tokyo"
+          }
+        },
+        "FunctionName": "put_image_to_s3",
+        "MemorySize": 256,
+        "Timeout": 300
+      },
+      "DependsOn": [
+        "putimagetos3ServiceRole8ED843EB"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "PutImageLambda/put_image_to_s3/Resource",
+        "aws:asset:path": "asset.9d38fef76de27ead0d0c84808b6f89b38f94b6ef6c7c7034fbdcfadd50c1ad6a",
+        "aws:asset:property": "Code"
+      }
+    },
+    "putimagetos3ApiPermissionPOSTpostImageC4700491": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "putimagetos3E19D298C",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "PutImageToS3API0E2E47C3"
+              },
+              "/",
+              {
+                "Ref": "PutImageToS3APIDeploymentStageprodB7676971"
+              },
+              "/POST/postImage"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "PutImageLambda/put_image_to_s3/ApiPermission.POST..postImage"
+      }
+    },
+    "putimagetos3ApiPermissionTestPOSTpostImageCBA0AE2D": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "putimagetos3E19D298C",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "PutImageToS3API0E2E47C3"
+              },
+              "/test-invoke-stage/POST/postImage"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "PutImageLambda/put_image_to_s3/ApiPermission.Test.POST..postImage"
+      }
+    },
+    "PutImageToS3API0E2E47C3": {
+      "Type": "AWS::ApiGateway::RestApi",
+      "Properties": {
+        "Description": "画像をS3にputするAPI",
+        "Name": "PutImageToS3API"
+      },
+      "Metadata": {
+        "aws:cdk:path": "PutImageLambda/PutImageToS3API/Resource"
+      }
+    },
+    "PutImageToS3APIDeployment3D57670Fa4e4130876822ad328a14c2395337f6e": {
+      "Type": "AWS::ApiGateway::Deployment",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "PutImageToS3API0E2E47C3"
+        },
+        "Description": "Automatically created by the RestApi construct"
+      },
+      "DependsOn": [
+        "PutImageToS3APIpostImageOPTIONSF00B0AB3",
+        "PutImageToS3APIpostImagePOSTF51569AC",
+        "PutImageToS3APIpostImageE88D76EE"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "PutImageLambda/PutImageToS3API/Deployment/Resource"
+      }
+    },
+    "PutImageToS3APIDeploymentStageprodB7676971": {
+      "Type": "AWS::ApiGateway::Stage",
+      "Properties": {
+        "RestApiId": {
+          "Ref": "PutImageToS3API0E2E47C3"
+        },
+        "DeploymentId": {
+          "Ref": "PutImageToS3APIDeployment3D57670Fa4e4130876822ad328a14c2395337f6e"
+        },
+        "StageName": "prod"
+      },
+      "Metadata": {
+        "aws:cdk:path": "PutImageLambda/PutImageToS3API/DeploymentStage.prod/Resource"
+      }
+    },
+    "PutImageToS3APICloudWatchRole7A9951AA": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "apigateway.",
+                      {
+                        "Ref": "AWS::URLSuffix"
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AmazonAPIGatewayPushToCloudWatchLogs"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PutImageLambda/PutImageToS3API/CloudWatchRole/Resource"
+      }
+    },
+    "PutImageToS3APIAccount4354E542": {
+      "Type": "AWS::ApiGateway::Account",
+      "Properties": {
+        "CloudWatchRoleArn": {
+          "Fn::GetAtt": [
+            "PutImageToS3APICloudWatchRole7A9951AA",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "PutImageToS3API0E2E47C3"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "PutImageLambda/PutImageToS3API/Account"
+      }
+    },
+    "PutImageToS3APIpostImageE88D76EE": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Fn::GetAtt": [
+            "PutImageToS3API0E2E47C3",
+            "RootResourceId"
+          ]
+        },
+        "PathPart": "postImage",
+        "RestApiId": {
+          "Ref": "PutImageToS3API0E2E47C3"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "PutImageLambda/PutImageToS3API/Default/postImage/Resource"
+      }
+    },
+    "PutImageToS3APIpostImagePOSTF51569AC": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "ResourceId": {
+          "Ref": "PutImageToS3APIpostImageE88D76EE"
+        },
+        "RestApiId": {
+          "Ref": "PutImageToS3API0E2E47C3"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "putimagetos3E19D298C",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "PutImageLambda/PutImageToS3API/Default/postImage/POST/Resource"
+      }
+    },
+    "PutImageToS3APIpostImageOPTIONSF00B0AB3": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "OPTIONS",
+        "ResourceId": {
+          "Ref": "PutImageToS3APIpostImageE88D76EE"
+        },
+        "RestApiId": {
+          "Ref": "PutImageToS3API0E2E47C3"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationResponses": [
+            {
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Credentials": "'false'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE'"
+              },
+              "StatusCode": "200"
+            }
+          ],
+          "PassthroughBehavior": "NEVER",
+          "RequestTemplates": {
+            "application/json": "{\"statusCode\": 200}"
+          },
+          "Type": "MOCK"
+        },
+        "MethodResponses": [
+          {
+            "ResponseModels": {
+              "application/json": "Empty"
+            },
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Credentials": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            "StatusCode": "200"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "PutImageLambda/PutImageToS3API/Default/postImage/OPTIONS/Resource"
+      }
+    }
+  },
+  "Parameters": {
+    "putimagetos3CodeS3BucketFD82AE45": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"PutImageLambda/put_image_to_s3/Code\""
+    },
+    "putimagetos3CodeS3VersionKeyB62F5513": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"PutImageLambda/put_image_to_s3/Code\""
+    },
+    "putimagetos3CodeArtifactHash57B0B362": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"PutImageLambda/put_image_to_s3/Code\""
+    }
+  },
+  "Outputs": {
+    "PutImageToS3APIEndpoint5FB02BEA": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {
+              "Ref": "PutImageToS3API0E2E47C3"
+            },
+            ".execute-api.",
+            {
+              "Ref": "AWS::Region"
+            },
+            ".",
+            {
+              "Ref": "AWS::URLSuffix"
+            },
+            "/",
+            {
+              "Ref": "PutImageToS3APIDeploymentStageprodB7676971"
+            },
+            "/"
+          ]
+        ]
+      }
+    }
+  }
+}

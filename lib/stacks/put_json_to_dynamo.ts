@@ -9,7 +9,7 @@ export class PutJsonToDynamo extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props)
 
-    const lambdaFunction: lambda.Function = LambdaFunctionCreator.CreateLambdaFunction(this, "PutEmployeeDataLambda", "index.handler")
+    const lambdaFunction: lambda.Function = LambdaFunctionCreator.CreateLambdaFunction(this, "PutEmployeeDataLambda", "index.handler", "")
 
     const s3Statement: iam.PolicyStatement = IAMCreator.CreateS3GetObjectRoleStatement("arn:aws:s3:::convention-employee-data/*")
     lambdaFunction.addToRolePolicy(s3Statement)

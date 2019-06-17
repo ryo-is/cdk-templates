@@ -1,23 +1,23 @@
 {
-  "version": "0.33.0",
+  "version": "0.34.0",
   "artifacts": {
-    "CdkStack": {
+    "PutImageLambda": {
       "type": "aws:cloudformation:stack",
       "environment": "aws://795622185554/ap-northeast-1",
       "properties": {
-        "templateFile": "CdkStack.template.json"
+        "templateFile": "PutImageLambda.template.json"
       },
       "metadata": {
-        "/CdkStack/CdkLambdaGetFunction/ServiceRole/Resource": [
+        "/PutImageLambda/put_image_to_s3/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaGetFunctionServiceRole8073573C",
+            "data": "putimagetos3ServiceRole8ED843EB",
             "trace": [
               "new Role (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:200:18)",
               "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:407:31)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:21:63)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
+              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:18:12)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:12:67)",
+              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
               "Module.load (internal/modules/cjs/loader.js:599:32)",
@@ -29,16 +29,15 @@
             ]
           }
         ],
-        "/CdkStack/CdkLambdaGetFunction/ServiceRole/DefaultPolicy/Resource": [
+        "/PutImageLambda/put_image_to_s3/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaGetFunctionServiceRoleDefaultPolicy6DF069AD",
+            "data": "putimagetos3E19D298C",
             "trace": [
-              "new Policy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/policy.ts:95:22)",
-              "Role.addToPolicy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:234:28)",
-              "Function.addToRolePolicy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:189:15)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:60:16)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
+              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:424:22)",
+              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:18:12)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:12:67)",
+              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
               "Module.load (internal/modules/cjs/loader.js:599:32)",
@@ -50,45 +49,25 @@
             ]
           }
         ],
-        "/CdkStack/CdkLambdaGetFunction/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaGetFunction69C9847F",
-            "trace": [
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:423:22)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:21:63)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkLambdaGetFunction/Code": [
+        "/PutImageLambda/put_image_to_s3/Code": [
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.830dd25168e49070936a54804f6810567934934d1f2ddd75529fa2f2fae4e20f",
-              "id": "CdkStackCdkLambdaGetFunctionCode193B591D",
+              "path": "asset.9d38fef76de27ead0d0c84808b6f89b38f94b6ef6c7c7034fbdcfadd50c1ad6a",
+              "id": "PutImageLambdaputimagetos3CodeA4EB9085",
               "packaging": "zip",
-              "sourceHash": "830dd25168e49070936a54804f6810567934934d1f2ddd75529fa2f2fae4e20f",
-              "s3BucketParameter": "CdkLambdaGetFunctionCodeS3Bucket8DE0C5D2",
-              "s3KeyParameter": "CdkLambdaGetFunctionCodeS3VersionKey8E0B1341",
-              "artifactHashParameter": "CdkLambdaGetFunctionCodeArtifactHash5B5826A0"
+              "sourceHash": "9d38fef76de27ead0d0c84808b6f89b38f94b6ef6c7c7034fbdcfadd50c1ad6a",
+              "s3BucketParameter": "putimagetos3CodeS3BucketFD82AE45",
+              "s3KeyParameter": "putimagetos3CodeS3VersionKeyB62F5513",
+              "artifactHashParameter": "putimagetos3CodeArtifactHash57B0B362"
             },
             "trace": [
               "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:177:15)",
               "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:21:63)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
+              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:449:16)",
+              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:18:12)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:12:67)",
+              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
               "Module.load (internal/modules/cjs/loader.js:599:32)",
@@ -100,17 +79,17 @@
             ]
           }
         ],
-        "/CdkStack/CdkLambdaGetFunction/Code/S3Bucket": [
+        "/PutImageLambda/put_image_to_s3/Code/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaGetFunctionCodeS3Bucket8DE0C5D2",
+            "data": "putimagetos3CodeS3BucketFD82AE45",
             "trace": [
               "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:136:25)",
               "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:21:63)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
+              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:449:16)",
+              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:18:12)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:12:67)",
+              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
               "Module.load (internal/modules/cjs/loader.js:599:32)",
@@ -122,17 +101,17 @@
             ]
           }
         ],
-        "/CdkStack/CdkLambdaGetFunction/Code/S3VersionKey": [
+        "/PutImageLambda/put_image_to_s3/Code/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaGetFunctionCodeS3VersionKey8E0B1341",
+            "data": "putimagetos3CodeS3VersionKeyB62F5513",
             "trace": [
               "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:141:22)",
               "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:21:63)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
+              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:449:16)",
+              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:18:12)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:12:67)",
+              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
               "Module.load (internal/modules/cjs/loader.js:599:32)",
@@ -144,17 +123,17 @@
             ]
           }
         ],
-        "/CdkStack/CdkLambdaGetFunction/Code/ArtifactHash": [
+        "/PutImageLambda/put_image_to_s3/Code/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaGetFunctionCodeArtifactHash5B5826A0",
+            "data": "putimagetos3CodeArtifactHash57B0B362",
             "trace": [
               "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:146:23)",
               "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:21:63)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
+              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:449:16)",
+              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:18:12)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:12:67)",
+              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
               "Module.load (internal/modules/cjs/loader.js:599:32)",
@@ -166,67 +145,18 @@
             ]
           }
         ],
-        "/CdkStack/CdkLambdaGetFunction/ApiPermission.GET..": [
+        "/PutImageLambda/put_image_to_s3/ApiPermission.POST..postImage": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaGetFunctionApiPermissionGET2299E186",
-            "trace": [
-              "Function.addPermission (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:170:5)",
-              "LambdaIntegration.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/integrations/lambda.ts:60:18)",
-              "Method.renderIntegration (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:178:17)",
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:121:25)",
-              "RootResource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "Function.AddMethod (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:55:14)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:76:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkLambdaGetFunction/ApiPermission.Test.GET..": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaGetFunctionApiPermissionTestGET00D78B4E",
-            "trace": [
-              "Function.addPermission (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:170:5)",
-              "LambdaIntegration.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/integrations/lambda.ts:67:20)",
-              "Method.renderIntegration (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:178:17)",
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:121:25)",
-              "RootResource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "Function.AddMethod (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:55:14)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:76:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkLambdaGetFunction/ApiPermission.GET..get": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaGetFunctionApiPermissionGETget2B41F130",
+            "data": "putimagetos3ApiPermissionPOSTpostImageC4700491",
             "trace": [
               "Function.addPermission (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:170:5)",
               "LambdaIntegration.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/integrations/lambda.ts:60:18)",
               "Method.renderIntegration (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:178:17)",
               "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:121:25)",
               "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "Function.AddResourceAndMethod (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:83:20)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:77:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:27:17)",
+              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
               "Module.load (internal/modules/cjs/loader.js:599:32)",
@@ -238,19 +168,18 @@
             ]
           }
         ],
-        "/CdkStack/CdkLambdaGetFunction/ApiPermission.Test.GET..get": [
+        "/PutImageLambda/put_image_to_s3/ApiPermission.Test.POST..postImage": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaGetFunctionApiPermissionTestGETget58E3060E",
+            "data": "putimagetos3ApiPermissionTestPOSTpostImageCBA0AE2D",
             "trace": [
               "Function.addPermission (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:170:5)",
               "LambdaIntegration.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/integrations/lambda.ts:67:20)",
               "Method.renderIntegration (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:178:17)",
               "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:121:25)",
               "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "Function.AddResourceAndMethod (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:83:20)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:77:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:27:17)",
+              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
               "Module.load (internal/modules/cjs/loader.js:599:32)",
@@ -262,321 +191,15 @@
             ]
           }
         ],
-        "/CdkStack/CdkLambdaPostFunction/ServiceRole/Resource": [
+        "/PutImageLambda/PutImageToS3API/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaPostFunctionServiceRole38F3F378",
-            "trace": [
-              "new Role (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:200:18)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:407:31)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:22:64)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkLambdaPostFunction/ServiceRole/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaPostFunctionServiceRoleDefaultPolicyED3DD907",
-            "trace": [
-              "new Policy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/policy.ts:95:22)",
-              "Role.addToPolicy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:234:28)",
-              "Function.addToRolePolicy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:189:15)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:61:17)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkLambdaPostFunction/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaPostFunctionB34ACE89",
-            "trace": [
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:423:22)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:22:64)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkLambdaPostFunction/Code": [
-          {
-            "type": "aws:cdk:asset",
-            "data": {
-              "path": "asset.830dd25168e49070936a54804f6810567934934d1f2ddd75529fa2f2fae4e20f",
-              "id": "CdkStackCdkLambdaPostFunctionCode2EB88CDC",
-              "packaging": "zip",
-              "sourceHash": "830dd25168e49070936a54804f6810567934934d1f2ddd75529fa2f2fae4e20f",
-              "s3BucketParameter": "CdkLambdaPostFunctionCodeS3BucketD1C82F06",
-              "s3KeyParameter": "CdkLambdaPostFunctionCodeS3VersionKey67FE2C91",
-              "artifactHashParameter": "CdkLambdaPostFunctionCodeArtifactHash5045445D"
-            },
-            "trace": [
-              "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:177:15)",
-              "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:22:64)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkLambdaPostFunction/Code/S3Bucket": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaPostFunctionCodeS3BucketD1C82F06",
-            "trace": [
-              "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:136:25)",
-              "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:22:64)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkLambdaPostFunction/Code/S3VersionKey": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaPostFunctionCodeS3VersionKey67FE2C91",
-            "trace": [
-              "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:141:22)",
-              "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:22:64)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkLambdaPostFunction/Code/ArtifactHash": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaPostFunctionCodeArtifactHash5045445D",
-            "trace": [
-              "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:146:23)",
-              "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:22:64)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkLambdaPostFunction/ApiPermission.POST..post": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaPostFunctionApiPermissionPOSTpost17E6C10F",
-            "trace": [
-              "Function.addPermission (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:170:5)",
-              "LambdaIntegration.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/integrations/lambda.ts:60:18)",
-              "Method.renderIntegration (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:178:17)",
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:121:25)",
-              "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "Function.AddResourceAndMethod (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:83:20)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:78:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkLambdaPostFunction/ApiPermission.Test.POST..post": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkLambdaPostFunctionApiPermissionTestPOSTpost6B5F35AD",
-            "trace": [
-              "Function.addPermission (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:170:5)",
-              "LambdaIntegration.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/integrations/lambda.ts:67:20)",
-              "Method.renderIntegration (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:178:17)",
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:121:25)",
-              "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "Function.AddResourceAndMethod (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:83:20)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:78:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CDKDemoTable": [
-          {
-            "type": "aws:cdk:hasPhysicalName",
-            "data": "CDKDemoTable",
-            "trace": [
-              "new Table (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-dynamodb/lib/table.ts:249:38)",
-              "Function.CreateDynamoDB (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/dynamodb/creator.ts:11:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:40:51)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CDKDemoTable/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CDKDemoTableBDB55173",
-            "trace": [
-              "new Table (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-dynamodb/lib/table.ts:232:18)",
-              "Function.CreateDynamoDB (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/dynamodb/creator.ts:11:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:40:51)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/cdk-stack-bucket/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "cdkstackbucket2CF7B8C1",
-            "trace": [
-              "new Bucket (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-s3/lib/bucket.ts:784:22)",
-              "Function.CreateS3Bucket (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/s3/creator.ts:6:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:45:15)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkKinesisStream": [
-          {
-            "type": "aws:cdk:hasPhysicalName",
-            "data": "CdkKinesisStream",
-            "trace": [
-              "new Stream (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-kinesis/lib/stream.ts:264:39)",
-              "Function.CreateKinesisStream (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/kinesis/creator.ts:12:5)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:50:27)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkKinesisStream/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkKinesisStream3C61F939",
-            "trace": [
-              "new Stream (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-kinesis/lib/stream.ts:254:19)",
-              "Function.CreateKinesisStream (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/kinesis/creator.ts:12:5)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:50:27)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkADeployedPI/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPI74C1F74A",
+            "data": "PutImageToS3API0E2E47C3",
             "trace": [
               "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:209:22)",
               "Function.CreateApiGateway (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:14:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:66:55)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:19:62)",
+              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
               "Module.load (internal/modules/cjs/loader.js:599:32)",
@@ -588,17 +211,17 @@
             ]
           }
         ],
-        "/CdkStack/CdkADeployedPI/Deployment/Resource": [
+        "/PutImageLambda/PutImageToS3API/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIDeployment2A856147ef1f42d1a4baa8f0c8b467150d346fe9",
+            "data": "PutImageToS3APIDeployment3D57670Fa4e4130876822ad328a14c2395337f6e",
             "trace": [
               "new Deployment (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/deployment.ts:69:21)",
               "RestApi.configureDeployment (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:320:31)",
               "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:224:10)",
               "Function.CreateApiGateway (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:14:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:66:55)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:19:62)",
+              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
               "Module.load (internal/modules/cjs/loader.js:599:32)",
@@ -610,17 +233,17 @@
             ]
           }
         ],
-        "/CdkStack/CdkADeployedPI/DeploymentStage.prod/Resource": [
+        "/PutImageLambda/PutImageToS3API/DeploymentStage.prod/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIDeploymentStageprod5D6822EB",
+            "data": "PutImageToS3APIDeploymentStageprodB7676971",
             "trace": [
               "new Stage (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/stage.ts:186:22)",
               "RestApi.configureDeployment (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:330:30)",
               "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:224:10)",
               "Function.CreateApiGateway (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:14:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:66:55)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:19:62)",
+              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
               "Module.load (internal/modules/cjs/loader.js:599:32)",
@@ -632,16 +255,16 @@
             ]
           }
         ],
-        "/CdkStack/CdkADeployedPI/Endpoint": [
+        "/PutImageLambda/PutImageToS3API/Endpoint": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIEndpointAFAC03B2",
+            "data": "PutImageToS3APIEndpoint5FB02BEA",
             "trace": [
               "RestApi.configureDeployment (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:335:7)",
               "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:224:10)",
               "Function.CreateApiGateway (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:14:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:66:55)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:19:62)",
+              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
               "Module.load (internal/modules/cjs/loader.js:599:32)",
@@ -653,17 +276,17 @@
             ]
           }
         ],
-        "/CdkStack/CdkADeployedPI/CloudWatchRole/Resource": [
+        "/PutImageLambda/PutImageToS3API/CloudWatchRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPICloudWatchRoleDC21FFFC",
+            "data": "PutImageToS3APICloudWatchRole7A9951AA",
             "trace": [
               "new Role (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:200:18)",
               "RestApi.configureCloudWatchRole (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:344:18)",
               "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:228:12)",
               "Function.CreateApiGateway (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:14:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:66:55)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:19:62)",
+              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
               "Module.load (internal/modules/cjs/loader.js:599:32)",
@@ -675,16 +298,16 @@
             ]
           }
         ],
-        "/CdkStack/CdkADeployedPI/Account": [
+        "/PutImageLambda/PutImageToS3API/Account": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIAccount188C86DC",
+            "data": "PutImageToS3APIAccount4354E542",
             "trace": [
               "RestApi.configureCloudWatchRole (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:356:22)",
               "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:228:12)",
               "Function.CreateApiGateway (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:14:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:66:55)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:19:62)",
+              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
               "Module.load (internal/modules/cjs/loader.js:599:32)",
@@ -696,59 +319,15 @@
             ]
           }
         ],
-        "/CdkStack/CdkADeployedPI/Default/GET/Resource": [
+        "/PutImageLambda/PutImageToS3API/Default/postImage/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIGETB66E77E0",
-            "trace": [
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:125:22)",
-              "RootResource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "Function.AddMethod (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:55:14)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:76:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkADeployedPI/Default/OPTIONS/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIOPTIONS8185F93D",
-            "trace": [
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:125:22)",
-              "RootResource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "Function.AddOptions (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:94:13)",
-              "Function.AddMethod (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:57:25)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:76:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkADeployedPI/Default/get/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIget35B48051",
+            "data": "PutImageToS3APIpostImageE88D76EE",
             "trace": [
               "new Resource (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:212:22)",
               "RootResource.addResource (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:136:12)",
-              "Function.AddResourceAndMethod (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:77:37)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:77:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:26:62)",
+              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
               "Module.load (internal/modules/cjs/loader.js:599:32)",
@@ -760,16 +339,15 @@
             ]
           }
         ],
-        "/CdkStack/CdkADeployedPI/Default/get/GET/Resource": [
+        "/PutImageLambda/PutImageToS3API/Default/postImage/POST/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIgetGET45D90E17",
+            "data": "PutImageToS3APIpostImagePOSTF51569AC",
             "trace": [
               "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:125:22)",
               "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "Function.AddResourceAndMethod (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:83:20)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:77:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:27:17)",
+              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
               "Module.load (internal/modules/cjs/loader.js:599:32)",
@@ -781,1561 +359,16 @@
             ]
           }
         ],
-        "/CdkStack/CdkADeployedPI/Default/get/OPTIONS/Resource": [
+        "/PutImageLambda/PutImageToS3API/Default/postImage/OPTIONS/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIgetOPTIONS30C124C3",
+            "data": "PutImageToS3APIpostImageOPTIONSF00B0AB3",
             "trace": [
               "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:125:22)",
               "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
               "Function.AddOptions (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:94:13)",
-              "Function.AddResourceAndMethod (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:85:25)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:77:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkADeployedPI/Default/post/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIpostD5008576",
-            "trace": [
-              "new Resource (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:212:22)",
-              "RootResource.addResource (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:136:12)",
-              "Function.AddResourceAndMethod (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:77:37)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:78:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkADeployedPI/Default/post/POST/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIpostPOSTDA55E535",
-            "trace": [
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:125:22)",
-              "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "Function.AddResourceAndMethod (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:83:20)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:78:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkADeployedPI/Default/post/OPTIONS/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIpostOPTIONSEB65576A",
-            "trace": [
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:125:22)",
-              "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "Function.AddOptions (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:94:13)",
-              "Function.AddResourceAndMethod (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:85:25)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:78:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkAPIAuthorizer": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkAPIAuthorizer",
-            "trace": [
-              "Function.CreateAuthorizer (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:27:12)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:71:71)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkStack/CdkStack/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkStack272B188B",
-            "trace": [
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:125:22)",
-              "new CdkStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-stack.ts:81:5)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:12:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ]
-      }
-    },
-    "KinesisAnalyticsStack": {
-      "type": "aws:cloudformation:stack",
-      "environment": "aws://795622185554/ap-northeast-1",
-      "properties": {
-        "templateFile": "KinesisAnalyticsStack.template.json"
-      },
-      "metadata": {
-        "/KinesisAnalyticsStack/kinesisAnalytics": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "kinesisAnalytics",
-            "trace": [
-              "new KinesisAnalyticsStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/kinesis_analytics_stack.ts:9:5)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:13:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ]
-      }
-    },
-    "CdkPipelineStack": {
-      "type": "aws:cloudformation:stack",
-      "environment": "aws://795622185554/ap-northeast-1",
-      "properties": {
-        "templateFile": "CdkPipelineStack.template.json"
-      },
-      "metadata": {
-        "/CdkPipelineStack/CdkCodePipeline/ArtifactsBucketEncryptionKey/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkCodePipelineArtifactsBucketEncryptionKey0B136BD9",
-            "trace": [
-              "new Key (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-kms/lib/key.ts:207:22)",
-              "new Pipeline (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.ts:230:29)",
-              "Function.CreatePipeline (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/codepipeline/creator.ts:11:12)",
-              "new CdkPipelineStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-pipeline-stack.ts:17:65)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:14:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkPipelineStack/CdkCodePipeline/ArtifactsBucket/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkCodePipelineArtifactsBucket25E1EE6C",
-            "trace": [
-              "new Bucket (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-s3/lib/bucket.ts:784:22)",
-              "new Pipeline (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.ts:231:21)",
-              "Function.CreatePipeline (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/codepipeline/creator.ts:11:12)",
-              "new CdkPipelineStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-pipeline-stack.ts:17:65)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:14:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkPipelineStack/CdkCodePipeline/Role/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkCodePipelineRole6AF5CDDF",
-            "trace": [
-              "new Role (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:200:18)",
-              "new Pipeline (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.ts:240:31)",
-              "Function.CreatePipeline (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/codepipeline/creator.ts:11:12)",
-              "new CdkPipelineStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-pipeline-stack.ts:17:65)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:14:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkPipelineStack/CdkCodePipeline/Role/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkCodePipelineRoleDefaultPolicy0D7EB4A9",
-            "trace": [
-              "new Policy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/policy.ts:95:22)",
-              "Role.addToPolicy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:234:28)",
-              "Function.addToPrincipal (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/grant.ts:130:61)",
-              "Function.addToPrincipalOrResource (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/grant.ts:102:26)",
-              "Bucket.grant (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-s3/lib/bucket.ts:510:27)",
-              "Bucket.grantReadWrite (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-s3/lib/bucket.ts:460:17)",
-              "new Pipeline (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.ts:256:25)",
-              "Function.CreatePipeline (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/codepipeline/creator.ts:11:12)",
-              "new CdkPipelineStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-pipeline-stack.ts:17:65)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:14:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkPipelineStack/CdkCodePipeline/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkCodePipelineCF6CCF36",
-            "trace": [
-              "new Pipeline (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.ts:244:26)",
-              "Function.CreatePipeline (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/codepipeline/creator.ts:11:12)",
-              "new CdkPipelineStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-pipeline-stack.ts:17:65)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:14:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkPipelineStack/CdkCodePipeline/EventsRole/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkCodePipelineEventsRole15838319",
-            "trace": [
-              "new Role (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:200:18)",
-              "Object.singletonEventRole (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-events-targets/lib/util.ts:15:16)",
-              "CodePipeline.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-events-targets/lib/codepipeline.ts:17:13)",
-              "Rule.addTarget (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-events/lib/rule.ts:123:32)",
-              "Repository.onEvent (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codecommit/lib/repository.ts:126:10)",
-              "Repository.onStateChange (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codecommit/lib/repository.ts:135:23)",
-              "Repository.onReferenceUpdated (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codecommit/lib/repository.ts:157:23)",
-              "Repository.onCommit (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codecommit/lib/repository.ts:203:23)",
-              "CodeCommitSourceAction.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline-actions/lib/codecommit/source-action.ts:60:29)",
-              "CodeCommitSourceAction._actionAttachedToPipeline (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline/lib/action.ts:351:10)",
-              "Pipeline._attachActionToPipeline (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.ts:355:21)",
-              "Stage.attachActionToPipeline (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline/lib/stage.ts:120:28)",
-              "Stage.addAction (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline/lib/stage.ts:78:10)",
-              "Function.AddSourceAction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/codecommit/creator.ts:39:17)",
-              "new CdkPipelineStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-pipeline-stack.ts:40:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:14:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkPipelineStack/CdkCodePipeline/EventsRole/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkCodePipelineEventsRoleDefaultPolicyB7383C7E",
-            "trace": [
-              "new Policy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/policy.ts:95:22)",
-              "Role.addToPolicy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:234:28)",
-              "Array.forEach (<anonymous>)",
-              "Object.singletonEventRole (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-events-targets/lib/util.ts:19:20)",
-              "CodePipeline.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-events-targets/lib/codepipeline.ts:17:13)",
-              "Rule.addTarget (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-events/lib/rule.ts:123:32)",
-              "Repository.onEvent (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codecommit/lib/repository.ts:126:10)",
-              "Repository.onStateChange (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codecommit/lib/repository.ts:135:23)",
-              "Repository.onReferenceUpdated (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codecommit/lib/repository.ts:157:23)",
-              "Repository.onCommit (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codecommit/lib/repository.ts:203:23)",
-              "CodeCommitSourceAction.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline-actions/lib/codecommit/source-action.ts:60:29)",
-              "CodeCommitSourceAction._actionAttachedToPipeline (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline/lib/action.ts:351:10)",
-              "Pipeline._attachActionToPipeline (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.ts:355:21)",
-              "Stage.attachActionToPipeline (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline/lib/stage.ts:120:28)",
-              "Stage.addAction (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline/lib/stage.ts:78:10)",
-              "Function.AddSourceAction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/codecommit/creator.ts:39:17)",
-              "new CdkPipelineStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-pipeline-stack.ts:40:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:14:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkPipelineStack/CdkRepository/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkRepository1111BB6A",
-            "trace": [
-              "new Repository (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codecommit/lib/repository.ts:279:23)",
-              "Function.CreateRepository (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/codecommit/creator.ts:14:12)",
-              "new CdkPipelineStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-pipeline-stack.ts:29:59)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:14:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkPipelineStack/CdkRepository/CdkPipelineStackCdkCodePipeline2C1F7ED0EventRule/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkRepositoryCdkPipelineStackCdkCodePipeline2C1F7ED0EventRuleBEB3F663",
-            "trace": [
-              "new Rule (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-events/lib/rule.ts:95:22)",
-              "Repository.onEvent (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codecommit/lib/repository.ts:121:18)",
-              "Repository.onStateChange (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codecommit/lib/repository.ts:135:23)",
-              "Repository.onReferenceUpdated (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codecommit/lib/repository.ts:157:23)",
-              "Repository.onCommit (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codecommit/lib/repository.ts:203:23)",
-              "CodeCommitSourceAction.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline-actions/lib/codecommit/source-action.ts:60:29)",
-              "CodeCommitSourceAction._actionAttachedToPipeline (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline/lib/action.ts:351:10)",
-              "Pipeline._attachActionToPipeline (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline/lib/pipeline.ts:355:21)",
-              "Stage.attachActionToPipeline (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline/lib/stage.ts:120:28)",
-              "Stage.addAction (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codepipeline/lib/stage.ts:78:10)",
-              "Function.AddSourceAction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/codecommit/creator.ts:39:17)",
-              "new CdkPipelineStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-pipeline-stack.ts:40:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:14:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkPipelineStack/CdkCodeBuildProject/Role/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkCodeBuildProjectRole6830A58A",
-            "trace": [
-              "new Role (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:200:18)",
-              "new Project (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codebuild/lib/project.ts:624:31)",
-              "Function.CreateCodeBuild (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/codebuild/creator.ts:14:12)",
-              "new CdkPipelineStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-pipeline-stack.ts:34:62)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:14:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkPipelineStack/CdkCodeBuildProject/Role/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkCodeBuildProjectRoleDefaultPolicyA531D3BE",
-            "trace": [
-              "new Policy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/policy.ts:95:22)",
-              "Role.addToPolicy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:234:28)",
-              "Project.addToRolePolicy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codebuild/lib/project.ts:726:17)",
-              "new Project (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codebuild/lib/project.ts:713:10)",
-              "Function.CreateCodeBuild (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/codebuild/creator.ts:14:12)",
-              "new CdkPipelineStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-pipeline-stack.ts:34:62)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:14:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/CdkPipelineStack/CdkCodeBuildProject/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkCodeBuildProject98C8CAB8",
-            "trace": [
-              "new Project (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-codebuild/lib/project.ts:693:22)",
-              "Function.CreateCodeBuild (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/codebuild/creator.ts:14:12)",
-              "new CdkPipelineStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/cdk-pipeline-stack.ts:34:62)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:14:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ]
-      }
-    },
-    "PythonLambdaStack": {
-      "type": "aws:cloudformation:stack",
-      "environment": "aws://795622185554/ap-northeast-1",
-      "properties": {
-        "templateFile": "PythonLambdaStack.template.json"
-      },
-      "metadata": {
-        "/PythonLambdaStack/CdkPythonLambda/ServiceRole/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkPythonLambdaServiceRoleD9772A17",
-            "trace": [
-              "new Role (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:200:18)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:407:31)",
-              "Function.CreatePythonRuntimeLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:26:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:16:67)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkPythonLambda/ServiceRole/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkPythonLambdaServiceRoleDefaultPolicy37287F81",
-            "trace": [
-              "new Policy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/policy.ts:95:22)",
-              "Role.addToPolicy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:234:28)",
-              "Function.addToRolePolicy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:189:15)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:71:20)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkPythonLambda/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkPythonLambda9137E5C9",
-            "trace": [
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:423:22)",
-              "Function.CreatePythonRuntimeLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:26:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:16:67)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkPythonLambda/Code": [
-          {
-            "type": "aws:cdk:asset",
-            "data": {
-              "path": "asset.fa946b4889e8b36af836e0e4aa15a6b27b0b9aa059aa4b1b2a9ef7c6a6bf9486",
-              "id": "PythonLambdaStackCdkPythonLambdaCode62772EC4",
-              "packaging": "zip",
-              "sourceHash": "fa946b4889e8b36af836e0e4aa15a6b27b0b9aa059aa4b1b2a9ef7c6a6bf9486",
-              "s3BucketParameter": "CdkPythonLambdaCodeS3BucketF7AB723B",
-              "s3KeyParameter": "CdkPythonLambdaCodeS3VersionKeyD7153B03",
-              "artifactHashParameter": "CdkPythonLambdaCodeArtifactHashA0F5D8C2"
-            },
-            "trace": [
-              "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:177:15)",
-              "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "Function.CreatePythonRuntimeLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:26:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:16:67)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkPythonLambda/Code/S3Bucket": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkPythonLambdaCodeS3BucketF7AB723B",
-            "trace": [
-              "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:136:25)",
-              "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "Function.CreatePythonRuntimeLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:26:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:16:67)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkPythonLambda/Code/S3VersionKey": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkPythonLambdaCodeS3VersionKeyD7153B03",
-            "trace": [
-              "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:141:22)",
-              "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "Function.CreatePythonRuntimeLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:26:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:16:67)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkPythonLambda/Code/ArtifactHash": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkPythonLambdaCodeArtifactHashA0F5D8C2",
-            "trace": [
-              "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:146:23)",
-              "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "Function.CreatePythonRuntimeLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:26:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:16:67)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkPythonLambda/ApiPermission.GET..getReq": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkPythonLambdaApiPermissionGETgetReq04A77DF9",
-            "trace": [
-              "Function.addPermission (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:170:5)",
-              "LambdaIntegration.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/integrations/lambda.ts:60:18)",
-              "Method.renderIntegration (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:178:17)",
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:121:25)",
-              "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:44:20)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkPythonLambda/ApiPermission.Test.GET..getReq": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkPythonLambdaApiPermissionTestGETgetReqA3C608C8",
-            "trace": [
-              "Function.addPermission (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:170:5)",
-              "LambdaIntegration.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/integrations/lambda.ts:67:20)",
-              "Method.renderIntegration (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:178:17)",
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:121:25)",
-              "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:44:20)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkPythonLambda/ApiPermission.POST..postReq": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkPythonLambdaApiPermissionPOSTpostReq7D85B686",
-            "trace": [
-              "Function.addPermission (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:170:5)",
-              "LambdaIntegration.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/integrations/lambda.ts:60:18)",
-              "Method.renderIntegration (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:178:17)",
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:121:25)",
-              "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:50:21)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkPythonLambda/ApiPermission.Test.POST..postReq": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkPythonLambdaApiPermissionTestPOSTpostReq3304487A",
-            "trace": [
-              "Function.addPermission (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:170:5)",
-              "LambdaIntegration.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/integrations/lambda.ts:67:20)",
-              "Method.renderIntegration (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:178:17)",
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:121:25)",
-              "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:50:21)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkADeployedPI/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPI74C1F74A",
-            "trace": [
-              "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:209:22)",
-              "Function.CreateApiGateway (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:14:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:20:62)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkADeployedPI/Deployment/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIDeployment2A856147969f7cdb316600924674ff4d9923ff18",
-            "trace": [
-              "new Deployment (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/deployment.ts:69:21)",
-              "RestApi.configureDeployment (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:320:31)",
-              "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:224:10)",
-              "Function.CreateApiGateway (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:14:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:20:62)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkADeployedPI/DeploymentStage.prod/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIDeploymentStageprod5D6822EB",
-            "trace": [
-              "new Stage (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/stage.ts:186:22)",
-              "RestApi.configureDeployment (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:330:30)",
-              "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:224:10)",
-              "Function.CreateApiGateway (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:14:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:20:62)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkADeployedPI/Endpoint": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIEndpointAFAC03B2",
-            "trace": [
-              "RestApi.configureDeployment (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:335:7)",
-              "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:224:10)",
-              "Function.CreateApiGateway (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:14:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:20:62)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkADeployedPI/CloudWatchRole/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPICloudWatchRoleDC21FFFC",
-            "trace": [
-              "new Role (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:200:18)",
-              "RestApi.configureCloudWatchRole (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:344:18)",
-              "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:228:12)",
-              "Function.CreateApiGateway (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:14:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:20:62)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkADeployedPI/Account": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIAccount188C86DC",
-            "trace": [
-              "RestApi.configureCloudWatchRole (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:356:22)",
-              "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:228:12)",
-              "Function.CreateApiGateway (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:14:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:20:62)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkADeployedPI/Default/getReq/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIgetReq5675DAC2",
-            "trace": [
-              "new Resource (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:212:22)",
-              "RootResource.addResource (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:136:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:43:65)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkADeployedPI/Default/getReq/GET/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIgetReqGETD1D991F7",
-            "trace": [
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:125:22)",
-              "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:44:20)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkADeployedPI/Default/getReq/OPTIONS/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIgetReqOPTIONS20551589",
-            "trace": [
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:125:22)",
-              "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "Function.AddOptions (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:94:13)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:47:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkADeployedPI/Default/postReq/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIpostReq937A50B4",
-            "trace": [
-              "new Resource (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:212:22)",
-              "RootResource.addResource (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:136:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:49:66)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkADeployedPI/Default/postReq/POST/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIpostReqPOSTB01FDD85",
-            "trace": [
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:125:22)",
-              "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:50:21)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CdkADeployedPI/Default/postReq/OPTIONS/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CdkADeployedPIpostReqOPTIONS089A956A",
-            "trace": [
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:125:22)",
-              "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "Function.AddOptions (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:94:13)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:53:23)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CDKUsagePlan": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CDKUsagePlan",
-            "trace": [
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:22:48)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CDKApiKey": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CDKApiKey",
-            "trace": [
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:32:42)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CDKUsagePlanKey": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CDKUsagePlanKey",
-            "trace": [
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:35:5)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CDKPythonLambdaStackTable": [
-          {
-            "type": "aws:cdk:hasPhysicalName",
-            "data": "CDKPythonLambdaStackTable",
-            "trace": [
-              "new Table (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-dynamodb/lib/table.ts:249:38)",
-              "Function.CreateDynamoDB (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/dynamodb/creator.ts:11:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:68:51)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PythonLambdaStack/CDKPythonLambdaStackTable/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "CDKPythonLambdaStackTableE0C4B2FA",
-            "trace": [
-              "new Table (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-dynamodb/lib/table.ts:232:18)",
-              "Function.CreateDynamoDB (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/dynamodb/creator.ts:11:12)",
-              "new PythonLambdaStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/lambda-python-stack.ts:68:51)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:15:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ]
-      }
-    },
-    "KansaitsDemoStack": {
-      "type": "aws:cloudformation:stack",
-      "environment": "aws://795622185554/ap-northeast-1",
-      "properties": {
-        "templateFile": "KansaitsDemoStack.template.json"
-      },
-      "metadata": {
-        "/KansaitsDemoStack/demoLambda/ServiceRole/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "demoLambdaServiceRole76EF9407",
-            "trace": [
-              "new Role (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:200:18)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:407:31)",
-              "new KansaitsDemoStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/kansaits_demo_stack.ts:10:41)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:16:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/KansaitsDemoStack/demoLambda/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "demoLambdaA55DA906",
-            "trace": [
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:423:22)",
-              "new KansaitsDemoStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/kansaits_demo_stack.ts:10:41)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:16:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/KansaitsDemoStack/demoLambda/Code": [
-          {
-            "type": "aws:cdk:asset",
-            "data": {
-              "path": "asset.fa946b4889e8b36af836e0e4aa15a6b27b0b9aa059aa4b1b2a9ef7c6a6bf9486",
-              "id": "KansaitsDemoStackdemoLambdaCode2FB48CA7",
-              "packaging": "zip",
-              "sourceHash": "fa946b4889e8b36af836e0e4aa15a6b27b0b9aa059aa4b1b2a9ef7c6a6bf9486",
-              "s3BucketParameter": "demoLambdaCodeS3Bucket1A7D73AD",
-              "s3KeyParameter": "demoLambdaCodeS3VersionKey63B84B31",
-              "artifactHashParameter": "demoLambdaCodeArtifactHash2BF08DF1"
-            },
-            "trace": [
-              "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:177:15)",
-              "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "new KansaitsDemoStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/kansaits_demo_stack.ts:10:41)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:16:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/KansaitsDemoStack/demoLambda/Code/S3Bucket": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "demoLambdaCodeS3Bucket1A7D73AD",
-            "trace": [
-              "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:136:25)",
-              "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "new KansaitsDemoStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/kansaits_demo_stack.ts:10:41)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:16:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/KansaitsDemoStack/demoLambda/Code/S3VersionKey": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "demoLambdaCodeS3VersionKey63B84B31",
-            "trace": [
-              "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:141:22)",
-              "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "new KansaitsDemoStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/kansaits_demo_stack.ts:10:41)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:16:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/KansaitsDemoStack/demoLambda/Code/ArtifactHash": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "demoLambdaCodeArtifactHash2BF08DF1",
-            "trace": [
-              "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:146:23)",
-              "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "new KansaitsDemoStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/kansaits_demo_stack.ts:10:41)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:16:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/KansaitsDemoStack/demoLambda/ApiPermission.GET..get": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "demoLambdaApiPermissionGETgetE6F0C7E9",
-            "trace": [
-              "Function.addPermission (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:170:5)",
-              "LambdaIntegration.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/integrations/lambda.ts:60:18)",
-              "Method.renderIntegration (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:178:17)",
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:121:25)",
-              "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "new KansaitsDemoStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/kansaits_demo_stack.ts:29:12)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:16:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/KansaitsDemoStack/demoLambda/ApiPermission.Test.GET..get": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "demoLambdaApiPermissionTestGETgetB5165468",
-            "trace": [
-              "Function.addPermission (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:170:5)",
-              "LambdaIntegration.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/integrations/lambda.ts:67:20)",
-              "Method.renderIntegration (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:178:17)",
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:121:25)",
-              "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "new KansaitsDemoStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/kansaits_demo_stack.ts:29:12)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:16:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/KansaitsDemoStack/demoAPI/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "demoAPID9DC020C",
-            "trace": [
-              "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:209:22)",
-              "new KansaitsDemoStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/kansaits_demo_stack.ts:20:41)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:16:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/KansaitsDemoStack/demoAPI/Deployment/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "demoAPIDeployment761DF7F2196727043e8762313a09a79b40e03128",
-            "trace": [
-              "new Deployment (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/deployment.ts:69:21)",
-              "RestApi.configureDeployment (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:320:31)",
-              "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:224:10)",
-              "new KansaitsDemoStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/kansaits_demo_stack.ts:20:41)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:16:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/KansaitsDemoStack/demoAPI/DeploymentStage.prod/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "demoAPIDeploymentStageprod47FE47A9",
-            "trace": [
-              "new Stage (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/stage.ts:186:22)",
-              "RestApi.configureDeployment (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:330:30)",
-              "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:224:10)",
-              "new KansaitsDemoStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/kansaits_demo_stack.ts:20:41)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:16:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/KansaitsDemoStack/demoAPI/Endpoint": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "demoAPIEndpoint12CBD52A",
-            "trace": [
-              "RestApi.configureDeployment (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:335:7)",
-              "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:224:10)",
-              "new KansaitsDemoStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/kansaits_demo_stack.ts:20:41)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:16:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/KansaitsDemoStack/demoAPI/CloudWatchRole/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "demoAPICloudWatchRole71F00073",
-            "trace": [
-              "new Role (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:200:18)",
-              "RestApi.configureCloudWatchRole (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:344:18)",
-              "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:228:12)",
-              "new KansaitsDemoStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/kansaits_demo_stack.ts:20:41)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:16:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/KansaitsDemoStack/demoAPI/Account": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "demoAPIAccount9FAA87B1",
-            "trace": [
-              "RestApi.configureCloudWatchRole (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:356:22)",
-              "new RestApi (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:228:12)",
-              "new KansaitsDemoStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/kansaits_demo_stack.ts:20:41)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:16:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/KansaitsDemoStack/demoAPI/Default/get/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "demoAPIget5502D839",
-            "trace": [
-              "new Resource (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:212:22)",
-              "RootResource.addResource (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:136:12)",
-              "new KansaitsDemoStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/kansaits_demo_stack.ts:28:54)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:16:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/KansaitsDemoStack/demoAPI/Default/get/GET/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "demoAPIgetGETDF7C89EF",
-            "trace": [
-              "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:125:22)",
-              "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
-              "new KansaitsDemoStack (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/kansaits_demo_stack.ts:29:12)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:16:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ]
-      }
-    },
-    "PutJsonToDynamo": {
-      "type": "aws:cloudformation:stack",
-      "environment": "aws://795622185554/ap-northeast-1",
-      "properties": {
-        "templateFile": "PutJsonToDynamo.template.json"
-      },
-      "metadata": {
-        "/PutJsonToDynamo/PutEmployeeDataLambda/ServiceRole/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PutEmployeeDataLambdaServiceRole1BD98B12",
-            "trace": [
-              "new Role (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:200:18)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:407:31)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new PutJsonToDynamo (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_json_to_dynamo.ts:12:67)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:17:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PutJsonToDynamo/PutEmployeeDataLambda/ServiceRole/DefaultPolicy/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PutEmployeeDataLambdaServiceRoleDefaultPolicyF4E7B210",
-            "trace": [
-              "new Policy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/policy.ts:95:22)",
-              "Role.addToPolicy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-iam/lib/role.ts:234:28)",
-              "Function.addToRolePolicy (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function-base.ts:189:15)",
-              "new PutJsonToDynamo (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_json_to_dynamo.ts:15:20)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:17:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PutJsonToDynamo/PutEmployeeDataLambda/Resource": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PutEmployeeDataLambda16774418",
-            "trace": [
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:423:22)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new PutJsonToDynamo (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_json_to_dynamo.ts:12:67)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:17:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PutJsonToDynamo/PutEmployeeDataLambda/Code": [
-          {
-            "type": "aws:cdk:asset",
-            "data": {
-              "path": "asset.830dd25168e49070936a54804f6810567934934d1f2ddd75529fa2f2fae4e20f",
-              "id": "PutJsonToDynamoPutEmployeeDataLambdaCode4003E274",
-              "packaging": "zip",
-              "sourceHash": "830dd25168e49070936a54804f6810567934934d1f2ddd75529fa2f2fae4e20f",
-              "s3BucketParameter": "PutEmployeeDataLambdaCodeS3BucketC09C84B3",
-              "s3KeyParameter": "PutEmployeeDataLambdaCodeS3VersionKey7727C289",
-              "artifactHashParameter": "PutEmployeeDataLambdaCodeArtifactHash95F15645"
-            },
-            "trace": [
-              "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:177:15)",
-              "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new PutJsonToDynamo (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_json_to_dynamo.ts:12:67)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:17:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PutJsonToDynamo/PutEmployeeDataLambda/Code/S3Bucket": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PutEmployeeDataLambdaCodeS3BucketC09C84B3",
-            "trace": [
-              "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:136:25)",
-              "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new PutJsonToDynamo (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_json_to_dynamo.ts:12:67)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:17:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PutJsonToDynamo/PutEmployeeDataLambda/Code/S3VersionKey": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PutEmployeeDataLambdaCodeS3VersionKey7727C289",
-            "trace": [
-              "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:141:22)",
-              "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new PutJsonToDynamo (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_json_to_dynamo.ts:12:67)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:17:1)",
-              "Module._compile (internal/modules/cjs/loader.js:689:30)",
-              "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
-              "Module.load (internal/modules/cjs/loader.js:599:32)",
-              "tryModuleLoad (internal/modules/cjs/loader.js:538:12)",
-              "Function.Module._load (internal/modules/cjs/loader.js:530:3)",
-              "Function.Module.runMain (internal/modules/cjs/loader.js:742:12)",
-              "startup (internal/bootstrap/node.js:283:19)",
-              "bootstrapNodeJSCore (internal/bootstrap/node.js:743:3)"
-            ]
-          }
-        ],
-        "/PutJsonToDynamo/PutEmployeeDataLambda/Code/ArtifactHash": [
-          {
-            "type": "aws:cdk:logicalId",
-            "data": "PutEmployeeDataLambdaCodeArtifactHash95F15645",
-            "trace": [
-              "new Asset (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/assets/lib/asset.ts:146:23)",
-              "AssetCode.bind (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/code.ts:179:20)",
-              "new Function (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-lambda/lib/function.ts:448:16)",
-              "Function.CreateLambdaFunction (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/lambda_function/creator.ts:12:12)",
-              "new PutJsonToDynamo (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_json_to_dynamo.ts:12:67)",
-              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:17:1)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:34:23)",
+              "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
               "Module.load (internal/modules/cjs/loader.js:599:32)",
@@ -2352,39 +385,19 @@
   },
   "runtime": {
     "libraries": {
-      "@aws-cdk/cdk": "0.33.0",
-      "@aws-cdk/cx-api": "0.33.0",
-      "@aws-cdk/aws-dynamodb": "0.33.0",
-      "@aws-cdk/aws-applicationautoscaling": "0.33.0",
-      "@aws-cdk/aws-iam": "0.33.0",
-      "@aws-cdk/region-info": "0.33.0",
-      "@aws-cdk/aws-autoscaling-common": "0.33.0",
-      "@aws-cdk/aws-cloudwatch": "0.33.0",
-      "@aws-cdk/aws-apigateway": "0.33.0",
-      "@aws-cdk/aws-lambda": "0.33.0",
-      "@aws-cdk/aws-ec2": "0.33.0",
-      "@aws-cdk/aws-sqs": "0.33.0",
-      "@aws-cdk/aws-kms": "0.33.0",
-      "@aws-cdk/assets": "0.33.0",
-      "@aws-cdk/aws-s3": "0.33.0",
-      "@aws-cdk/aws-events": "0.33.0",
-      "@aws-cdk/aws-kinesis": "0.33.0",
-      "@aws-cdk/aws-kinesisanalytics": "0.33.0",
-      "@aws-cdk/aws-codepipeline": "0.33.0",
-      "@aws-cdk/aws-codecommit": "0.33.0",
-      "@aws-cdk/aws-codepipeline-actions": "0.33.0",
-      "@aws-cdk/aws-cloudformation": "0.33.0",
-      "@aws-cdk/aws-events-targets": "0.33.0",
-      "@aws-cdk/aws-ecs": "0.33.0",
-      "@aws-cdk/aws-elasticloadbalancingv2": "0.33.0",
-      "@aws-cdk/aws-servicediscovery": "0.33.0",
-      "@aws-cdk/assets-docker": "0.33.0",
-      "@aws-cdk/aws-ecr": "0.33.0",
-      "@aws-cdk/aws-autoscaling": "0.33.0",
-      "@aws-cdk/aws-autoscaling-hooktargets": "0.33.0",
-      "@aws-cdk/aws-sns": "0.33.0",
-      "@aws-cdk/aws-logs": "0.33.0",
-      "@aws-cdk/aws-codebuild": "0.33.0",
+      "@aws-cdk/cdk": "0.34.0",
+      "@aws-cdk/cx-api": "0.34.0",
+      "@aws-cdk/aws-apigateway": "0.34.0",
+      "@aws-cdk/aws-iam": "0.34.0",
+      "@aws-cdk/region-info": "0.34.0",
+      "@aws-cdk/aws-lambda": "0.34.0",
+      "@aws-cdk/aws-cloudwatch": "0.34.0",
+      "@aws-cdk/aws-ec2": "0.34.0",
+      "@aws-cdk/aws-sqs": "0.34.0",
+      "@aws-cdk/aws-kms": "0.34.0",
+      "@aws-cdk/assets": "0.34.0",
+      "@aws-cdk/aws-s3": "0.34.0",
+      "@aws-cdk/aws-events": "0.34.0",
       "jsii-runtime": "node.js/v10.15.1"
     }
   }

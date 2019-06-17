@@ -18,8 +18,8 @@ export class CdkStack extends cdk.Stack {
     /**
      * Create Lambda Function
      */
-    const getHandler: lambda.Function = LambdaFunctionCreator.CreateLambdaFunction(this, "CdkLambdaGetFunction", "index.get")
-    const postHandler: lambda.Function = LambdaFunctionCreator.CreateLambdaFunction(this, "CdkLambdaPostFunction", "index.post")
+    const getHandler: lambda.Function = LambdaFunctionCreator.CreateLambdaFunction(this, "CdkLambdaGetFunction", "index.get", "")
+    const postHandler: lambda.Function = LambdaFunctionCreator.CreateLambdaFunction(this, "CdkLambdaPostFunction", "index.post", "")
 
     /**
      * Create DynamoDB Table
