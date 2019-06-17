@@ -7,12 +7,18 @@ export class LambdaFunctionCreator {
    * @param {cdk.Construct} self
    * @param {String} functionName
    * @param {String} handler
+   * @param {String} codeDirectory
    */
-  static CreateLambdaFunction(self: cdk.Construct, functionName: string, handler: string) {
+  static CreateLambdaFunction(
+    self: cdk.Construct,
+    functionName: string,
+    codeDirectory: string,
+    handler: string
+  ) {
     return new lambda.Function(self, functionName, {
       functionName: functionName,
-      runtime: lambda.Runtime.NodeJS810,
-      code: lambda.Code.directory("resources/js"),
+      runtime: lambda.Runtime.NodeJS10x,
+      code: lambda.Code.directory(codeDirectory),
       handler: handler,
       memorySize: 256,
       timeout: 300,

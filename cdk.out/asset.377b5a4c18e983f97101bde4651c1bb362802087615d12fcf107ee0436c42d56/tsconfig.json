@@ -16,10 +16,9 @@
     "inlineSourceMap": true,
     "inlineSources": true,
     "experimentalDecorators": true,
-    "outDir": "./dist",
     "strictPropertyInitialization":false
   },
   "include": [
-      "./src/**/*.ts"
+      "./src/**/*.ts", "index.ts"
   ]
 }
