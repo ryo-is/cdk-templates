@@ -22,13 +22,32 @@ export class PutImageLambda extends cdk.Stack {
       "画像をS3にputするAPI"
     )
 
+    const usagePlan: apigateway.CfnUsagePlan = new apigateway.CfnUsagePlan(this, "PutImageToS3APIUsagePlan", {
+      throttle: {
+        burstLimit: 5000,
+        rateLimit: 10000
+      },
+      apiStages: [{
+        apiId: apiGateway.restApiId,
+        stage: (apiGateway.deploymentStage as apigateway.Stage).stageName
+      }]
+    })
+    const apiKey: apigateway.CfnApiKey = new apigateway.CfnApiKey(this, "PutImageToS3APIKey", {
+      enabled: true
+    })
+    new apigateway.CfnUsagePlanKey(this, "PutImageToS3APIUsagePlanKey", {
+      keyId: apiKey.apiKeyId,
+      keyType: "API_KEY",
+      usagePlanId: usagePlan.usagePlanId
+    })
+
     const integration: apigateway.Integration = new apigateway.LambdaIntegration(lambdaFunction)
     const resourceApi: apigateway.Resource = apiGateway.root.addResource("postImage")
     resourceApi.addMethod(
       "POST",
       integration,
       {
-        apiKeyRequired: false
+        apiKeyRequired: true
       }
     )
     APIGatewayCreator.AddOptions(resourceApi)

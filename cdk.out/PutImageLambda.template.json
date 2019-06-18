@@ -107,7 +107,7 @@
       ],
       "Metadata": {
         "aws:cdk:path": "PutImageLambda/put_image_to_s3/Resource",
-        "aws:asset:path": "asset.9d38fef76de27ead0d0c84808b6f89b38f94b6ef6c7c7034fbdcfadd50c1ad6a",
+        "aws:asset:path": "asset.ba01306823c1cddeebc5b4e9697493bef237d7fb5f2553b72c87deb760aca6ca",
         "aws:asset:property": "Code"
       }
     },
@@ -205,7 +205,7 @@
         "aws:cdk:path": "PutImageLambda/PutImageToS3API/Resource"
       }
     },
-    "PutImageToS3APIDeployment3D57670Fa4e4130876822ad328a14c2395337f6e": {
+    "PutImageToS3APIDeployment3D57670F57ac98c3576ce0f4ddcc8c62475e9b5f": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -229,7 +229,7 @@
           "Ref": "PutImageToS3API0E2E47C3"
         },
         "DeploymentId": {
-          "Ref": "PutImageToS3APIDeployment3D57670Fa4e4130876822ad328a14c2395337f6e"
+          "Ref": "PutImageToS3APIDeployment3D57670F57ac98c3576ce0f4ddcc8c62475e9b5f"
         },
         "StageName": "prod"
       },
@@ -326,6 +326,7 @@
         "RestApiId": {
           "Ref": "PutImageToS3API0E2E47C3"
         },
+        "ApiKeyRequired": true,
         "AuthorizationType": "NONE",
         "Integration": {
           "IntegrationHttpMethod": "POST",
@@ -405,6 +406,52 @@
       },
       "Metadata": {
         "aws:cdk:path": "PutImageLambda/PutImageToS3API/Default/postImage/OPTIONS/Resource"
+      }
+    },
+    "PutImageToS3APIUsagePlan": {
+      "Type": "AWS::ApiGateway::UsagePlan",
+      "Properties": {
+        "ApiStages": [
+          {
+            "ApiId": {
+              "Ref": "PutImageToS3API0E2E47C3"
+            },
+            "Stage": {
+              "Ref": "PutImageToS3APIDeploymentStageprodB7676971"
+            }
+          }
+        ],
+        "Throttle": {
+          "BurstLimit": 5000,
+          "RateLimit": 10000
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "PutImageLambda/PutImageToS3APIUsagePlan"
+      }
+    },
+    "PutImageToS3APIKey": {
+      "Type": "AWS::ApiGateway::ApiKey",
+      "Properties": {
+        "Enabled": true
+      },
+      "Metadata": {
+        "aws:cdk:path": "PutImageLambda/PutImageToS3APIKey"
+      }
+    },
+    "PutImageToS3APIUsagePlanKey": {
+      "Type": "AWS::ApiGateway::UsagePlanKey",
+      "Properties": {
+        "KeyId": {
+          "Ref": "PutImageToS3APIKey"
+        },
+        "KeyType": "API_KEY",
+        "UsagePlanId": {
+          "Ref": "PutImageToS3APIUsagePlan"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "PutImageLambda/PutImageToS3APIUsagePlanKey"
       }
     }
   },
