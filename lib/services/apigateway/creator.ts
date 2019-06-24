@@ -50,7 +50,9 @@ export class APIGatewayCreator {
     const integration = new apigateway.LambdaIntegration(handler)
     const option: apigateway.MethodOptions = {
       authorizationType: apigateway.AuthorizationType.Cognito,
-      authorizerId: authorizer.authorizerId
+      authorizer: {
+        authorizerId: authorizer.restApiId
+      }
     }
     api.root.addMethod(method, integration, option)
     if (cors) {
@@ -78,7 +80,9 @@ export class APIGatewayCreator {
     const integration = new apigateway.LambdaIntegration(handler)
     const option: apigateway.MethodOptions = {
       authorizationType: apigateway.AuthorizationType.Cognito,
-      authorizerId: authorizer.authorizerId
+      authorizer: {
+        authorizerId: authorizer.restApiId
+      }
     }
     addResourceApi.addMethod(method, integration, option)
     if (cors) {

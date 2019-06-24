@@ -38,7 +38,7 @@ export class CognitoCreator {
    * @param {String} id
    * @param {cognito.CfnUserPool} userPool
    */
-  static CreateUserPoolClient(self: cdk.Construct, id: string, userPool: cognito.CfnUserPool) {
+  static CreateUserPoolClient(self: cdk.Construct, id: string, userPool: cognito.UserPool) {
     new cognito.CfnUserPoolClient(self, id, {
       clientName: id,
       userPoolId: userPool.userPoolId

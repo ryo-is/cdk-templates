@@ -69,7 +69,6 @@ export class CdkStack extends cdk.Stack {
      * Create APIGateway Authorizer
      */
     const apiAuthorizer: apigateway.CfnAuthorizer = APIGatewayCreator.CreateAuthorizer(this, "CdkAPIAuthorizer", api)
-
     /**
      * Add GET and POST method to APIGateway
      */

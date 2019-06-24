@@ -1,8 +1,12 @@
 import cdk = require("@aws-cdk/cdk")
 import cpapi = require("@aws-cdk/aws-codepipeline")
 import codebuild = require("@aws-cdk/aws-codebuild")
+import codecommit = require("@aws-cdk/aws-codecommit")
 import codepipeline = require("@aws-cdk/aws-codepipeline")
 import codepipeline_actions = require("@aws-cdk/aws-codepipeline-actions")
+import physicalName = require("@aws-cdk/cdk/lib/physical-name")
+
+import { S3Creator } from "../s3/creator"
 
 export class CodeBuildCreator {
   /**
@@ -10,11 +14,16 @@ export class CodeBuildCreator {
    * @param {cdk.Construct} self
    * @param {String} id
    */
-  static CreateCodeBuild(self: cdk.Construct, id: string) {
+  static CreateCodeBuild(self: cdk.Construct, id: string, repo: codecommit.IRepository) {
     return new codebuild.Project(self, id, {
-      projectName: id,
-      artifacts: new codebuild.CodePipelineBuildArtifacts(),
-      source: new codebuild.CodePipelineSource(),
+      projectName: physicalName.PhysicalName.of(id),
+      artifacts: codebuild.Artifacts.s3({
+        bucket: S3Creator.CreateS3Bucket(self, "codebuildArtifactsBucket"),
+        name: "codebuildArtifactsBucket"
+      }),
+      source: codebuild.Source.codeCommit({
+        repository: repo
+      }),
       environment: {
         computeType: codebuild.ComputeType.Small,
         buildImage: codebuild.LinuxBuildImage.UBUNTU_14_04_NODEJS_10_1_0,

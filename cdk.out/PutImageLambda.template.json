@@ -205,7 +205,7 @@
         "aws:cdk:path": "PutImageLambda/PutImageToS3API/Resource"
       }
     },
-    "PutImageToS3APIDeployment3D57670F57ac98c3576ce0f4ddcc8c62475e9b5f": {
+    "PutImageToS3APIDeployment3D57670Fa4e4130876822ad328a14c2395337f6e": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -229,7 +229,7 @@
           "Ref": "PutImageToS3API0E2E47C3"
         },
         "DeploymentId": {
-          "Ref": "PutImageToS3APIDeployment3D57670F57ac98c3576ce0f4ddcc8c62475e9b5f"
+          "Ref": "PutImageToS3APIDeployment3D57670Fa4e4130876822ad328a14c2395337f6e"
         },
         "StageName": "prod"
       },
@@ -326,7 +326,6 @@
         "RestApiId": {
           "Ref": "PutImageToS3API0E2E47C3"
         },
-        "ApiKeyRequired": true,
         "AuthorizationType": "NONE",
         "Integration": {
           "IntegrationHttpMethod": "POST",
@@ -408,50 +407,21 @@
         "aws:cdk:path": "PutImageLambda/PutImageToS3API/Default/postImage/OPTIONS/Resource"
       }
     },
-    "PutImageToS3APIUsagePlan": {
-      "Type": "AWS::ApiGateway::UsagePlan",
+    "CdkAPIAuthorizer": {
+      "Type": "AWS::ApiGateway::Authorizer",
       "Properties": {
-        "ApiStages": [
-          {
-            "ApiId": {
-              "Ref": "PutImageToS3API0E2E47C3"
-            },
-            "Stage": {
-              "Ref": "PutImageToS3APIDeploymentStageprodB7676971"
-            }
-          }
-        ],
-        "Throttle": {
-          "BurstLimit": 5000,
-          "RateLimit": 10000
-        }
-      },
-      "Metadata": {
-        "aws:cdk:path": "PutImageLambda/PutImageToS3APIUsagePlan"
-      }
-    },
-    "PutImageToS3APIKey": {
-      "Type": "AWS::ApiGateway::ApiKey",
-      "Properties": {
-        "Enabled": true
-      },
-      "Metadata": {
-        "aws:cdk:path": "PutImageLambda/PutImageToS3APIKey"
-      }
-    },
-    "PutImageToS3APIUsagePlanKey": {
-      "Type": "AWS::ApiGateway::UsagePlanKey",
-      "Properties": {
-        "KeyId": {
-          "Ref": "PutImageToS3APIKey"
+        "RestApiId": {
+          "Ref": "PutImageToS3API0E2E47C3"
         },
-        "KeyType": "API_KEY",
-        "UsagePlanId": {
-          "Ref": "PutImageToS3APIUsagePlan"
-        }
+        "Type": "COGNITO_USER_POOLS",
+        "IdentitySource": "method.request.header.Authorization",
+        "Name": "CdkAPIAuthorizer",
+        "ProviderARNs": [
+          "arn:aws:cognito-idp:ap-northeast-1:795622185554:userpool/ap-northeast-1_3YzFmcfso"
+        ]
       },
       "Metadata": {
-        "aws:cdk:path": "PutImageLambda/PutImageToS3APIUsagePlanKey"
+        "aws:cdk:path": "PutImageLambda/CdkAPIAuthorizer"
       }
     }
   },

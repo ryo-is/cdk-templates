@@ -17,8 +17,8 @@ export class LambdaFunctionCreator {
   ) {
     return new lambda.Function(self, functionName, {
       functionName: functionName,
-      runtime: lambda.Runtime.NodeJS10x,
-      code: lambda.Code.directory(codeDirectory),
+      runtime: lambda.Runtime.Nodejs10x,
+      code: lambda.Code.asset(codeDirectory),
       handler: handler,
       memorySize: 256,
       timeout: 300,
@@ -32,7 +32,7 @@ export class LambdaFunctionCreator {
     return new lambda.Function(self, functionName, {
       functionName: functionName,
       runtime: lambda.Runtime.Python37,
-      code: lambda.Code.directory("resources/python"),
+      code: lambda.Code.asset("resources/python"),
       handler: handler,
       memorySize: 256,
       timeout: 29,
