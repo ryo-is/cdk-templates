@@ -19,24 +19,25 @@ export class PythonLambdaStack extends cdk.Stack {
     // })
     const apiGateway: apigateway.RestApi = APIGatewayCreator.CreateApiGateway(this, "CdkADeployedPI", "AWS-CDKでデプロイしたAPIGateway")
 
-    const usagePlan: apigateway.CfnUsagePlan = new apigateway.CfnUsagePlan(this, "CDKUsagePlan", {
+    const apiKey: apigateway.ApiKey = new apigateway.ApiKey(this, "CDKApiKey", {
+      enabled: true
+    })
+    new apigateway.UsagePlan(this, "CDKUsagePlan", {
       throttle: {
         burstLimit: 5000,
         rateLimit: 10000
       },
       apiStages: [{
-        apiId: apiGateway.restApiId,
-        stage: (apiGateway.deploymentStage as apigateway.Stage).stageName
-      }]
+        api: apiGateway,
+        stage: apiGateway.deploymentStage
+      }],
+      apiKey: apiKey
     })
-    const apiKey: apigateway.CfnApiKey = new apigateway.CfnApiKey(this, "CDKApiKey", {
-      enabled: true
-    })
-    new apigateway.CfnUsagePlanKey(this, "CDKUsagePlanKey", {
-      keyId: apiKey.apiKeyId,
-      keyType: "API_KEY",
-      usagePlanId: usagePlan.usagePlanId
-    })
+    // new apigateway.CfnUsagePlanKey(this, "CDKUsagePlanKey", {
+    //   keyId: apiKey.keyId,
+    //   keyType: "API_KEY",
+    //   usagePlanId: usagePlan.usagePlanId
+    // })
 
     const integration: apigateway.Integration = new apigateway.LambdaIntegration(lambdaFunction)
     const postIntegration: apigateway.Integration = new apigateway.LambdaIntegration(lambdaFunction)

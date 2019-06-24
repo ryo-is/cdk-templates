@@ -31,7 +31,7 @@ export class CdkPipelineStack extends cdk.Stack {
     /**
      * Create CodeBuild Project
      */
-    const buildProject: codebuild.Project = CodeBuildCreator.CreateCodeBuild(this, "CdkCodeBuildProject")
+    const buildProject: codebuild.Project = CodeBuildCreator.CreateCodeBuild(this, "CdkCodeBuildProject", repo)
 
     /**
      * Add CodePipeline Source Stage

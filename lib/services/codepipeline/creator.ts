@@ -20,7 +20,7 @@ export class CodePipelineCreator {
    */
   static AddStage(pipeline: codepipeline.Pipeline, stageName: string) {
     return pipeline.addStage({
-      name: stageName
+      stageName: stageName
     })
   }
 }
