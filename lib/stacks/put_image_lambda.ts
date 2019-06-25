@@ -47,6 +47,12 @@ export class PutImageLambda extends cdk.Stack {
     resourceApi.addMethod(
       "POST",
       integration,
+      {
+        authorizationType: apigateway.AuthorizationType.Cognito,
+        authorizer: {
+          authorizerId: "d7s7il"
+        }
+      }
     )
     APIGatewayCreator.AddOptions(resourceApi)
     // APIGatewayCreator.AddResourceAndMethod(apiGateway, "postImage", "POST", lambdaFunction)
