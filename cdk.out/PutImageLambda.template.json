@@ -205,7 +205,7 @@
         "aws:cdk:path": "PutImageLambda/PutImageToS3API/Resource"
       }
     },
-    "PutImageToS3APIDeployment3D57670Fa4e4130876822ad328a14c2395337f6e": {
+    "PutImageToS3APIDeployment3D57670Fa200c5ef0d5e047e7d8c92a4c975b921": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -229,7 +229,7 @@
           "Ref": "PutImageToS3API0E2E47C3"
         },
         "DeploymentId": {
-          "Ref": "PutImageToS3APIDeployment3D57670Fa4e4130876822ad328a14c2395337f6e"
+          "Ref": "PutImageToS3APIDeployment3D57670Fa200c5ef0d5e047e7d8c92a4c975b921"
         },
         "StageName": "prod"
       },
@@ -326,7 +326,8 @@
         "RestApiId": {
           "Ref": "PutImageToS3API0E2E47C3"
         },
-        "AuthorizationType": "NONE",
+        "AuthorizationType": "COGNITO_USER_POOLS",
+        "AuthorizerId": "d7s7il",
         "Integration": {
           "IntegrationHttpMethod": "POST",
           "Type": "AWS_PROXY",

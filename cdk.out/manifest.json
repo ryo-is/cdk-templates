@@ -214,7 +214,7 @@
         "/PutImageLambda/PutImageToS3API/Deployment/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "PutImageToS3APIDeployment3D57670Fa4e4130876822ad328a14c2395337f6e",
+            "data": "PutImageToS3APIDeployment3D57670Fa200c5ef0d5e047e7d8c92a4c975b921",
             "trace": [
               "new Deployment (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/deployment.ts:69:21)",
               "RestApi.configureDeployment (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/restapi.ts:323:32)",
@@ -367,7 +367,7 @@
               "new Method (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/method.ts:124:22)",
               "Resource.addMethod (/Users/ryosukeizumi/dev/others/cdk-templates/node_modules/@aws-cdk/aws-apigateway/lib/resource.ts:140:12)",
               "Function.AddOptions (/Users/ryosukeizumi/dev/others/cdk-templates/lib/services/apigateway/creator.ts:98:13)",
-              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:51:23)",
+              "new PutImageLambda (/Users/ryosukeizumi/dev/others/cdk-templates/lib/stacks/put_image_lambda.ts:57:23)",
               "Object.<anonymous> (/Users/ryosukeizumi/dev/others/cdk-templates/bin/cdk-app.ts:19:1)",
               "Module._compile (internal/modules/cjs/loader.js:689:30)",
               "Object.Module._extensions..js (internal/modules/cjs/loader.js:700:10)",
