@@ -1,7 +1,6 @@
-import cdk = require("@aws-cdk/cdk")
+import cdk = require("@aws-cdk/core")
 import codecommit = require("@aws-cdk/aws-codecommit")
 import codepipeline_actions = require("@aws-cdk/aws-codepipeline-actions")
-import cpapi = require("@aws-cdk/aws-codepipeline")
 import codepipeline = require("@aws-cdk/aws-codepipeline")
 
 export class CodeCommitCreator {
@@ -32,10 +31,10 @@ export class CodeCommitCreator {
 
   /**
    * Add CodePipeline Source Stage
-   * @param {cpapi.IStage} sourceStage
-   * @param {cpapi.Action} sourceAction
+   * @param {codepipeline.IStage} sourceStage
+   * @param {codepipeline.IAction} sourceAction
    */
-  static AddSourceAction(sourceStage: cpapi.IStage, sourceAction: cpapi.Action) {
+  static AddSourceAction(sourceStage: codepipeline.IStage, sourceAction: codepipeline.IAction) {
     sourceStage.addAction(sourceAction)
   }
 }

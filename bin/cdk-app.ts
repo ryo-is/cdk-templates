@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import "source-map-support/register"
-import cdk = require("@aws-cdk/cdk")
+import cdk = require("@aws-cdk/core")
 // import { CdkStack } from "../lib/stacks/cdk-stack"
 // import { KinesisAnalyticsStack } from "../lib/stacks/kinesis_analytics_stack"
 // import { CdkPipelineStack } from "../lib/stacks/cdk-pipeline-stack"
@@ -17,4 +17,4 @@ const app = new cdk.App()
 // new KansaitsDemoStack(app, "KansaitsDemoStack")
 // new PutJsonToDynamo(app, "PutJsonToDynamo")
 new PutImageLambda(app, "PutImageLambda")
-app.run()
+app.synth()

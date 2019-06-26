@@ -1,4 +1,4 @@
-import cdk = require("@aws-cdk/cdk")
+import cdk = require("@aws-cdk/core")
 import apigateway = require("@aws-cdk/aws-apigateway")
 import lambda = require("@aws-cdk/aws-lambda")
 import dynamodb = require("@aws-cdk/aws-dynamodb")
@@ -58,11 +58,11 @@ export class PythonLambdaStack extends cdk.Stack {
         tableName: "CDKPythonLambdaStackTable",
         partitionKey: {
           name: "ID",
-          type: dynamodb.AttributeType.String
+          type: dynamodb.AttributeType.STRING
         },
         sortKey: {
           name: "record_time",
-          type: dynamodb.AttributeType.String
+          type: dynamodb.AttributeType.STRING
         }
       }
     ]
