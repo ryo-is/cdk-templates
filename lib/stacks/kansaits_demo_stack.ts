@@ -1,4 +1,4 @@
-import cdk = require("@aws-cdk/cdk")
+import cdk = require("@aws-cdk/core")
 import lambda = require("@aws-cdk/aws-lambda")
 import apigateway = require("@aws-cdk/aws-apigateway")
 
@@ -9,11 +9,11 @@ export class KansaitsDemoStack extends cdk.Stack {
     // create Lambda Function
     const demoLambda: lambda.Function = new lambda.Function(this, "demoLambda", {
       functionName: "KansaitsDemoLambda",
-      runtime: lambda.Runtime.Python37,
+      runtime: lambda.Runtime.PYTHON_3_7,
       code: lambda.Code.asset("resources/python"),
       handler: "index.handler",
       memorySize: 128,
-      timeout: 29
+      timeout: cdk.Duration.seconds(29)
     })
 
     // create APIGateway

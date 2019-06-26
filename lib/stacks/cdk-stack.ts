@@ -1,4 +1,4 @@
-import cdk = require("@aws-cdk/cdk")
+import cdk = require("@aws-cdk/core")
 import lambda = require("@aws-cdk/aws-lambda")
 import dynamodb = require("@aws-cdk/aws-dynamodb")
 import iam = require("@aws-cdk/aws-iam")
@@ -29,11 +29,11 @@ export class CdkStack extends cdk.Stack {
         tableName: "CDKDemoTable",
         partitionKey: {
           name: "ID",
-          type: dynamodb.AttributeType.String
+          type: dynamodb.AttributeType.STRING
         },
         sortKey: {
           name: "record_time",
-          type: dynamodb.AttributeType.String
+          type: dynamodb.AttributeType.STRING
         }
       }
     ]

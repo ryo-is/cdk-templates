@@ -1,4 +1,4 @@
-import cdk = require("@aws-cdk/cdk")
+import cdk = require("@aws-cdk/core")
 import apigateway = require("@aws-cdk/aws-apigateway")
 import lambda = require("@aws-cdk/aws-lambda")
 import cognitoArn = require("../cognito/cognito_arn")
@@ -49,7 +49,7 @@ export class APIGatewayCreator {
     cors: boolean = true) {
     const integration = new apigateway.LambdaIntegration(handler)
     const option: apigateway.MethodOptions = {
-      authorizationType: apigateway.AuthorizationType.Cognito,
+      authorizationType: apigateway.AuthorizationType.COGNITO,
       authorizer: {
         authorizerId: authorizer.restApiId
       }
@@ -79,7 +79,7 @@ export class APIGatewayCreator {
     const addResourceApi = api.root.addResource(resource)
     const integration = new apigateway.LambdaIntegration(handler)
     const option: apigateway.MethodOptions = {
-      authorizationType: apigateway.AuthorizationType.Cognito,
+      authorizationType: apigateway.AuthorizationType.COGNITO,
       authorizer: {
         authorizerId: authorizer.restApiId
       }
@@ -105,7 +105,7 @@ export class APIGatewayCreator {
           "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE'",
         }
       }],
-      passthroughBehavior: apigateway.PassthroughBehavior.Never,
+      passthroughBehavior: apigateway.PassthroughBehavior.NEVER,
       requestTemplates: {
         "application/json": "{\"statusCode\": 200}"
       }

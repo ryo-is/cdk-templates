@@ -1,4 +1,4 @@
-import cdk = require("@aws-cdk/cdk")
+import cdk = require("@aws-cdk/core")
 import lambda = require("@aws-cdk/aws-lambda")
 
 export class LambdaFunctionCreator {
@@ -17,11 +17,11 @@ export class LambdaFunctionCreator {
   ) {
     return new lambda.Function(self, functionName, {
       functionName: functionName,
-      runtime: lambda.Runtime.Nodejs10x,
+      runtime: lambda.Runtime.NODEJS_10_X,
       code: lambda.Code.asset(codeDirectory),
       handler: handler,
       memorySize: 256,
-      timeout: 300,
+      timeout: cdk.Duration.seconds(300),
       environment: {
         TZ: "Asia/Tokyo"
       }
@@ -31,11 +31,11 @@ export class LambdaFunctionCreator {
   static CreatePythonRuntimeLambdaFunction(self: cdk.Construct, functionName: string, handler: string) {
     return new lambda.Function(self, functionName, {
       functionName: functionName,
-      runtime: lambda.Runtime.Python37,
+      runtime: lambda.Runtime.PYTHON_3_7,
       code: lambda.Code.asset("resources/python"),
       handler: handler,
       memorySize: 256,
-      timeout: 29,
+      timeout: cdk.Duration.seconds(29),
       environment: {
         TZ: "Asia/Tokyo"
       }

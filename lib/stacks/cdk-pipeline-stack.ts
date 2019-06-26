@@ -1,4 +1,4 @@
-import cdk = require("@aws-cdk/cdk")
+import cdk = require("@aws-cdk/core")
 import codepipeline = require("@aws-cdk/aws-codepipeline")
 import codecommit = require("@aws-cdk/aws-codecommit")
 import codebuild = require("@aws-cdk/aws-codebuild")
@@ -36,7 +36,7 @@ export class CdkPipelineStack extends cdk.Stack {
     /**
      * Add CodePipeline Source Stage
      */
-    const sourceAction: codepipeline.Action = CodeCommitCreator.CreateSourceAction(repo, pipelineArtifact, "develop")
+    const sourceAction: codepipeline.IAction = CodeCommitCreator.CreateSourceAction(repo, pipelineArtifact, "develop")
     CodeCommitCreator.AddSourceAction(sourceStage, sourceAction)
 
     /**

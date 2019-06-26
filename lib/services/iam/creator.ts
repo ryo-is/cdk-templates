@@ -13,7 +13,7 @@ export class IAMCreator {
         resources: [tableArn]
       }
     )
-    policyStatement.effect = iam.Effect.Allow
+    policyStatement.effect = iam.Effect.ALLOW
     return policyStatement
   }
 
@@ -26,7 +26,7 @@ export class IAMCreator {
         resources: [s3Arn]
       }
     )
-    policyStatement.effect = iam.Effect.Allow
+    policyStatement.effect = iam.Effect.ALLOW
     return policyStatement
   }
 }
