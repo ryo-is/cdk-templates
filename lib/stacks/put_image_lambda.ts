@@ -40,8 +40,7 @@ export class PutImageLambda extends cdk.Stack {
     /**
      * Create APIGateway Authorizer
      */
-    const authorizer: apigateway.CfnAuthorizer = APIGatewayCreator.CreateAuthorizer(this, "CdkAPIAuthorizer", apiGateway)
-    console.log(authorizer.restApiId)
+    APIGatewayCreator.CreateAuthorizer(this, "CdkAPIAuthorizer", apiGateway)
 
     const integration: apigateway.Integration = new apigateway.LambdaIntegration(lambdaFunction)
     const resourceApi: apigateway.Resource = apiGateway.root.addResource("postImage")
