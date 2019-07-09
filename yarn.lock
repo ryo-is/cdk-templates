@@ -50,6 +50,13 @@
     "@aws-cdk/aws-iam" "^0.39.0"
     "@aws-cdk/core" "^0.39.0"
 
+"@aws-cdk/aws-appsync@^0.39.0":
+  version "0.39.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-appsync/-/aws-appsync-0.39.0.tgz#fcad5e4b4f572e4f705cbbb8b49e12d90e03324c"
+  integrity sha512-ebbi77L9SmAP2jvvo5PduswKbx3aRDEvq1aE48lCVyGurXG5vhKX+f7oa3Cx3PVmaJmU9obkYwQODfvTHanWkw==
+  dependencies:
+    "@aws-cdk/core" "^0.39.0"
+
 "@aws-cdk/aws-autoscaling-common@^0.39.0":
   version "0.39.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-autoscaling-common/-/aws-autoscaling-common-0.39.0.tgz#5942f71d61e19f1f5f98a8a17331cf76adc58bbd"
