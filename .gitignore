@@ -17,3 +17,5 @@ cloudformation.yaml
 
 .cdk.out
 cdk.out
+
+demo.ts
