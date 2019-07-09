@@ -15,7 +15,5 @@ cloudformation.yaml
 .mypy_cache
 .vscode
 
-.cdk.out
 cdk.out
-
-demo.ts
+cdk.output
