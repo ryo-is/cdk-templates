@@ -28,10 +28,12 @@
     "member-ordering": false,
     "no-conditional-assignment": true,
     "no-console": false,
+    "trailing-comma": false,
     "no-duplicate-variable": true,
     "no-empty": true,
     "no-empty-interface": true,
     "no-eval": true,
+    "no-string-literal": false,
     "no-internal-module": true,
     "no-trailing-whitespace": true,
     "no-unsafe-finally": true,
@@ -50,13 +52,25 @@
       "double"
     ],
     "semicolon": [
-      true,
+      false,
       "always"
     ],
     "switch-default": true,
+    "interface-over-type-literal": false,
     "triple-equals": [
       true,
       "allow-null-check"
+    ],
+    "typedef": [
+      true,
+      "call-signature",
+      "arrow-call-signature",
+      "parameter",
+      "property-declaration",
+      "variable-declaration",
+      "member-variable-declaration",
+      "object-destructuring",
+      "array-destructuring"
     ],
     "typedef-whitespace": [
       true,
@@ -80,6 +94,6 @@
       "check-separator",
       "check-type"
     ],
-    "trailing-comma": false
+    "ban-types": false,
   }
 }
