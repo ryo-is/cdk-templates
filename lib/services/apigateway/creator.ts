@@ -1,101 +1,48 @@
 import cdk = require("@aws-cdk/core")
-import apigateway = require("@aws-cdk/aws-apigateway")
-import lambda = require("@aws-cdk/aws-lambda")
-import cognitoArn = require("../cognito/cognito_arn")
+import {
+  RestApi,
+  CfnAuthorizer,
+  Resource,
+  Integration,
+  MethodOptions,
+  MockIntegration,
+  PassthroughBehavior,
+  EmptyModel
+} from "@aws-cdk/aws-apigateway"
 
 export class APIGatewayCreator {
-  /**
-   * Create APIGateway
-   * @param {cdk.Construct} self
-   * @param {String} apiName
-   * @param {String} apiDescription
-   */
-  static CreateApiGateway(self: cdk.Construct, apiName: string, apiDescription: string) {
-    return new apigateway.RestApi(self, apiName, {
+  // Create APIGateway RestApi
+  static createRestApi(self: cdk.Construct, apiName: string, apiDescription: string) {
+    return new RestApi(self, apiName, {
       restApiName: apiName,
       description: apiDescription
     })
   }
 
-  /**
-   * Create APIGateway Authorizer
-   * @param {cdk.Construct} self
-   * @param {String} authorizerName
-   * @param {apigateway.RestApi} api
-   */
-  static CreateAuthorizer(self: cdk.Construct, authorizerName: string, api: apigateway.RestApi) {
-    return new apigateway.CfnAuthorizer(self, authorizerName, {
+  // Create APIGateway Authorizer
+  static createAuthorizer(self: cdk.Construct, authorizerName: string, api: RestApi) {
+    return new CfnAuthorizer(self, authorizerName, {
       restApiId: api.restApiId,
       name: authorizerName,
       identitySource: "method.request.header.Authorization",
-      providerArns: [cognitoArn.default.arn],
+      providerArns: [""],
       type: "COGNITO_USER_POOLS"
     })
   }
 
-  /**
-   * Add Method to APIGateway
-   * @param {apigateway.RestApi} api
-   * @param {String} method
-   * @param {lambda.IFunction} handler
-   * @param {apigateway.CfnAuthorizer} authorizer
-   * @param {Boolean} cors
-   */
-  static AddMethod(
-    api: apigateway.RestApi,
-    method: string,
-    handler: lambda.IFunction,
-    authorizer: apigateway.CfnAuthorizer,
-    cors: boolean = true) {
-    const integration = new apigateway.LambdaIntegration(handler)
-    const option: apigateway.MethodOptions = {
-      authorizationType: apigateway.AuthorizationType.COGNITO,
-      authorizer: {
-        authorizerId: authorizer.restApiId
-      }
-    }
-    api.root.addMethod(method, integration, option)
-    if (cors) {
-      APIGatewayCreator.AddOptions((api.root) as apigateway.Resource)
-    }
+  // Add Resoruce to RestApi Root
+  static addResouceToRestApi(restApi: RestApi, path: string) {
+    return restApi.root.addResource(path)
   }
 
-  /**
-   * Add Resource and Method to APIGateway
-   * @param {apigateway.RestApi} api
-   * @param {String} resource
-   * @param {String} method
-   * @param {lambda.IFunction} handler
-   * @param {apigateway.CfnAuthorizer} authorizer
-   * @param {Boolean} cors
-   */
-  static AddResourceAndMethod(
-    api: apigateway.RestApi,
-    resource: string,
-    method: string,
-    handler: lambda.IFunction,
-    authorizer: apigateway.CfnAuthorizer,
-    cors: boolean = true) {
-    const addResourceApi = api.root.addResource(resource)
-    const integration = new apigateway.LambdaIntegration(handler)
-    const option: apigateway.MethodOptions = {
-      authorizationType: apigateway.AuthorizationType.COGNITO,
-      authorizer: {
-        authorizerId: authorizer.restApiId
-      }
-    }
-    addResourceApi.addMethod(method, integration, option)
-    if (cors) {
-      APIGatewayCreator.AddOptions(addResourceApi)
-    }
+  // Add Method to Resource
+  static addMethodToResource(resource: Resource, method: string, integration: Integration, options?: MethodOptions) {
+    return resource.addMethod(method, integration, options)
   }
 
-  /**
-   * Active APIGateway CORS Setting
-   * @param {apigateway.Resource} apiRoot
-   */
-   static AddOptions(apiRoot: apigateway.Resource) {
-    apiRoot.addMethod("OPTIONS", new apigateway.MockIntegration({
+  // Active APIGateway CORS Setting
+  static addOptions(apiRoot: Resource) {
+    apiRoot.addMethod("OPTIONS", new MockIntegration({
       integrationResponses: [{
         statusCode: "200",
         responseParameters: {
@@ -105,7 +52,7 @@ export class APIGatewayCreator {
           "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE'",
         }
       }],
-      passthroughBehavior: apigateway.PassthroughBehavior.NEVER,
+      passthroughBehavior: PassthroughBehavior.NEVER,
       requestTemplates: {
         "application/json": "{\"statusCode\": 200}"
       }
@@ -119,7 +66,7 @@ export class APIGatewayCreator {
           "method.response.header.Access-Control-Allow-Methods": true,
         },
         responseModels: {
-          "application/json": new apigateway.EmptyModel()
+          "application/json": new EmptyModel()
         },
       }]
     })
