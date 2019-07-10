@@ -1,8 +1,9 @@
-import iam = require("@aws-cdk/aws-iam")
+import cdk = require("@aws-cdk/core")
+import { PolicyStatement, Effect, Role, ServicePrincipal } from "@aws-cdk/aws-iam"
 
 export class IAMCreator {
-  static CreateDDBReadWriteRoleStatement(tableArn: string) {
-    const policyStatement = new iam.PolicyStatement(
+  public static createDDBReadWriteRoleStatement(tableArn: string): PolicyStatement {
+    const policyStatement: PolicyStatement = new PolicyStatement(
       {
         actions: [
           "dynamodb:PutItem",
@@ -13,20 +14,11 @@ export class IAMCreator {
         resources: [tableArn]
       }
     )
-    policyStatement.effect = iam.Effect.ALLOW
+    policyStatement.effect = Effect.ALLOW
     return policyStatement
   }
 
-  static CreateS3GetObjectRoleStatement(s3Arn: string) {
-    const policyStatement = new iam.PolicyStatement(
-      {
-        actions: [
-          "s3:GetObject"
-        ],
-        resources: [s3Arn]
-      }
-    )
-    policyStatement.effect = iam.Effect.ALLOW
-    return policyStatement
+  public static createAppSyncServiceRole(self: cdk.Construct, roleName: string): Role {
+    return new Role(self, roleName, { assumedBy: new ServicePrincipal("appsync.amazonaws.com") })
   }
 }

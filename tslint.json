@@ -94,6 +94,6 @@
       "check-separator",
       "check-type"
     ],
-    "ban-types": false,
+    "ban-types": false
   }
 }

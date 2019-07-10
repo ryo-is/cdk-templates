@@ -3,6 +3,7 @@ import {
   RestApi,
   CfnAuthorizer,
   Resource,
+  Method,
   Integration,
   MethodOptions,
   MockIntegration,
@@ -13,7 +14,7 @@ import {
 
 export class APIGatewayCreator {
   // Create APIGateway RestApi
-  static createRestApi(self: cdk.Construct, apiName: string, apiDescription: string) {
+  public static createRestApi(self: cdk.Construct, apiName: string, apiDescription: string): RestApi {
     return new RestApi(self, apiName, {
       restApiName: apiName,
       description: apiDescription
@@ -21,7 +22,7 @@ export class APIGatewayCreator {
   }
 
   // Create APIGateway Authorizer
-  static createAuthorizer(self: cdk.Construct, authorizerName: string, api: RestApi) {
+  public static createAuthorizer(self: cdk.Construct, authorizerName: string, api: RestApi): CfnAuthorizer {
     return new CfnAuthorizer(self, authorizerName, {
       restApiId: api.restApiId,
       name: authorizerName,
@@ -32,17 +33,17 @@ export class APIGatewayCreator {
   }
 
   // Add Resoruce to RestApi Root
-  static addResouceToRestApi(restApi: RestApi, path: string) {
+  public static addResouceToRestApi(restApi: RestApi, path: string): Resource {
     return restApi.root.addResource(path)
   }
 
   // Add Method to Resource
-  static addMethodToResource(resource: Resource, method: string, integration: Integration, options?: MethodOptions) {
+  public static addMethodToResource(resource: Resource, method: string, integration: Integration, options?: MethodOptions): Method {
     return resource.addMethod(method, integration, options)
   }
 
   // Active APIGateway CORS Setting
-  static addOptions(apiRoot: Resource) {
+  public static addOptions(apiRoot: Resource): void {
     apiRoot.addMethod("OPTIONS", new MockIntegration({
       integrationResponses: [{
         statusCode: "200",
@@ -74,7 +75,7 @@ export class APIGatewayCreator {
   }
 
   // Create ApiKey
-  static createApiKey(self: cdk.Construct, keyName: string) {
+  public static createApiKey(self: cdk.Construct, keyName: string): ApiKey {
     return new ApiKey(self, keyName, { enabled: true })
   }
 }

@@ -8,7 +8,8 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "lint": "tslint \"lib/**/*.ts\""
   },
   "devDependencies": {
     "@aws-cdk/aws-codepipeline-actions": "0.39.0",

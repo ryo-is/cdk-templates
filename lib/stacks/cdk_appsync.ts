@@ -1,119 +1,114 @@
 import cdk = require("@aws-cdk/core")
-import { Table, AttributeType, BillingMode } from "@aws-cdk/aws-dynamodb"
-import { Role, ServicePrincipal, ManagedPolicy } from "@aws-cdk/aws-iam"
+import { Table, TableProps, AttributeType, BillingMode } from "@aws-cdk/aws-dynamodb"
+import { Role, ManagedPolicy } from "@aws-cdk/aws-iam"
 import {
   CfnGraphQLApi,
   CfnDataSource,
-  CfnApiKey,
   CfnGraphQLSchema,
   CfnResolver
 } from "@aws-cdk/aws-appsync"
+
+import { DynamoDBCreator } from "../services/dynamodb/creator"
+import { IAMCreator } from "../services/iam/creator"
+import { AppSyncCreator } from "../services/appsync/creator"
 
 export class CdkAppSync extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props)
 
-    const tableName: string = "CDKAppSyncTable"
-
-    const table: Table = new Table(this, tableName, {
-      tableName: tableName,
+    const tableNameValue: string = "CDKAppSyncTable"
+    const tableParam: TableProps = {
+      tableName: tableNameValue,
       partitionKey: {
         name: "id",
         type: AttributeType.STRING
       },
       billingMode: BillingMode.PAY_PER_REQUEST
-    })
+    }
+    const table: Table = DynamoDBCreator.CreateTable(this, tableParam)
 
-    const tableRole: Role = new Role(this, "CDKTableRole", {
-      assumedBy: new ServicePrincipal("appsync.amazonaws.com")
-    })
+    const tableRole: Role = IAMCreator.createAppSyncServiceRole(this, "CDKAppSyncServiceRole")
     tableRole.addManagedPolicy(ManagedPolicy.fromAwsManagedPolicyName("AmazonDynamoDBFullAccess"))
 
-    const graphqlAPI: CfnGraphQLApi = new CfnGraphQLApi(this, "CDKAppSyncAPI", {
-      authenticationType: "API_KEY",
-      name: "CDKAppSyncAPI"
-    })
+    const graphqlAPI: CfnGraphQLApi = AppSyncCreator.createGrapphQLAPI(this, "CDKAppSyncAPI")
+    AppSyncCreator.createAPIKey(this, "CreateAPIKey", graphqlAPI)
 
-    new CfnApiKey(this, "CreateAPIKey", {
-      apiId: graphqlAPI.attrApiId
-    })
+    const definition: string = `
+      type ${tableNameValue} {
+        id: ID!,
+        name: String
+      }
+      type Paginated${tableNameValue} {
+        items: [${tableNameValue}!]!
+        nextToken: String
+      }
+      type Query {
+        all(limit: Int, nextToken: String): Paginated${tableNameValue}!
+        getOne(id: ID!): ${tableNameValue}
+      }
+      type Mutation {
+        save(name: String!): ${tableNameValue}
+        delete(id: ID!): ${tableNameValue}
+      }
+      type Schema {
+        query: Query
+        mutation: Mutation
+      }
+    `
 
-    const apiSchema: CfnGraphQLSchema = new CfnGraphQLSchema(this, "CDKGraphQLSchema", {
-      apiId: graphqlAPI.attrApiId,
-      definition: `
-        type ${tableName} {
-          id: ID!,
-          name: String
-        }
-        type Paginated${tableName} {
-          items: [${tableName}!]!
-          nextToken: String
-        }
-        type Query {
-          all(limit: Int, nextToken: String): Paginated${tableName}!
-          getOne(id: ID!): ${tableName}
-        }
-        type Mutation {
-          save(name: String!): ${tableName}
-          delete(id: ID!): ${tableName}
-        }
-        type Schema {
-          query: Query
-          mutation: Mutation
-        }
-      `,
-    })
+    const apiSchema: CfnGraphQLSchema = AppSyncCreator.createApiSchema(this, "CDKGraphQLSchema", graphqlAPI, definition)
+    const dataSource: CfnDataSource = AppSyncCreator.createDataSource(
+      this,
+      "CDKDataSourse",
+      graphqlAPI,
+      this.region,
+      table.tableName,
+      tableRole.roleArn
+    )
 
-    const dataSource: CfnDataSource = new CfnDataSource(this, "CDKDataSourse", {
-      apiId: graphqlAPI.attrApiId,
-      name: "CDKDataSourse",
-      type: "AMAZON_DYNAMODB",
-      dynamoDbConfig: {
-        awsRegion: this.region,
-        tableName: table.tableName
-      },
-      serviceRoleArn: tableRole.roleArn
-    })
-
-    const getOneResolver = new CfnResolver(this, "GetOneQueryResolver", {
-      apiId: graphqlAPI.attrApiId,
-      typeName: "Query",
-      fieldName: "getOne",
-      dataSourceName: dataSource.name,
-      requestMappingTemplate: `{
+    const getOneResolverMappingTemplate: string = `
+      {
         "version": "2017-02-28",
         "operation": "GetItem",
         "key": {
           "id": $util.dynamodb.toDynamoDBJson($ctx.args.id)
         }
-      }`,
-      responseMappingTemplate: `$util.toJson($ctx.result)`
-    })
+      }
+    `
+    const getOneResolver: CfnResolver = AppSyncCreator.createResolver(
+      this,
+      "GetOneQueryResolver",
+      graphqlAPI,
+      "Query",
+      "getOne",
+      dataSource,
+      getOneResolverMappingTemplate
+    )
     getOneResolver.addDependsOn(apiSchema)
     getOneResolver.addDependsOn(dataSource)
 
-    const getAllResolver = new CfnResolver(this, "GetAllQueryResolver", {
-      apiId: graphqlAPI.attrApiId,
-      typeName: "Query",
-      fieldName: "all",
-      dataSourceName: dataSource.name,
-      requestMappingTemplate: `{
+    const getAllResolverMappingTemplate: string = `
+      {
         "version": "2017-02-28",
         "operation": "Scan",
         "limit": $util.defaultIfNull($ctx.args.limit, 20),
         "nextToken": $util.toJson($util.defaultIfNullOrEmpty($ctx.args.nextToken, null))
-      }`,
-      responseMappingTemplate: `$util.toJson($ctx.result)`
-    })
+      }
+    `
+    const getAllResolver: CfnResolver = AppSyncCreator.createResolver(
+      this,
+      "GetAllQueryResolver",
+      graphqlAPI,
+      "Query",
+      "all",
+      dataSource,
+      getAllResolverMappingTemplate
+    )
     getAllResolver.addDependsOn(apiSchema)
     getAllResolver.addDependsOn(dataSource)
 
-    const saveResolver = new CfnResolver(this, "SaveMutationResolver", {
-      apiId: graphqlAPI.attrApiId,
-      typeName: "Mutation",
-      fieldName: "save",
-      dataSourceName: dataSource.name,
-      requestMappingTemplate: `{
+    const saveResolverMappingTemplate: string = `
+      {
         "version": "2017-02-28",
         "operation": "PutItem",
         "key": {
@@ -122,26 +117,38 @@ export class CdkAppSync extends cdk.Stack {
         "attributeValues": {
           "name": $util.dynamodb.toDynamoDBJson($ctx.args.name)
         }
-      }`,
-      responseMappingTemplate: `$util.toJson($ctx.result)`
-    })
+      }
+    `
+    const saveResolver: CfnResolver = AppSyncCreator.createResolver(
+      this,
+      "SaveMutationResolver",
+      graphqlAPI,
+      "Mutation",
+      "save",
+      dataSource,
+      saveResolverMappingTemplate
+    )
     saveResolver.addDependsOn(apiSchema)
     saveResolver.addDependsOn(dataSource)
 
-    const deleteResolver = new CfnResolver(this, "DeleteMutationResolver", {
-      apiId: graphqlAPI.attrApiId,
-      typeName: "Mutation",
-      fieldName: "delete",
-      dataSourceName: dataSource.name,
-      requestMappingTemplate: `{
+    const deleteResolverMappingTemplate: string = `
+      {
         "version": "2017-02-28",
         "operation": "DeleteItem",
         "key": {
           "id": $util.dynamodb.toDynamoDBJson($ctx.args.id)
         }
-      }`,
-      responseMappingTemplate: `$util.toJson($ctx.result)`
-    })
+      }
+    `
+    const deleteResolver: CfnResolver = AppSyncCreator.createResolver(
+      this,
+      "DeleteMutationResolver",
+      graphqlAPI,
+      "Mutation",
+      "delete",
+      dataSource,
+      deleteResolverMappingTemplate
+    )
     deleteResolver.addDependsOn(apiSchema)
     deleteResolver.addDependsOn(dataSource)
   }
