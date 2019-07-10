@@ -8,7 +8,7 @@ export class LambdaFunctionCreator {
     name: string,
     codeDirectory: string,
     handlerName: string
-  ) {
+  ): Function {
     return new Function(self, name, {
       functionName: name,
       runtime: Runtime.NODEJS_10_X,
