@@ -75,8 +75,6 @@ export class CdkAppSync extends cdk.Stack {
       serviceRoleArn: tableRole.roleArn
     })
 
-    // console.log(apiSchema, dataSource)
-
     const getOneResolver = new CfnResolver(this, "GetOneQueryResolver", {
       apiId: graphqlAPI.attrApiId,
       typeName: "Query",
@@ -90,8 +88,9 @@ export class CdkAppSync extends cdk.Stack {
         }
       }`,
       responseMappingTemplate: `$util.toJson($ctx.result)`
-    });
-    getOneResolver.addDependsOn(apiSchema);
+    })
+    getOneResolver.addDependsOn(apiSchema)
+    getOneResolver.addDependsOn(dataSource)
 
     const getAllResolver = new CfnResolver(this, "GetAllQueryResolver", {
       apiId: graphqlAPI.attrApiId,
@@ -105,8 +104,9 @@ export class CdkAppSync extends cdk.Stack {
         "nextToken": $util.toJson($util.defaultIfNullOrEmpty($ctx.args.nextToken, null))
       }`,
       responseMappingTemplate: `$util.toJson($ctx.result)`
-    });
-    getAllResolver.addDependsOn(apiSchema);
+    })
+    getAllResolver.addDependsOn(apiSchema)
+    getAllResolver.addDependsOn(dataSource)
 
     const saveResolver = new CfnResolver(this, "SaveMutationResolver", {
       apiId: graphqlAPI.attrApiId,
@@ -124,8 +124,9 @@ export class CdkAppSync extends cdk.Stack {
         }
       }`,
       responseMappingTemplate: `$util.toJson($ctx.result)`
-    });
-    saveResolver.addDependsOn(apiSchema);
+    })
+    saveResolver.addDependsOn(apiSchema)
+    saveResolver.addDependsOn(dataSource)
 
     const deleteResolver = new CfnResolver(this, "DeleteMutationResolver", {
       apiId: graphqlAPI.attrApiId,
@@ -140,7 +141,8 @@ export class CdkAppSync extends cdk.Stack {
         }
       }`,
       responseMappingTemplate: `$util.toJson($ctx.result)`
-    });
-    deleteResolver.addDependsOn(apiSchema);
+    })
+    deleteResolver.addDependsOn(apiSchema)
+    deleteResolver.addDependsOn(dataSource)
   }
 }
