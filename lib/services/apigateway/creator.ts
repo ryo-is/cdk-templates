@@ -7,7 +7,8 @@ import {
   MethodOptions,
   MockIntegration,
   PassthroughBehavior,
-  EmptyModel
+  EmptyModel,
+  ApiKey
 } from "@aws-cdk/aws-apigateway"
 
 export class APIGatewayCreator {
@@ -70,5 +71,10 @@ export class APIGatewayCreator {
         },
       }]
     })
+  }
+
+  // Create ApiKey
+  static createApiKey(self: cdk.Construct, keyName: string) {
+    return new ApiKey(self, keyName, { enabled: true })
   }
 }
