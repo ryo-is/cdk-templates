@@ -5,20 +5,21 @@ export class LambdaFunctionCreator {
   // Create Lambda Function
   public static createFunction(
     self: cdk.Construct,
-    name: string,
+    nameValue: string,
     codeDirectory: string,
-    handlerName: string
+    handlerValue: string,
+    memorySizeValue: number,
+    timeoutValue: number,
+    environmentValue: {[k: string]: any} = {}
   ): Function {
-    return new Function(self, name, {
-      functionName: name,
+    return new Function(self, nameValue, {
+      functionName: nameValue,
       runtime: Runtime.NODEJS_10_X,
       code: Code.asset(codeDirectory),
-      handler: handlerName,
-      memorySize: 256,
-      timeout: cdk.Duration.seconds(300),
-      environment: {
-        TZ: "Asia/Tokyo"
-      }
+      handler: handlerValue,
+      memorySize: memorySizeValue,
+      timeout: cdk.Duration.seconds(timeoutValue),
+      environment: environmentValue
     })
   }
 }

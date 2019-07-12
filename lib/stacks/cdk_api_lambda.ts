@@ -18,7 +18,9 @@ export class CdkAPILambda extends cdk.Stack {
       this,
       "cdk_demo",
       "lambdaSoruces/demo_function",
-      "index.handler"
+      "index.handler",
+      256,
+      300
     )
 
     const restApi: RestApi = APIGatewayCreator.createRestApi(this, "CdkDemoAPI", "Deployed by CDK")
