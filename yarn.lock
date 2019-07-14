@@ -229,7 +229,7 @@
     "@aws-cdk/aws-lambda" "^1.0.0"
     "@aws-cdk/core" "^1.0.0"
 
-"@aws-cdk/aws-dynamodb@1.0.0":
+"@aws-cdk/aws-dynamodb@1.0.0", "@aws-cdk/aws-dynamodb@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-dynamodb/-/aws-dynamodb-1.0.0.tgz#7e9f46d0836c2e6372bb0a4a613d51242c3e14f6"
   integrity sha512-P1/c32NzwTe22wf8Zsm0yuUQNv1b9w6aJtmjtnilrrK/pY5AI6QrCKIm35nLHHXPkXpYNWsPryUGVtBhNAiV8Q==
@@ -357,7 +357,7 @@
     "@aws-cdk/core" "^1.0.0"
     "@aws-cdk/region-info" "^1.0.0"
 
-"@aws-cdk/aws-kinesis@1.0.0":
+"@aws-cdk/aws-kinesis@1.0.0", "@aws-cdk/aws-kinesis@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-kinesis/-/aws-kinesis-1.0.0.tgz#e1816b2940ce55d13fe24db313a740a94d6906bd"
   integrity sha512-7jvBs3zKKCYR04PfskUWgar/3bS+/Bm6LNTRwyD6/CWJNohtdF+cHe+FLbO7RPmtnFuXOdvUgKMOWSn7BbowXA==
@@ -380,6 +380,24 @@
   integrity sha512-Pqg8/iF2z4sKyl8Hfz+WvdKwUnvLjRqcYEVMs25krv8R63w5y4KYCfMbXBf0bjlG9ywpmulZym5pxAHjM1yF0A==
   dependencies:
     "@aws-cdk/aws-iam" "^1.0.0"
+    "@aws-cdk/core" "^1.0.0"
+
+"@aws-cdk/aws-lambda-event-sources@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-lambda-event-sources/-/aws-lambda-event-sources-1.0.0.tgz#616cc07147dca71877063f56e6e1fc37a604959d"
+  integrity sha512-MY94WeyaL4RmIZmCWF1RoGywGsKNf0KrmWNriDhUwU1lNP42A7hu1JgjGbzZYc8cH1CFbsIAKe0sPo8QrSMx0Q==
+  dependencies:
+    "@aws-cdk/aws-apigateway" "^1.0.0"
+    "@aws-cdk/aws-dynamodb" "^1.0.0"
+    "@aws-cdk/aws-events" "^1.0.0"
+    "@aws-cdk/aws-iam" "^1.0.0"
+    "@aws-cdk/aws-kinesis" "^1.0.0"
+    "@aws-cdk/aws-lambda" "^1.0.0"
+    "@aws-cdk/aws-s3" "^1.0.0"
+    "@aws-cdk/aws-s3-notifications" "^1.0.0"
+    "@aws-cdk/aws-sns" "^1.0.0"
+    "@aws-cdk/aws-sns-subscriptions" "^1.0.0"
+    "@aws-cdk/aws-sqs" "^1.0.0"
     "@aws-cdk/core" "^1.0.0"
 
 "@aws-cdk/aws-lambda@1.0.0", "@aws-cdk/aws-lambda@^1.0.0":
@@ -439,6 +457,18 @@
     "@aws-cdk/aws-s3" "^1.0.0"
     "@aws-cdk/core" "^1.0.0"
     "@aws-cdk/cx-api" "^1.0.0"
+
+"@aws-cdk/aws-s3-notifications@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-s3-notifications/-/aws-s3-notifications-1.0.0.tgz#412fcd47872df6ffc08b27f73b26ecabea481219"
+  integrity sha512-K85VORy9i/XTohpJ9VqBDtZQPF+Z+m5MDCAxNu6KlCgsnq2xjXjXqM8FN+X5FJClNhPgZTmzMsI1Z70zcIVVvw==
+  dependencies:
+    "@aws-cdk/aws-iam" "^1.0.0"
+    "@aws-cdk/aws-lambda" "^1.0.0"
+    "@aws-cdk/aws-s3" "^1.0.0"
+    "@aws-cdk/aws-sns" "^1.0.0"
+    "@aws-cdk/aws-sqs" "^1.0.0"
+    "@aws-cdk/core" "^1.0.0"
 
 "@aws-cdk/aws-s3@1.0.0", "@aws-cdk/aws-s3@^1.0.0":
   version "1.0.0"

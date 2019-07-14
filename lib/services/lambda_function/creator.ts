@@ -1,5 +1,7 @@
 import cdk = require("@aws-cdk/core")
-import { Function, Runtime, Code } from "@aws-cdk/aws-lambda"
+import { Function, Runtime, Code, StartingPosition } from "@aws-cdk/aws-lambda"
+import { KinesisEventSource } from "@aws-cdk/aws-lambda-event-sources"
+import { Stream } from "@aws-cdk/aws-kinesis"
 
 export class LambdaFunctionCreator {
   // Create Lambda Function
@@ -20,6 +22,18 @@ export class LambdaFunctionCreator {
       memorySize: memorySizeValue,
       timeout: cdk.Duration.seconds(timeoutValue),
       environment: environmentValue
+    })
+  }
+
+  // Create EventSource KinesisDataStream
+  public static createStreamEventSource(
+    stream: Stream,
+    startingPositionValue: StartingPosition,
+    batchSizeValue: number
+  ): KinesisEventSource {
+    return new KinesisEventSource(stream, {
+      startingPosition: startingPositionValue,
+      batchSize: batchSizeValue
     })
   }
 }

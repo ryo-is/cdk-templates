@@ -11,7 +11,9 @@
     "cdk": "cdk",
     "lint": "tslint \"lib/**/*.ts\""
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@aws-cdk/aws-lambda-event-sources": "^1.0.0"
+  },
   "dependencies": {
     "@aws-cdk/alexa-ask": "1.0.0",
     "@aws-cdk/assert": "1.0.0",
