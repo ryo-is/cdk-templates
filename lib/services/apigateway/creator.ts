@@ -9,7 +9,8 @@ import {
   MockIntegration,
   PassthroughBehavior,
   EmptyModel,
-  ApiKey
+  ApiKey,
+  UsagePlan
 } from "@aws-cdk/aws-apigateway"
 
 export class APIGatewayCreator {
@@ -75,7 +76,22 @@ export class APIGatewayCreator {
   }
 
   // Create ApiKey
-  public static createApiKey(self: cdk.Construct, keyName: string): ApiKey {
+  private static createApiKey(self: cdk.Construct, keyName: string): ApiKey {
     return new ApiKey(self, keyName, { enabled: true })
+  }
+
+  // Create UsagePlan
+  public static createUsagePlan(self: cdk.Construct, planName: string, restApi: RestApi): UsagePlan {
+    return new UsagePlan(self, planName, {
+      throttle: {
+        burstLimit: 5000,
+        rateLimit: 10000
+      },
+      apiStages: [{
+        api: restApi,
+        stage: restApi.deploymentStage
+      }],
+      apiKey: APIGatewayCreator.createApiKey(self, planName + "ApiKey")
+    })
   }
 }
