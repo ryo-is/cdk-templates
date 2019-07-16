@@ -8,13 +8,13 @@ import {
 export const handler: Handler = async (
   event: APIGatewayEvent,
   _context: Context,
-  callback: Callback
-): Promise<void> => {
+  _callback: Callback
+): Promise<any> => {
   console.log(JSON.stringify(event))
   const msgBody: string = "SUCCEEDED!!!"
-  callback(null, {
+  return {
     statusCode: 200,
     headers: { "Access-Control-Allow-Origin" : "*" },
-    body: JSON.stringify({message: msgBody})
-  })
+    body: JSON.stringify({ message: msgBody })
+  }
 }
