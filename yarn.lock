@@ -357,6 +357,13 @@
     "@aws-cdk/core" "^1.0.0"
     "@aws-cdk/region-info" "^1.0.0"
 
+"@aws-cdk/aws-iot@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-iot/-/aws-iot-1.0.0.tgz#02eaf2964b97aa74f7ea01832071a45b016439d2"
+  integrity sha512-iHf41w+QB9WMg7f2kLPsRm4vp46vHwD+4rIwMLHH8E5jdG/0RV6dKcQ/Ll6PQTntpX71ZC4OqslKoFzzhIiLxQ==
+  dependencies:
+    "@aws-cdk/core" "^1.0.0"
+
 "@aws-cdk/aws-kinesis@1.0.0", "@aws-cdk/aws-kinesis@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-kinesis/-/aws-kinesis-1.0.0.tgz#e1816b2940ce55d13fe24db313a740a94d6906bd"

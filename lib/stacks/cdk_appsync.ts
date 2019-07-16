@@ -25,7 +25,7 @@ export class CdkAppSync extends cdk.Stack {
       },
       billingMode: BillingMode.PAY_PER_REQUEST
     }
-    const table: Table = DynamoDBCreator.CreateTable(this, tableParam)
+    const table: Table = DynamoDBCreator.createTable(this, tableParam)
 
     const tableRole: Role = IAMCreator.createAppSyncServiceRole(this, "CDKAppSyncServiceRole")
     tableRole.addManagedPolicy(ManagedPolicy.fromAwsManagedPolicyName("AmazonDynamoDBFullAccess"))
