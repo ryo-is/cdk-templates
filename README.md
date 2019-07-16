@@ -2,26 +2,13 @@
 
 AWSCDKのサンプルコード
 
-## 対応リソース
+## サンプル
 
-### CdkStack
-
-* LambdaFunction
-* APIGateway
-* DynamoDB
-* S3
-* KinesisStreams
-* IAM
-
-### CdkPipelineStack
-
-* CodePipeline
-* CodeCommit
-* CodeBuild
-
-### CdkCognitoStack
-
-* Cognito
+- APIGatewa + Lambda
+- KinesisDataStreams + Lambda
+- AppSync + DynamoDB
+- IoTCore + DynamoDB
+- S3
 
 ## デプロイまでの流れ
 
@@ -46,6 +33,6 @@ CloudFormationのStackとなるTSファイル (このプロジェクトの場合
 
 各サービスを作成する関数をそれぞれ分けて用意している。 `サービス名/creator.ts` 内にClassを用意しているので、StackとなるTSファイルからimportして使う。(ex: `lambda_function/creator.ts`)
 
-### `/resources`
+### `/lambdaSoruces`
 
 Lambdaのソースコードなど。このディレクトリをターゲットにしてZipファイル作成し、Lambdaにデプロイしている。
