@@ -1,15 +1,11 @@
-import {
-  Handler,
-  APIGatewayEvent,
-  Context,
-  Callback
- } from "aws-lambda"
+import { Handler, APIGatewayEvent, Context, Callback } from "aws-lambda"
+import { LambdaReturnBody } from "./types"
 
 export const handler: Handler = async (
   event: APIGatewayEvent,
   _context: Context,
   _callback: Callback
-): Promise<any> => {
+): Promise<LambdaReturnBody> => {
   console.log(JSON.stringify(event))
   const msgBody: string = "SUCCEEDED!!!"
   return {
