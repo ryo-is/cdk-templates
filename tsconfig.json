@@ -18,7 +18,6 @@
     "strictPropertyInitialization": false
   },
   "exclude": [
-    "./lambda-src/**",
-    "node_modules"
+    "./lambda-src/**"
   ]
 }
