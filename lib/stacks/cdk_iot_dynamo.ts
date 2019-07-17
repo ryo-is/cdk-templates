@@ -27,6 +27,6 @@ export class CdkIoTDynamo extends cdk.Stack {
     iotServiceRole.addToPolicy(roleStatement)
 
     const sqlBody: string = "SELECT * FROM 'CdkIoTDemo/#'" // sql for topic rule
-    IoTCoreCreator.createTopicRule(this, tableNameValue, iotServiceRole.roleArn, sqlBody)
+    IoTCoreCreator.createTopicRuleDynamoDBv2(this, "CDKIoTDynamoRule", tableNameValue, iotServiceRole.roleArn, sqlBody)
   }
 }
