@@ -57,6 +57,7 @@ export class AppSyncCreator {
     })
   }
 
+  // Create Resolver
   public static createResolver(
     self: cdk.Construct,
     resolverName: string,
