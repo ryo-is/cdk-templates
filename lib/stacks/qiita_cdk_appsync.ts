@@ -24,7 +24,7 @@ export class CdkAppSync extends cdk.Stack {
       writeCapacity: 2
     }
     // Create DynamoDB Table
-    const table: Table = new Table(this, tableNameValue, tableParam)
+    new Table(this, tableNameValue, tableParam)
 
     const tableRole: Role = new Role(this, "CdkAppSyncServiceRole", {
       assumedBy: new ServicePrincipal("appsync.amazonaws.com")
