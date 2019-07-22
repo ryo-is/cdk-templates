@@ -4,8 +4,7 @@ import {
   RestApi,
   Integration,
   LambdaIntegration,
-  Resource,
-  // MethodOptios
+  Resource
  } from "@aws-cdk/aws-apigateway"
 
 import { LambdaFunctionCreator } from "../services/lambda_function/creator"
@@ -28,11 +27,22 @@ export class CdkAPILambda extends cdk.Stack {
 
     const integration: Integration = new LambdaIntegration(lambdaFunction)
     const getResouse: Resource = APIGatewayCreator.addResouceToRestApi(restApi, "get")
+
+    // Use API Key
     // APIGatewayCreator.createUsagePlan(this, "CDKUsagePlan", restApi)
     // const options: MethodOptions = {
     //   apiKeyRequired: true
     // }
     // APIGatewayCreator.addMethodToResource(getResouse, "GET", integration, options)
+
+    // Use Authorizer
+    // const authorizer: CfnAuthorizer = APIGatewayCreator.createAuthorizer(this, "CDKAuthorizer", restApi)
+    // const option: MethodOptions = {
+    //   authorizationType: AuthorizationType.COGNITO,
+    //   authorizer: {
+    //     authorizerId: authorizer.ref
+    //   }
+    // }
     APIGatewayCreator.addMethodToResource(getResouse, "GET", integration)
     APIGatewayCreator.addOptions(getResouse)
   }
