@@ -4,10 +4,7 @@ import {
   RestApi,
   Integration,
   LambdaIntegration,
-  Resource,
-  CfnAuthorizer,
-  MethodOptions,
-  AuthorizationType
+  Resource
  } from "@aws-cdk/aws-apigateway"
 
 import { LambdaFunctionCreator } from "../services/lambda_function/creator"
