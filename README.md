@@ -4,7 +4,7 @@ AWSCDKのサンプルコード
 
 ## サンプル
 
-- APIGatewa + Lambda
+- APIGateway + Lambda
 - KinesisDataStreams + Lambda
 - AppSync + DynamoDB
 - IoTCore + DynamoDB
