@@ -1,4 +1,4 @@
-# AWS-CDK Sample Soureces
+# AWS-CDK Sample Sources
 
 AWSCDKのサンプルコード
 
@@ -33,6 +33,6 @@ CloudFormationのStackとなるTSファイル (このプロジェクトの場合
 
 各サービスを作成する関数をそれぞれ分けて用意している。 `サービス名/creator.ts` 内にClassを用意しているので、StackとなるTSファイルからimportして使う。(ex: `lambda_function/creator.ts`)
 
-### `/lambdaSoruces`
+### `/lambdaSources`
 
 Lambdaのソースコードなど。このディレクトリをターゲットにしてZipファイル作成し、Lambdaにデプロイしている。

@@ -11,7 +11,7 @@ export class QiitaAPILambda extends cdk.Stack {
     const lambdaFunction: Function = new Function(this, "qiita_demo", {
       functionName: "qiita_demo", // 関数名
       runtime: Runtime.NODEJS_10_X, // ランタイムの指定
-      code: Code.asset("lambdaSoruces/demo_function"), // ソースコードのディレクトリ
+      code: Code.asset("lambdaSources/demo_function"), // ソースコードのディレクトリ
       handler: "index.handler", // handler の指定
       memorySize: 256, // メモリーの指定
       timeout: cdk.Duration.seconds(10), // タイムアウト時間

@@ -13,7 +13,7 @@ export class CdkStreamLambda extends cdk.Stack {
     const lambdaFunction: Function = LambdaFunctionCreator.createFunction(
       this,
       "cdk_steram_demo",
-      "lambdaSoruces/demo_function",
+      "lambdaSources/demo_function",
       "index.handler",
       256,
       300
