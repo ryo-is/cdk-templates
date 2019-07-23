@@ -2,27 +2,26 @@ import cdk = require("@aws-cdk/core")
 import { Function, Runtime, Code, StartingPosition } from "@aws-cdk/aws-lambda"
 import { KinesisEventSource } from "@aws-cdk/aws-lambda-event-sources"
 import { Stream } from "@aws-cdk/aws-kinesis"
+import { CreatingLambdaFunctionParams } from "./interfaces";
 
 export class LambdaFunctionCreator {
   // Create Lambda Function
   public static createFunction(
     self: cdk.Construct,
-    nameValue: string,
-    codeDirectory: string,
-    handlerValue: string,
-    memorySizeValue: number,
-    timeoutValue: number,
-    environmentValue: {[k: string]: any} = {}
+    params: CreatingLambdaFunctionParams
   ): Function {
-    return new Function(self, nameValue, {
-      functionName: nameValue,
+    return new Function(self, params.nameValue, {
+      functionName: params.nameValue,
       runtime: Runtime.NODEJS_10_X,
-      code: Code.asset(codeDirectory),
-      handler: handlerValue,
-      memorySize: memorySizeValue,
-      timeout: cdk.Duration.seconds(timeoutValue),
-      environment: environmentValue
-    })
+      code: Code.asset(params.codeDirectory),
+      handler: params.handlerValue ? params.handlerValue : "index.handler",
+      memorySize: params.memorySizeValue ? params.memorySizeValue : 128,
+      timeout: cdk.Duration.seconds(
+        params.timeoutValue ? params.timeoutValue : 300
+      ),
+      environment: params.environment ? params.environment : {},
+      description: params.description ? params.description : ""
+    });
   }
 
   // Create EventSource KinesisDataStream

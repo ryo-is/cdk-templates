@@ -12,12 +12,12 @@ export class CdkStreamLambda extends cdk.Stack {
 
     const lambdaFunction: Function = LambdaFunctionCreator.createFunction(
       this,
-      "cdk_steram_demo",
-      "lambdaSources/demo_function",
-      "index.handler",
-      256,
-      300
-    )
+      {
+        nameValue: "cdk_steram_demo",
+        codeDirectory: "lambdaSources/demo_function",
+        memorySizeValue: 256
+      }
+    );
 
     const stream: Stream = KinesisDataStreamCreator.createStream(
       this,
