@@ -12,7 +12,7 @@ export class CdkIoTLambda extends cdk.Stack {
     const lambdaFunction: Function = LambdaFunctionCreator.createFunction(
       this,
       "cdk_iot_demo",
-      "lambdaSoruces/demo_function",
+      "lambdaSources/demo_function",
       "index.handler",
       256,
       300
