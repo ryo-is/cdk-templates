@@ -11,12 +11,12 @@ export class CdkIoTLambda extends cdk.Stack {
 
     const lambdaFunction: Function = LambdaFunctionCreator.createFunction(
       this,
-      "cdk_iot_demo",
-      "lambdaSources/demo_function",
-      "index.handler",
-      256,
-      300
-    )
+      {
+        nameValue: "cdk_iot_demo",
+        codeDirectory: "lambdaSources/demo_function",
+        memorySizeValue: 256
+      }
+    );
 
     lambdaFunction.addPermission("CDKLambdaPermission", {
       principal: new ServicePrincipal("iot.amazonaws.com")

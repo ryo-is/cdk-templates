@@ -16,12 +16,12 @@ export class CdkAPILambda extends cdk.Stack {
 
     const lambdaFunction: Function = LambdaFunctionCreator.createFunction(
       this,
-      "cdk_demo",
-      "lambdaSources/demo_function",
-      "index.handler",
-      256,
-      300
-    )
+      {
+        nameValue: "cdk_demo",
+        codeDirectory: "lambdaSources/demo_function",
+        memorySizeValue: 256
+      }
+    );
 
     const restApi: RestApi = APIGatewayCreator.createRestApi(this, "CdkDemoAPI", "Deployed by CDK")
 
