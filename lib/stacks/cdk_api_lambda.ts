@@ -17,7 +17,7 @@ export class CdkAPILambda extends cdk.Stack {
     const lambdaFunction: Function = LambdaFunctionCreator.createFunction(
       this,
       {
-        nameValue: "cdk_demo",
+        nameValue: "cdk_demo_function",
         codeDirectory: "lambdaSources/demo_function",
         memorySizeValue: 256
       }
