@@ -7,6 +7,7 @@ import { CdkAPILambda } from "../lib/stacks/cdk_api_lambda"
 import { CdkStreamLambda } from "../lib/stacks/cdk_stream_lambda"
 import { CdkIoTDynamo } from "../lib/stacks/cdk_iot_dynamo"
 import { CdkIoTLambda } from "../lib/stacks/cdk_iot_lambda"
+import { LambdaAuthorizer } from "../lib/stacks/lambda_authorizer"
 
 const app: cdk.App = new cdk.App()
 new CdkStack(app, "CdkStack")
@@ -15,4 +16,5 @@ new CdkAPILambda(app, "CdkAPILambda")
 new CdkStreamLambda(app, "CdkStreamLambda")
 new CdkIoTDynamo(app, "CdkIoTDynamo")
 new CdkIoTLambda(app, "CdkIoTLambda")
+new LambdaAuthorizer(app, "LambdaAuthorizer")
 app.synth()

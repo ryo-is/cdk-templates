@@ -23,10 +23,10 @@ export class IAMCreator {
     const policyStatement: PolicyStatement = new PolicyStatement(
       {
         actions: actionsValue,
-        resources: resourcesValue
+        resources: resourcesValue,
+        effect: Effect.ALLOW
       }
     )
-    policyStatement.effect = Effect.ALLOW
     return policyStatement
   }
 
