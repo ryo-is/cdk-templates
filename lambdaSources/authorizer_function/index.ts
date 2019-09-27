@@ -4,15 +4,16 @@ export const handler: Handler = async (
   event: CustomAuthorizerEvent,
   _context: Context,
   callback: Callback
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<any> => {
   console.log(JSON.stringify(event))
 
-  if (event.authorizationToken === "allow") {
+  if (event.authorizationToken) {
     callback(null, {
-      principalId : 1,
-      policyDocument : {
-        Version : "2012-10-17",
-        Statement : [
+      principalId: 1,
+      policyDocument: {
+        Version: "2012-10-17",
+        Statement: [
           {
             Action: "execute-api:Invoke",
             Effect: "Allow",
@@ -26,10 +27,10 @@ export const handler: Handler = async (
     })
   }
   callback(null, {
-    principalId : 1,
-    policyDocument : {
-      Version : "2012-10-17",
-      Statement : [
+    principalId: 1,
+    policyDocument: {
+      Version: "2012-10-17",
+      Statement: [
         {
           Action: "execute-api:Invoke",
           Effect: "Deny",

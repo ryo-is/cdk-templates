@@ -1,5 +1,10 @@
 import cdk = require("@aws-cdk/core")
-import { Table, TableProps, AttributeType, BillingMode } from "@aws-cdk/aws-dynamodb"
+import {
+  Table,
+  TableProps,
+  AttributeType,
+  BillingMode
+} from "@aws-cdk/aws-dynamodb"
 import { Role, ManagedPolicy } from "@aws-cdk/aws-iam"
 import {
   CfnGraphQLApi,
@@ -27,10 +32,18 @@ export class CdkAppSync extends cdk.Stack {
     }
     const table: Table = DynamoDBCreator.createTable(this, tableParam)
 
-    const tableRole: Role = IAMCreator.createAppSyncServiceRole(this, "CDKAppSyncServiceRole")
-    tableRole.addManagedPolicy(ManagedPolicy.fromAwsManagedPolicyName("AmazonDynamoDBFullAccess"))
+    const tableRole: Role = IAMCreator.createAppSyncServiceRole(
+      this,
+      "CDKAppSyncServiceRole"
+    )
+    tableRole.addManagedPolicy(
+      ManagedPolicy.fromAwsManagedPolicyName("AmazonDynamoDBFullAccess")
+    )
 
-    const graphqlAPI: CfnGraphQLApi = AppSyncCreator.createGrapphQLAPI(this, "CDKAppSyncAPI")
+    const graphqlAPI: CfnGraphQLApi = AppSyncCreator.createGrapphQLAPI(
+      this,
+      "CDKAppSyncAPI"
+    )
     AppSyncCreator.createAPIKey(this, "CreateAPIKey", graphqlAPI)
 
     const definition: string = `
@@ -56,7 +69,12 @@ export class CdkAppSync extends cdk.Stack {
       }
     `
 
-    const apiSchema: CfnGraphQLSchema = AppSyncCreator.createApiSchema(this, "CDKGraphQLSchema", graphqlAPI, definition)
+    const apiSchema: CfnGraphQLSchema = AppSyncCreator.createApiSchema(
+      this,
+      "CDKGraphQLSchema",
+      graphqlAPI,
+      definition
+    )
     const dataSource: CfnDataSource = AppSyncCreator.createDataSource(
       this,
       "CDKDataSourse",

@@ -1,7 +1,14 @@
 import cdk = require("@aws-cdk/core")
 import { Function, Runtime, Code } from "@aws-cdk/aws-lambda"
-import { RestApi, Integration, LambdaIntegration, Resource,
-  MockIntegration, PassthroughBehavior, EmptyModel } from "@aws-cdk/aws-apigateway"
+import {
+  RestApi,
+  Integration,
+  LambdaIntegration,
+  Resource,
+  MockIntegration,
+  PassthroughBehavior,
+  EmptyModel
+} from "@aws-cdk/aws-apigateway"
 
 export class QiitaAPILambda extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
@@ -34,34 +41,44 @@ export class QiitaAPILambda extends cdk.Stack {
     getResouse.addMethod("GET", integration)
 
     // CORS対策でOPTIONSメソッドを作成
-    getResouse.addMethod("OPTIONS", new MockIntegration({
-      integrationResponses: [{
-        statusCode: "200",
-        responseParameters: {
-          "method.response.header.Access-Control-Allow-Headers":
-            "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
-          "method.response.header.Access-Control-Allow-Origin": "'*'",
-          "method.response.header.Access-Control-Allow-Credentials": "'false'",
-          "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE'",
+    getResouse.addMethod(
+      "OPTIONS",
+      new MockIntegration({
+        integrationResponses: [
+          {
+            statusCode: "200",
+            responseParameters: {
+              "method.response.header.Access-Control-Allow-Headers":
+                "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+              "method.response.header.Access-Control-Allow-Origin": "'*'",
+              "method.response.header.Access-Control-Allow-Credentials":
+                "'false'",
+              "method.response.header.Access-Control-Allow-Methods":
+                "'OPTIONS,GET,PUT,POST,DELETE'"
+            }
+          }
+        ],
+        passthroughBehavior: PassthroughBehavior.NEVER,
+        requestTemplates: {
+          "application/json": '{"statusCode": 200}'
         }
-      }],
-      passthroughBehavior: PassthroughBehavior.NEVER,
-      requestTemplates: {
-        "application/json": "{\"statusCode\": 200}"
+      }),
+      {
+        methodResponses: [
+          {
+            statusCode: "200",
+            responseParameters: {
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Credentials": true,
+              "method.response.header.Access-Control-Allow-Methods": true
+            },
+            responseModels: {
+              "application/json": new EmptyModel()
+            }
+          }
+        ]
       }
-    }), {
-      methodResponses: [{
-        statusCode: "200",
-        responseParameters: {
-          "method.response.header.Access-Control-Allow-Headers": true,
-          "method.response.header.Access-Control-Allow-Origin": true,
-          "method.response.header.Access-Control-Allow-Credentials": true,
-          "method.response.header.Access-Control-Allow-Methods": true,
-        },
-        responseModels: {
-          "application/json": new EmptyModel()
-        },
-      }]
-    })
+    )
   }
 }

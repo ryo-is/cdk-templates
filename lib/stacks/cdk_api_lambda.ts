@@ -5,7 +5,7 @@ import {
   Integration,
   LambdaIntegration,
   Resource
- } from "@aws-cdk/aws-apigateway"
+} from "@aws-cdk/aws-apigateway"
 
 import { LambdaFunctionCreator } from "../services/lambda_function/creator"
 import { APIGatewayCreator } from "../services/apigateway/creator"
@@ -21,12 +21,19 @@ export class CdkAPILambda extends cdk.Stack {
         codeDirectory: "lambdaSources/demo_function",
         memorySizeValue: 256
       }
-    );
+    )
 
-    const restApi: RestApi = APIGatewayCreator.createRestApi(this, "CdkDemoAPI", "Deployed by CDK")
+    const restApi: RestApi = APIGatewayCreator.createRestApi(
+      this,
+      "CdkDemoAPI",
+      "Deployed by CDK"
+    )
 
     const integration: Integration = new LambdaIntegration(lambdaFunction)
-    const getResouse: Resource = APIGatewayCreator.addResouceToRestApi(restApi, "get")
+    const getResouse: Resource = APIGatewayCreator.addResouceToRestApi(
+      restApi,
+      "get"
+    )
 
     // Use API Key
     // APIGatewayCreator.createUsagePlan(this, "CDKUsagePlan", restApi)

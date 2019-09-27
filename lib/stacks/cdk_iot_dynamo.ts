@@ -22,11 +22,23 @@ export class CdkIoTDynamo extends cdk.Stack {
 
     const roleActions: string[] = ["dynamodb:PutItem"]
     const roleResorces: string[] = [table.tableArn]
-    const roleStatement: PolicyStatement = IAMCreator.createRoleStatement(roleActions, roleResorces)
-    const iotServiceRole: Role = IAMCreator.createIoTCoreServiceRole(this, "CdkIoTServiceRole")
+    const roleStatement: PolicyStatement = IAMCreator.createRoleStatement(
+      roleActions,
+      roleResorces
+    )
+    const iotServiceRole: Role = IAMCreator.createIoTCoreServiceRole(
+      this,
+      "CdkIoTServiceRole"
+    )
     iotServiceRole.addToPolicy(roleStatement)
 
     const sqlBody: string = "SELECT * FROM 'CdkIoTDemo/#'" // sql for topic rule
-    IoTCoreCreator.createTopicRuleDynamoDBv2(this, "CDKIoTDynamoRule", tableNameValue, iotServiceRole.roleArn, sqlBody)
+    IoTCoreCreator.createTopicRuleDynamoDBv2(
+      this,
+      "CDKIoTDynamoRule",
+      tableNameValue,
+      iotServiceRole.roleArn,
+      sqlBody
+    )
   }
 }

@@ -29,7 +29,9 @@ export class CdkAppSync extends cdk.Stack {
     const tableRole: Role = new Role(this, "CdkAppSyncServiceRole", {
       assumedBy: new ServicePrincipal("appsync.amazonaws.com")
     })
-    tableRole.addManagedPolicy(ManagedPolicy.fromAwsManagedPolicyName("AmazonDynamoDBFullAccess"))
+    tableRole.addManagedPolicy(
+      ManagedPolicy.fromAwsManagedPolicyName("AmazonDynamoDBFullAccess")
+    )
 
     // Create GraphQL API
     const graphqlAPI: CfnGraphQLApi = new CfnGraphQLApi(this, "CDKAppSyncAPI", {
@@ -64,10 +66,14 @@ export class CdkAppSync extends cdk.Stack {
       }
     `
     // Create Schema
-    const apiSchema: CfnGraphQLSchema = new CfnGraphQLSchema(this, "CDKGraphQLSchema", {
-      apiId: graphqlAPI.attrApiId,
-      definition: definitionString
-    })
+    const apiSchema: CfnGraphQLSchema = new CfnGraphQLSchema(
+      this,
+      "CDKGraphQLSchema",
+      {
+        apiId: graphqlAPI.attrApiId,
+        definition: definitionString
+      }
+    )
 
     // Create DataSource
     const dataSource: CfnDataSource = new CfnDataSource(this, "CDKDataSourse", {
@@ -91,14 +97,18 @@ export class CdkAppSync extends cdk.Stack {
       }
     `
     // Create Get Resolver
-    const getOneResolver: CfnResolver = new CfnResolver(this, "GetOneQueryResolver", {
-      apiId: graphqlAPI.attrApiId,
-      typeName: "Query",
-      fieldName: "getOne",
-      dataSourceName: dataSource.name,
-      requestMappingTemplate: getOneResolverMappingTemplate,
-      responseMappingTemplate: `$util.toJson($ctx.result)`
-    })
+    const getOneResolver: CfnResolver = new CfnResolver(
+      this,
+      "GetOneQueryResolver",
+      {
+        apiId: graphqlAPI.attrApiId,
+        typeName: "Query",
+        fieldName: "getOne",
+        dataSourceName: dataSource.name,
+        requestMappingTemplate: getOneResolverMappingTemplate,
+        responseMappingTemplate: `$util.toJson($ctx.result)`
+      }
+    )
     getOneResolver.addDependsOn(apiSchema)
     getOneResolver.addDependsOn(dataSource)
 
@@ -111,14 +121,18 @@ export class CdkAppSync extends cdk.Stack {
       }
     `
     // Create Scan Resolver
-    const getAllResolver: CfnResolver = new CfnResolver(this, "GetAllQueryResolver", {
-      apiId: graphqlAPI.attrApiId,
-      typeName: "Query",
-      fieldName: "all",
-      dataSourceName: dataSource.name,
-      requestMappingTemplate: getAllResolverMappingTemplate,
-      responseMappingTemplate: `$util.toJson($ctx.result)`
-    })
+    const getAllResolver: CfnResolver = new CfnResolver(
+      this,
+      "GetAllQueryResolver",
+      {
+        apiId: graphqlAPI.attrApiId,
+        typeName: "Query",
+        fieldName: "all",
+        dataSourceName: dataSource.name,
+        requestMappingTemplate: getAllResolverMappingTemplate,
+        responseMappingTemplate: `$util.toJson($ctx.result)`
+      }
+    )
     getAllResolver.addDependsOn(apiSchema)
     getAllResolver.addDependsOn(dataSource)
 
@@ -135,14 +149,18 @@ export class CdkAppSync extends cdk.Stack {
       }
     `
     // Create Put Resolver
-    const saveResolver: CfnResolver = new CfnResolver(this, "SaveMutationResolver", {
-      apiId: graphqlAPI.attrApiId,
-      typeName: "Mutation",
-      fieldName: "save",
-      dataSourceName: dataSource.name,
-      requestMappingTemplate: saveResolverMappingTemplate,
-      responseMappingTemplate: `$util.toJson($ctx.result)`
-    })
+    const saveResolver: CfnResolver = new CfnResolver(
+      this,
+      "SaveMutationResolver",
+      {
+        apiId: graphqlAPI.attrApiId,
+        typeName: "Mutation",
+        fieldName: "save",
+        dataSourceName: dataSource.name,
+        requestMappingTemplate: saveResolverMappingTemplate,
+        responseMappingTemplate: `$util.toJson($ctx.result)`
+      }
+    )
     saveResolver.addDependsOn(apiSchema)
     saveResolver.addDependsOn(dataSource)
 
@@ -156,14 +174,18 @@ export class CdkAppSync extends cdk.Stack {
       }
     `
     // Create Delete Resolver
-    const deleteResolver: CfnResolver = new CfnResolver(this, "DeleteMutationResolver", {
-      apiId: graphqlAPI.attrApiId,
-      typeName: "Mutation",
-      fieldName: "delete",
-      dataSourceName: dataSource.name,
-      requestMappingTemplate: deleteResolverMappingTemplate,
-      responseMappingTemplate: `$util.toJson($ctx.result)`
-    })
+    const deleteResolver: CfnResolver = new CfnResolver(
+      this,
+      "DeleteMutationResolver",
+      {
+        apiId: graphqlAPI.attrApiId,
+        typeName: "Mutation",
+        fieldName: "delete",
+        dataSourceName: dataSource.name,
+        requestMappingTemplate: deleteResolverMappingTemplate,
+        responseMappingTemplate: `$util.toJson($ctx.result)`
+      }
+    )
     deleteResolver.addDependsOn(apiSchema)
     deleteResolver.addDependsOn(dataSource)
   }

@@ -8,7 +8,7 @@ import {
   CfnAuthorizer,
   MethodOptions,
   AuthorizationType
- } from "@aws-cdk/aws-apigateway"
+} from "@aws-cdk/aws-apigateway"
 import { PolicyStatement, Role, ServicePrincipal } from "@aws-cdk/aws-iam"
 
 import { LambdaFunctionCreator } from "../services/lambda_function/creator"
@@ -41,19 +41,22 @@ export class LambdaAuthorizer extends cdk.Stack {
       ["lambda:InvokeFunction"],
       [authorizerFunction.functionArn]
     )
-    const invokeLambdaRole: Role = new Role(
-      this,
-      "invokeFunctionRole",
-      {
-        assumedBy: new ServicePrincipal("apigateway.amazonaws.com")
-      }
-    )
+    const invokeLambdaRole: Role = new Role(this, "invokeFunctionRole", {
+      assumedBy: new ServicePrincipal("apigateway.amazonaws.com")
+    })
     invokeLambdaRole.addToPolicy(invokeLambdaRoleStatement)
 
-    const restApi: RestApi = APIGatewayCreator.createRestApi(this, "CdkDemoAPI", "Deployed by CDK")
+    const restApi: RestApi = APIGatewayCreator.createRestApi(
+      this,
+      "CdkDemoAPI",
+      "Deployed by CDK"
+    )
 
     const integration: Integration = new LambdaIntegration(lambdaFunction)
-    const getResouse: Resource = APIGatewayCreator.addResouceToRestApi(restApi, "get")
+    const getResouse: Resource = APIGatewayCreator.addResouceToRestApi(
+      restApi,
+      "get"
+    )
 
     const authorizer: CfnAuthorizer = new CfnAuthorizer(
       this,
@@ -74,7 +77,12 @@ export class LambdaAuthorizer extends cdk.Stack {
       }
     }
 
-    APIGatewayCreator.addMethodToResource(getResouse, "GET", integration, option)
+    APIGatewayCreator.addMethodToResource(
+      getResouse,
+      "GET",
+      integration,
+      option
+    )
     APIGatewayCreator.addOptions(getResouse)
   }
 }

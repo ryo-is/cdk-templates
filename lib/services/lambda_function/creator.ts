@@ -2,7 +2,7 @@ import cdk = require("@aws-cdk/core")
 import { Function, Runtime, Code, StartingPosition } from "@aws-cdk/aws-lambda"
 import { KinesisEventSource } from "@aws-cdk/aws-lambda-event-sources"
 import { Stream } from "@aws-cdk/aws-kinesis"
-import { CreatingLambdaFunctionParams } from "./interfaces";
+import { CreatingLambdaFunctionParams } from "./interfaces"
 
 export class LambdaFunctionCreator {
   // Create Lambda Function
@@ -21,7 +21,7 @@ export class LambdaFunctionCreator {
       ),
       environment: params.environment ? params.environment : {},
       description: params.description ? params.description : ""
-    });
+    })
   }
 
   // Create EventSource KinesisDataStream

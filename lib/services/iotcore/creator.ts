@@ -2,7 +2,6 @@ import cdk = require("@aws-cdk/core")
 import { CfnTopicRule } from "@aws-cdk/aws-iot"
 
 export class IoTCoreCreator {
-
   // Create TopicRule DynamoDBv2
   public static createTopicRuleDynamoDBv2(
     self: cdk.Construct,
@@ -14,12 +13,14 @@ export class IoTCoreCreator {
     return new CfnTopicRule(self, ruleNameValue, {
       ruleName: ruleNameValue,
       topicRulePayload: {
-        actions: [{
-          dynamoDBv2: {
-            putItem: { tableName: tableNameValue },
-            roleArn: roleArnValue
+        actions: [
+          {
+            dynamoDBv2: {
+              putItem: { tableName: tableNameValue },
+              roleArn: roleArnValue
+            }
           }
-        }],
+        ],
         ruleDisabled: false,
         sql: sqlBody
       }
@@ -36,11 +37,13 @@ export class IoTCoreCreator {
     return new CfnTopicRule(self, ruleNameValue, {
       ruleName: ruleNameValue,
       topicRulePayload: {
-        actions: [{
-          lambda: {
-            functionArn: functionArnValue
+        actions: [
+          {
+            lambda: {
+              functionArn: functionArnValue
+            }
           }
-        }],
+        ],
         ruleDisabled: false,
         sql: sqlBody
       }

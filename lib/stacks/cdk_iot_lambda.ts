@@ -16,13 +16,18 @@ export class CdkIoTLambda extends cdk.Stack {
         codeDirectory: "lambdaSources/demo_function",
         memorySizeValue: 256
       }
-    );
+    )
 
     lambdaFunction.addPermission("CDKLambdaPermission", {
       principal: new ServicePrincipal("iot.amazonaws.com")
     })
 
     const sqlBody: string = "SELECT * FROM 'CdkIoTDemo/#'" // sql for topic rule
-    IoTCoreCreator.createTopicRuleInvokeLambda(this, "CDKIoTLambdaRule", lambdaFunction.functionArn, sqlBody)
+    IoTCoreCreator.createTopicRuleInvokeLambda(
+      this,
+      "CDKIoTLambdaRule",
+      lambdaFunction.functionArn,
+      sqlBody
+    )
   }
 }
