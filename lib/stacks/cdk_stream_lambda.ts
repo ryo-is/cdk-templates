@@ -17,7 +17,7 @@ export class CdkStreamLambda extends cdk.Stack {
         codeDirectory: "lambdaSources/demo_function",
         memorySizeValue: 256
       }
-    );
+    )
 
     const stream: Stream = KinesisDataStreamCreator.createStream(
       this,
@@ -26,7 +26,11 @@ export class CdkStreamLambda extends cdk.Stack {
       1
     )
 
-    const streamEventSource: KinesisEventSource = LambdaFunctionCreator.createStreamEventSource(stream, StartingPosition.TRIM_HORIZON, 10)
+    const streamEventSource: KinesisEventSource = LambdaFunctionCreator.createStreamEventSource(
+      stream,
+      StartingPosition.TRIM_HORIZON,
+      10
+    )
     lambdaFunction.addEventSource(streamEventSource)
   }
 }

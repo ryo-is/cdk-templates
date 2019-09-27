@@ -1,6 +1,11 @@
 import cdk = require("@aws-cdk/core")
 import { Table, TableProps, AttributeType } from "@aws-cdk/aws-dynamodb"
-import { Role, PolicyStatement, Effect, ServicePrincipal } from "@aws-cdk/aws-iam"
+import {
+  Role,
+  PolicyStatement,
+  Effect,
+  ServicePrincipal
+} from "@aws-cdk/aws-iam"
 import { CfnTopicRule } from "@aws-cdk/aws-iot"
 
 export class CdkIoTDynamo extends cdk.Stack {
@@ -38,12 +43,14 @@ export class CdkIoTDynamo extends cdk.Stack {
     new CfnTopicRule(this, "CDKIoTDynamoRule", {
       ruleName: "CDKIoTDynamoRule",
       topicRulePayload: {
-        actions: [{
-          dynamoDBv2: {
-            putItem: { tableName: tableNameValue },
-            roleArn: iotServiceRole.roleArn
+        actions: [
+          {
+            dynamoDBv2: {
+              putItem: { tableName: tableNameValue },
+              roleArn: iotServiceRole.roleArn
+            }
           }
-        }],
+        ],
         ruleDisabled: false,
         sql: sqlBody
       }

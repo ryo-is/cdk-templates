@@ -9,7 +9,11 @@ import {
 
 export class AppSyncCreator {
   // Create GraphQL API
-  public static createGrapphQLAPI(self: cdk.Construct, APIName: string, authType: string = "API_KEY"): CfnGraphQLApi {
+  public static createGrapphQLAPI(
+    self: cdk.Construct,
+    APIName: string,
+    authType: string = "API_KEY"
+  ): CfnGraphQLApi {
     return new CfnGraphQLApi(self, APIName, {
       authenticationType: authType,
       name: APIName
@@ -17,7 +21,11 @@ export class AppSyncCreator {
   }
 
   // Create API Key
-  public static createAPIKey(self: cdk.Construct, keyName: string, graphqlAPI: CfnGraphQLApi): CfnApiKey {
+  public static createAPIKey(
+    self: cdk.Construct,
+    keyName: string,
+    graphqlAPI: CfnGraphQLApi
+  ): CfnApiKey {
     return new CfnApiKey(self, keyName, {
       apiId: graphqlAPI.attrApiId
     })
