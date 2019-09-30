@@ -65,7 +65,7 @@ export class LambdaAuthorizer extends cdk.Stack {
         restApiId: restApi.restApiId,
         name: "lambda_authorizer",
         identitySource: "method.request.header.Authorization",
-        type: "TOKEN",
+        type: "REQUEST",
         authorizerCredentials: invokeLambdaRole.roleArn,
         authorizerUri: `arn:aws:apigateway:${this.region}:lambda:path/2015-03-31/functions/${authorizerFunction.functionArn}/invocations`
       }
