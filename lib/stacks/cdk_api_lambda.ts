@@ -17,7 +17,7 @@ export class CdkAPILambda extends cdk.Stack {
     const lambdaFunction: Function = LambdaFunctionCreator.createFunction(
       this,
       {
-        nameValue: "cdk_demo_function",
+        nameValue: "cdk_lambda_function",
         codeDirectory: "lambdaSources/demo_function",
         memorySizeValue: 256
       }
@@ -52,6 +52,6 @@ export class CdkAPILambda extends cdk.Stack {
     // }
 
     APIGatewayCreator.addMethodToResource(getResouse, "GET", integration)
-    APIGatewayCreator.addOptions(getResouse)
+    APIGatewayCreator.addCors(getResouse)
   }
 }

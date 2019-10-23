@@ -57,6 +57,17 @@ export class APIGatewayCreator {
   }
 
   // Active APIGateway CORS Setting
+  public static addCors(apiRoot: Resource): void {
+    apiRoot.addCorsPreflight({
+      allowOrigins: ["*"],
+      allowHeaders: [
+        "Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent"
+      ],
+      allowMethods: ["OPTIONS", "GET", "PUT", "POST", "DELETE"],
+      allowCredentials: false
+    })
+  }
+
   public static addOptions(apiRoot: Resource): void {
     apiRoot.addMethod(
       "OPTIONS",
