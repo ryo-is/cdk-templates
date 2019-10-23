@@ -83,6 +83,6 @@ export class LambdaAuthorizer extends cdk.Stack {
       integration,
       option
     )
-    APIGatewayCreator.addOptions(getResouse)
+    APIGatewayCreator.addCors(getResouse)
   }
 }
