@@ -20,6 +20,21 @@ export class AppSyncCreator {
     })
   }
 
+  public static createCognitoAuthGraphQLAPI(
+    self: cdk.Construct,
+    name: string
+  ): CfnGraphQLApi {
+    return new CfnGraphQLApi(self, name, {
+      authenticationType: "AMAZON_COGNITO_USER_POOLS",
+      name: name,
+      userPoolConfig: {
+        awsRegion: "ap-northeast-1",
+        defaultAction: "ALLOW",
+        userPoolId: "ap-northeast-1_FEf7I2gK7"
+      }
+    })
+  }
+
   // Create API Key
   public static createAPIKey(
     self: cdk.Construct,
