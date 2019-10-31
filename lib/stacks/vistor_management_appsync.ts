@@ -60,5 +60,109 @@ export class VistorManagementAppsync extends cdk.Stack {
       this,
       "VistorManagementAPI"
     )
+
+    const definition = `
+      type ${tableName} {
+        prace: String!,
+        create_time: String,
+        entry_time: String,
+        exit_time: String,
+        company_name: String,
+        name: String,
+        total_number_of_people: Int,
+        batch_numbers: [String]
+      }
+      input Create${tableName} {
+        prace: String!,
+        create_time: String,
+        entry_time: String,
+        company_name: String,
+        name: String,
+        total_number_of_people: Int,
+        batch_numbers: [String]
+      }
+      type Paginated${tableName} {
+        items: [${tableName}!]!
+        nextToken: String
+      }
+      type Query {
+        query(prace: String!, start_time: String!, end_time: String!): Paginated${tableName}!
+      }
+      type Mutation {
+        put(input: Create${tableName}!): ${tableName}
+      }
+      type Schema {
+        query: Query
+        mutation: Mutation
+      }
+    `
+
+    const apiSchema: CfnGraphQLSchema = AppSyncCreator.createApiSchema(
+      this,
+      `${tableName}GraphQLSchema`,
+      graphqlAPI,
+      definition
+    )
+    const dataSource: CfnDataSource = AppSyncCreator.createDataSource(
+      this,
+      `${tableName}DataSource`,
+      graphqlAPI,
+      this.region,
+      table.tableName,
+      tableRole.roleArn
+    )
+
+    const queryMappingTemplate = `
+      {
+        "version": "2017-02-28",
+        "operation": "Query",
+        "query": {
+            "expression": "#prace = :prace AND #createTime BETWEEN :startTime AND :endTime",
+            "expressionNames": {
+                "#prace": "prace",
+                "#createTime": "create_time"
+            },
+            "expressionValues": {
+                ":prace": $util.dynamodb.toDynamoDBJson($ctx.args.prace),
+                ":startTime": $util.dynamodb.toDynamoDBJson($ctx.args.start_time),
+                ":endTime": $util.dynamodb.toDynamoDBJson($ctx.args.end_time)
+            }
+        }
+      }
+    `
+    const queryResolver: CfnResolver = AppSyncCreator.createResolver(
+      this,
+      `queryResolver`,
+      graphqlAPI,
+      "Query",
+      "query",
+      dataSource,
+      queryMappingTemplate
+    )
+    queryResolver.addDependsOn(apiSchema)
+    queryResolver.addDependsOn(dataSource)
+
+    const putMappingTemplate = `
+      {
+        "version": "2017-02-28",
+        "operation": "PutItem",
+        "key": {
+          "prace": $util.dynamodb.toDynamoDBJson($ctx.args.input.prace),
+          "create_time": $util.dynamodb.toDynamoDBJson($ctx.args.input.create_time)
+        },
+        "attributeValues": $util.dynamodb.toMapValuesJson($ctx.args.input)
+      }
+    `
+    const putResolver: CfnResolver = AppSyncCreator.createResolver(
+      this,
+      `putResolver`,
+      graphqlAPI,
+      "Mutation",
+      "put",
+      dataSource,
+      putMappingTemplate
+    )
+    putResolver.addDependsOn(apiSchema)
+    putResolver.addDependsOn(dataSource)
   }
 }
