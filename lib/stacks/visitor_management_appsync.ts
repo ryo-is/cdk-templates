@@ -17,11 +17,11 @@ import { DynamoDBCreator } from "../services/dynamodb/creator"
 import { IAMCreator } from "../services/iam/creator"
 import { AppSyncCreator } from "../services/appsync/creator"
 
-export class VistorManagementAppsync extends cdk.Stack {
+export class VisitorManagementAppsync extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props)
 
-    const tableName: string = "VistorManagement"
+    const tableName: string = "VisitorManagement"
     const tableParam: TableProps = {
       tableName: tableName,
       partitionKey: {
@@ -40,7 +40,7 @@ export class VistorManagementAppsync extends cdk.Stack {
 
     const tableRole: Role = IAMCreator.createAppSyncServiceRole(
       this,
-      "VistorManagementAppsyncRole"
+      "VisitorManagementAppsyncRole"
     )
     const policyStatement: PolicyStatement = IAMCreator.createRoleStatement(
       [
@@ -58,7 +58,7 @@ export class VistorManagementAppsync extends cdk.Stack {
 
     const graphqlAPI: CfnGraphQLApi = AppSyncCreator.createCognitoAuthGraphQLAPI(
       this,
-      "VistorManagementAPI"
+      "VisitorManagementAPI"
     )
 
     const definition = `
@@ -72,10 +72,11 @@ export class VistorManagementAppsync extends cdk.Stack {
         total_number_of_people: Int,
         batch_numbers: [String]
       }
-      input Create${tableName} {
+      input Input${tableName} {
         prace: String!,
         create_time: String,
         entry_time: String,
+        exit_time: String,
         company_name: String,
         name: String,
         total_number_of_people: Int,
@@ -89,11 +90,7 @@ export class VistorManagementAppsync extends cdk.Stack {
         query(prace: String!, start_time: String!, end_time: String!): Paginated${tableName}!
       }
       type Mutation {
-        put(input: Create${tableName}!): ${tableName}
-      }
-      type Schema {
-        query: Query
-        mutation: Mutation
+        put(input: Input${tableName}!): ${tableName}
       }
     `
 
