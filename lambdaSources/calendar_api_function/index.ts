@@ -22,8 +22,6 @@ export const handler: Handler = async (
     console.log(credentials)
 
     const carendar = new calendar_v3.Calendar({})
-    const calendarList = await carendar.calendarList.list({ auth: jwtClient })
-    console.log(calendarList.data.items)
     const events = await carendar.events.list({
       auth: jwtClient,
       calendarId: "ryosuke.izumi62@gmail.com",
