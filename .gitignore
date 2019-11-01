@@ -20,3 +20,5 @@ cdk.output
 
 !.eslintrc.js
 !/lambdaSources/*/*.d.ts
+
+calendar_token.ts

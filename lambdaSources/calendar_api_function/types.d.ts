@@ -3,7 +3,3 @@ export type LambdaReturnBody = {
   headers: { [k: string]: string }
   body: string
 }
-
-export type MessageType = {
-  message: string
-}
