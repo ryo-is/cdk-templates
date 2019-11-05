@@ -77,6 +77,7 @@ export class VisitorManagementAppsync extends cdk.Stack {
         id: ID!
         prace: String!,
         start_time: String!,
+        location: String,
         end_time: String,
         entry_time: String,
         exit_time: String,
@@ -87,6 +88,7 @@ export class VisitorManagementAppsync extends cdk.Stack {
         id: ID!
         prace: String!,
         start_time: String!,
+        location: String,
         end_time: String,
         entry_time: String,
         exit_time: String,
