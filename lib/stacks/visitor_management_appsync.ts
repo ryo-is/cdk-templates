@@ -22,14 +22,11 @@ export class VisitorManagementAppsync extends cdk.Stack {
     super(scope, id, props)
 
     const tableName: string = "VisitorManagement"
+    const indexName: string = "prace-start_time-index"
     const tableParam: TableProps = {
       tableName: tableName,
       partitionKey: {
-        name: "prace",
-        type: AttributeType.STRING
-      },
-      sortKey: {
-        name: "create_time",
+        name: "id",
         type: AttributeType.STRING
       },
       billingMode: BillingMode.PROVISIONED,
@@ -37,6 +34,20 @@ export class VisitorManagementAppsync extends cdk.Stack {
       readCapacity: 1
     }
     const table: Table = DynamoDBCreator.createTable(this, tableParam)
+
+    table.addGlobalSecondaryIndex({
+      indexName: `${indexName}`,
+      partitionKey: {
+        name: "prace",
+        type: AttributeType.STRING
+      },
+      sortKey: {
+        name: "start_time",
+        type: AttributeType.STRING
+      },
+      readCapacity: 1,
+      writeCapacity: 1
+    })
 
     const tableRole: Role = IAMCreator.createAppSyncServiceRole(
       this,
@@ -49,7 +60,7 @@ export class VisitorManagementAppsync extends cdk.Stack {
         "dynamodb:Query",
         "dynamodb:Scan"
       ],
-      [table.tableArn]
+      [table.tableArn, `${table.tableArn}/index/${indexName}`]
     )
     tableRole.addToPolicy(policyStatement)
 
@@ -63,23 +74,23 @@ export class VisitorManagementAppsync extends cdk.Stack {
 
     const definition = `
       type ${tableName} {
+        id: ID!
         prace: String!,
-        create_time: String,
+        start_time: String!,
+        end_time: String,
         entry_time: String,
         exit_time: String,
-        company_name: String,
-        name: String,
-        total_number_of_people: Int,
+        event_summary: String,
         batch_numbers: [String]
       }
       input Input${tableName} {
+        id: ID!
         prace: String!,
-        create_time: String,
+        start_time: String!,
+        end_time: String,
         entry_time: String,
         exit_time: String,
-        company_name: String,
-        name: String,
-        total_number_of_people: Int,
+        event_summary: String,
         batch_numbers: [String]
       }
       type Paginated${tableName} {
@@ -87,7 +98,7 @@ export class VisitorManagementAppsync extends cdk.Stack {
         nextToken: String
       }
       type Query {
-        query(prace: String!, start_time: String!, end_time: String!): Paginated${tableName}!
+        query(prace: String!, day_start: String!, day_end: String!): Paginated${tableName}!
       }
       type Mutation {
         put(input: Input${tableName}!): ${tableName}
@@ -113,17 +124,18 @@ export class VisitorManagementAppsync extends cdk.Stack {
       {
         "version": "2017-02-28",
         "operation": "Query",
+        "index": "${indexName}",
         "query": {
-            "expression": "#prace = :prace AND #createTime BETWEEN :startTime AND :endTime",
-            "expressionNames": {
-                "#prace": "prace",
-                "#createTime": "create_time"
-            },
-            "expressionValues": {
-                ":prace": $util.dynamodb.toDynamoDBJson($ctx.args.prace),
-                ":startTime": $util.dynamodb.toDynamoDBJson($ctx.args.start_time),
-                ":endTime": $util.dynamodb.toDynamoDBJson($ctx.args.end_time)
-            }
+          "expression": "#prace = :prace AND #startTime BETWEEN :dayStart AND :dayDnd",
+          "expressionNames": {
+              "#prace": "prace",
+              "#startTime": "start_time"
+          },
+          "expressionValues": {
+              ":prace": $util.dynamodb.toDynamoDBJson($ctx.args.prace),
+              ":dayStart": $util.dynamodb.toDynamoDBJson($ctx.args.day_start),
+              ":dayDnd": $util.dynamodb.toDynamoDBJson($ctx.args.day_end)
+          }
         }
       }
     `
@@ -144,8 +156,7 @@ export class VisitorManagementAppsync extends cdk.Stack {
         "version": "2017-02-28",
         "operation": "PutItem",
         "key": {
-          "prace": $util.dynamodb.toDynamoDBJson($ctx.args.input.prace),
-          "create_time": $util.dynamodb.toDynamoDBJson($ctx.args.input.create_time)
+          "id": $util.dynamodb.toDynamoDBJson($ctx.args.input.id),
         },
         "attributeValues": $util.dynamodb.toMapValuesJson($ctx.args.input)
       }
