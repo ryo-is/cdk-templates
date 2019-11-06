@@ -1,6 +1,6 @@
 import { DynamoDB } from "aws-sdk/clients/all"
 import { Handler, APIGatewayEvent } from "aws-lambda"
-import { calendar_v3 } from "googleapis"
+import { calendar_v3, admin_directory_v1 } from "googleapis"
 import keys from "./lib/service_user_keys"
 import { JWT } from "google-auth-library"
 import * as dayjs from "dayjs"
@@ -19,7 +19,8 @@ export const handler: Handler = async (
     .format("YYYY-MM-DDTHH:mm:ss+09:00")
   try {
     const jwtClient = new JWT(keys.client_email, "", keys.private_key, [
-      "https://www.googleapis.com/auth/calendar"
+      "https://www.googleapis.com/auth/calendar",
+      "https://www.googleapis.com/auth/admin.directory.user.readonly"
     ])
     const credentials = await jwtClient.authorize()
     console.log(credentials)
@@ -32,6 +33,12 @@ export const handler: Handler = async (
       timeMax: endTime
     })
     console.log(events.data.items)
+    const admin = new admin_directory_v1.Admin({})
+    const user = await admin.users.get({
+      auth: jwtClient,
+      userKey: "kyo_visitor@kyoso.co.jp"
+    })
+    console.log(user)
 
     if (events.data.items === undefined) return
 
