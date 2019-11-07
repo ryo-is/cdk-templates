@@ -60,7 +60,11 @@ export class VisitorManagementAppsync extends cdk.Stack {
         "dynamodb:Query",
         "dynamodb:Scan"
       ],
-      [table.tableArn, `${table.tableArn}/index/${indexName}`]
+      [
+        table.tableArn,
+        `${table.tableArn}/index/${indexName}`,
+        `arn:aws:dynamodb:${this.region}:${this.account}:table/cdkTable`
+      ]
     )
     tableRole.addToPolicy(policyStatement)
 
