@@ -1,6 +1,16 @@
 export type RestApiParam = {
   apiName: string
   apiDescription: string
+  auth?: "API_KEY" | "COGNITO"
+  planName?: string
+  authorizerName?: string
+  providerArns?: string[]
+}
+
+export type RestApiResouseParam = {
+  path: string
+  cors: boolean
+  lambdaParams: LambdaParam[]
 }
 
 export type LambdaParam = {
@@ -12,6 +22,4 @@ export type LambdaParam = {
   description?: string
   environment?: { [k: string]: any }
   method: string
-  path: string
-  cors: boolean
 }
