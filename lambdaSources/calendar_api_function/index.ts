@@ -18,33 +18,47 @@ export const handler: Handler = async (
     .endOf("day")
     .format("YYYY-MM-DDTHH:mm:ss+09:00")
   try {
-    const jwtClient = new JWT(keys.client_email, "", keys.private_key, [
-      "https://www.googleapis.com/auth/calendar",
-      "https://www.googleapis.com/auth/admin.directory.user.readonly"
+    const calendarJwtClient = new JWT(keys.client_email, "", keys.private_key, [
+      "https://www.googleapis.com/auth/calendar"
     ])
-    const credentials = await jwtClient.authorize()
-    console.log(credentials)
+    const calendarCredential = await calendarJwtClient.authorize()
+    console.log(calendarCredential)
+
+    const adminJwtClient = new JWT(
+      keys.client_email,
+      "",
+      keys.private_key,
+      ["https://www.googleapis.com/auth/admin.directory.user"],
+      keys.admin_user_address
+    )
+    const adminCredential = await adminJwtClient.authorize()
+    console.log(adminCredential)
 
     const carendar = new calendar_v3.Calendar({})
     const events = await carendar.events.list({
-      auth: jwtClient,
+      auth: calendarJwtClient,
       calendarId: "kyo_visitor@kyoso.co.jp",
       timeMin: startTime,
       timeMax: endTime
     })
     console.log(events.data.items)
+
     const admin = new admin_directory_v1.Admin({})
-    const user = await admin.users.get({
-      auth: jwtClient,
-      userKey: "kyo_visitor@kyoso.co.jp"
-    })
-    console.log(user)
 
     if (events.data.items === undefined) return
 
-    const promises: any[] = []
+    const usersPromises: any[] = []
+    const putParams: DynamoDB.DocumentClient.PutItemInput[] = []
     events.data.items.forEach((item: calendar_v3.Schema$Event) => {
-      const param: DynamoDB.DocumentClient.PutItemInput = {
+      if (item.organizer === undefined) return
+      const userKey = item.organizer.email
+      usersPromises.push(
+        admin.users.get({
+          auth: adminJwtClient,
+          userKey: userKey
+        })
+      )
+      putParams.push({
         TableName: "VisitorManagement",
         Item: {
           id: item.id,
@@ -58,13 +72,22 @@ export const handler: Handler = async (
           ).format("YYYY/MM/DD HH:mm"),
           event_summary: item.summary
         }
-      }
-      console.log(param)
-      promises.push(DDB.put(param).promise())
+      })
     })
 
     // eslint-disable-next-line no-undef
-    await Promise.all(promises)
+    const users = await Promise.all(usersPromises)
+
+    const putPromises: any[] = []
+    putParams.forEach(
+      (param: DynamoDB.DocumentClient.PutItemInput, index: number) => {
+        param.Item["owner_name"] = users[index].data.name.fullName
+        putPromises.push(DDB.put(param).promise())
+      }
+    )
+
+    // eslint-disable-next-line no-undef
+    await Promise.all(putPromises)
   } catch (err) {
     console.error(err)
   }
