@@ -1,11 +1,14 @@
 import cdk = require("@aws-cdk/core")
-import { RestApiParam, LambdaParam } from "../types"
+import { RestApiParam, LambdaParam, RestApiResouseParam } from "../types"
 
 import {
   RestApi,
   Integration,
   LambdaIntegration,
-  Resource
+  Resource,
+  MethodOptions,
+  CfnAuthorizer,
+  AuthorizationType
 } from "@aws-cdk/aws-apigateway"
 import { Function } from "@aws-cdk/aws-lambda"
 
@@ -16,30 +19,66 @@ export class ServerlessPattern {
   constructor(
     self: cdk.Construct,
     restApiParam: RestApiParam,
-    lambdaParams: LambdaParam[]
+    restApiResouseParams: RestApiResouseParam[]
   ) {
     const restApi: RestApi = APIGatewayCreator.createRestApi(
       self,
       restApiParam.apiName,
       restApiParam.apiDescription
     )
+    let option: MethodOptions = {}
 
-    lambdaParams.forEach((param: LambdaParam) => {
-      const lambdaFunction: Function = LambdaFunctionCreator.createFunction(
+    if (
+      restApiParam.auth === "API_KEY" &&
+      restApiParam.planName !== undefined
+    ) {
+      APIGatewayCreator.createUsagePlan(self, restApiParam.planName, restApi)
+      option = {
+        apiKeyRequired: true
+      }
+    } else if (
+      restApiParam.auth === "COGNITO" &&
+      restApiParam.authorizerName !== undefined &&
+      restApiParam.providerArns !== undefined
+    ) {
+      const authorizer: CfnAuthorizer = APIGatewayCreator.createAuthorizer(
         self,
-        param
+        restApiParam.authorizerName,
+        restApi,
+        restApiParam.providerArns
       )
-      const integration: Integration = new LambdaIntegration(lambdaFunction)
+      option = {
+        authorizationType: AuthorizationType.COGNITO,
+        authorizer: {
+          authorizerId: authorizer.ref
+        }
+      }
+    }
+
+    restApiResouseParams.forEach((resorceParam: RestApiResouseParam) => {
       const resource: Resource = APIGatewayCreator.addResouceToRestApi(
         restApi,
-        param.path
+        resorceParam.path
       )
 
-      APIGatewayCreator.addMethodToResource(resource, param.method, integration)
-
-      if (param.cors) {
+      if (resorceParam.cors) {
         APIGatewayCreator.addCors(resource)
       }
+
+      resorceParam.lambdaParams.forEach((lambdaParam: LambdaParam) => {
+        const lambdaFunction: Function = LambdaFunctionCreator.createFunction(
+          self,
+          lambdaParam
+        )
+        const integration: Integration = new LambdaIntegration(lambdaFunction)
+
+        APIGatewayCreator.addMethodToResource(
+          resource,
+          lambdaParam.method,
+          integration,
+          option
+        )
+      })
     })
   }
 }

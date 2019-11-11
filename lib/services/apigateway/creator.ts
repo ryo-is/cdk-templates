@@ -30,13 +30,14 @@ export class APIGatewayCreator {
   public static createAuthorizer(
     self: cdk.Construct,
     authorizerName: string,
-    api: RestApi
+    api: RestApi,
+    providerArns?: string[]
   ): CfnAuthorizer {
     return new CfnAuthorizer(self, authorizerName, {
       restApiId: api.restApiId,
       name: authorizerName,
       identitySource: "method.request.header.Authorization",
-      providerArns: [""],
+      providerArns: providerArns ? providerArns : [],
       type: "COGNITO_USER_POOLS"
     })
   }
