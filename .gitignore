@@ -22,3 +22,4 @@ cdk.output
 !/lambdaSources/*/*.d.ts
 
 service_user_keys.ts
+!types.d.ts
