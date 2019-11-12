@@ -17,7 +17,7 @@ export class CalendarAPIStack extends cdk.Stack {
       environment: { TZ: "Asia/Tokyo" }
     })
     const policyStatement: PolicyStatement = IAMCreator.createRoleStatement(
-      ["dynamodb:PutItem"],
+      ["dynamodb:UpdateItem"],
       ["arn:aws:dynamodb:ap-northeast-1:*:table/VisitorManagement"]
     )
     lambda.addToRolePolicy(policyStatement)
