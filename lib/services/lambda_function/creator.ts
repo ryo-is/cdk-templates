@@ -13,7 +13,7 @@ export class LambdaFunctionCreator {
     return new Function(self, params.nameValue, {
       functionName: params.nameValue,
       runtime: Runtime.NODEJS_10_X,
-      code: Code.asset(params.codeDirectory),
+      code: Code.fromAsset(params.codeDirectory),
       handler: params.handlerValue ? params.handlerValue : "index.handler",
       memorySize: params.memorySizeValue ? params.memorySizeValue : 128,
       timeout: cdk.Duration.seconds(
