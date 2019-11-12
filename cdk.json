@@ -1,3 +1,4 @@
 {
-  "app": "yarn cdk-app"
+  "app": "yarn cdk-app",
+  "aws-cdk/core:enableStackNameDuplicates": true
 }
