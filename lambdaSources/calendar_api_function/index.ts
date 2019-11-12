@@ -45,13 +45,10 @@ export const handler: Handler = async (
 
     const admin = new admin_directory_v1.Admin({})
 
-    if (events.data.items === undefined) return
-
     const usersPromises: any[] = []
     const putParams: DynamoDB.DocumentClient.PutItemInput[] = []
-    events.data.items.forEach((item: calendar_v3.Schema$Event) => {
-      if (item.organizer === undefined) return
-      const userKey = item.organizer.email
+    events.data.items?.forEach((item: calendar_v3.Schema$Event): void => {
+      const userKey = item.organizer?.email
       usersPromises.push(
         admin.users.get({
           auth: adminJwtClient,
@@ -63,7 +60,7 @@ export const handler: Handler = async (
         Item: {
           id: item.id,
           prace: "kyoto",
-          location: item.location,
+          location: item.location?.split("---")[1].split(" ")[0],
           start_time: dayjs(
             (item.start as calendar_v3.Schema$EventDateTime).dateTime
           ).format("YYYY/MM/DD HH:mm"),

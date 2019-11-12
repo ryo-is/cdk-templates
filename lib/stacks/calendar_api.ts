@@ -1,5 +1,7 @@
 import cdk = require("@aws-cdk/core")
 import { Function } from "@aws-cdk/aws-lambda"
+import { Rule, Schedule } from "@aws-cdk/aws-events"
+import { LambdaFunction } from "@aws-cdk/aws-events-targets"
 
 import { LambdaFunctionCreator } from "../services/lambda_function/creator"
 import { PolicyStatement } from "@aws-cdk/aws-iam"
@@ -19,5 +21,14 @@ export class CalendarAPIStack extends cdk.Stack {
       ["arn:aws:dynamodb:ap-northeast-1:*:table/VisitorManagement"]
     )
     lambda.addToRolePolicy(policyStatement)
+
+    new Rule(this, "lambdaEventRule", {
+      schedule: Schedule.cron({
+        minute: "0/5",
+        hour: "23-9",
+        weekDay: "MON-FRI"
+      }),
+      targets: [new LambdaFunction(lambda)]
+    })
   }
 }
