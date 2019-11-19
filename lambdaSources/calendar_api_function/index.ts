@@ -21,8 +21,7 @@ export const handler: Handler = async (
     const calendarJwtClient = new JWT(keys.client_email, "", keys.private_key, [
       "https://www.googleapis.com/auth/calendar"
     ])
-    const calendarCredential = await calendarJwtClient.authorize()
-    console.log(calendarCredential)
+    await calendarJwtClient.authorize()
 
     const adminJwtClient = new JWT(
       keys.client_email,
@@ -31,8 +30,7 @@ export const handler: Handler = async (
       ["https://www.googleapis.com/auth/admin.directory.user"],
       keys.admin_user_address
     )
-    const adminCredential = await adminJwtClient.authorize()
-    console.log(adminCredential)
+    await adminJwtClient.authorize()
 
     const carendar = new calendar_v3.Calendar({})
     const events = await carendar.events.list({
@@ -41,12 +39,11 @@ export const handler: Handler = async (
       timeMin: startTime,
       timeMax: endTime
     })
-    console.log(events.data.items)
 
     const admin = new admin_directory_v1.Admin({})
 
     const usersPromises: any[] = []
-    const putParams: DynamoDB.DocumentClient.PutItemInput[] = []
+    const updateParams: DynamoDB.DocumentClient.UpdateItemInput[] = []
     events.data.items?.forEach((item: calendar_v3.Schema$Event): void => {
       const userKey = item.organizer?.email
       usersPromises.push(
@@ -55,19 +52,34 @@ export const handler: Handler = async (
           userKey: userKey
         })
       )
-      putParams.push({
+      const location =
+        item.location === undefined
+          ? "-"
+          : item.location.split("---")[1].split(" ")[0]
+      updateParams.push({
         TableName: "VisitorManagement",
-        Item: {
-          id: item.id,
-          prace: "kyoto",
-          location: item.location?.split("---")[1].split(" ")[0],
-          start_time: dayjs(
+        Key: { id: item.id },
+        UpdateExpression:
+          "set #prace = :prace, #location = :location, #start_time = :start_time, #end_time = :end_time, #event_summary = :event_summary, #owner_name = :owner_name",
+        ExpressionAttributeNames: {
+          "#prace": "prace",
+          "#location": "location",
+          "#start_time": "start_time",
+          "#end_time": "end_time",
+          "#event_summary": "event_summary",
+          "#owner_name": "owner_name"
+        },
+        ExpressionAttributeValues: {
+          ":prace": "kyoto",
+          ":location": location,
+          ":start_time": dayjs(
             (item.start as calendar_v3.Schema$EventDateTime).dateTime
           ).format("YYYY/MM/DD HH:mm"),
-          end_time: dayjs(
+          ":end_time": dayjs(
             (item.end as calendar_v3.Schema$EventDateTime).dateTime
           ).format("YYYY/MM/DD HH:mm"),
-          event_summary: item.summary
+          ":event_summary": item.summary,
+          ":owner_name": "-"
         }
       })
     })
@@ -76,10 +88,12 @@ export const handler: Handler = async (
     const users = await Promise.all(usersPromises)
 
     const putPromises: any[] = []
-    putParams.forEach(
-      (param: DynamoDB.DocumentClient.PutItemInput, index: number) => {
-        param.Item["owner_name"] = users[index].data.name.fullName
-        putPromises.push(DDB.put(param).promise())
+    updateParams.forEach(
+      (param: DynamoDB.DocumentClient.UpdateItemInput, index: number) => {
+        if (param.ExpressionAttributeValues === undefined) return
+        param.ExpressionAttributeValues[":owner_name"] =
+          users[index].data.name.fullName
+        putPromises.push(DDB.update(param).promise())
       }
     )
 
@@ -87,5 +101,6 @@ export const handler: Handler = async (
     await Promise.all(putPromises)
   } catch (err) {
     console.error(err)
+    throw err
   }
 }
