@@ -21,6 +21,7 @@ export class ServerlessPattern {
     restApiParam: RestApiParam,
     restApiResouseParams: RestApiResouseParam[]
   ) {
+    // Create APIGateway
     const restApi: RestApi = APIGatewayCreator.createRestApi(
       self,
       restApiParam.apiName,
@@ -32,6 +33,7 @@ export class ServerlessPattern {
       restApiParam.auth === "API_KEY" &&
       restApiParam.planName !== undefined
     ) {
+      // Use API Key
       APIGatewayCreator.createUsagePlan(self, restApiParam.planName, restApi)
       option = {
         apiKeyRequired: true
@@ -41,6 +43,7 @@ export class ServerlessPattern {
       restApiParam.authorizerName !== undefined &&
       restApiParam.providerArns !== undefined
     ) {
+      // Use cognito authorizer
       const authorizer: CfnAuthorizer = APIGatewayCreator.createAuthorizer(
         self,
         restApiParam.authorizerName,
@@ -56,22 +59,27 @@ export class ServerlessPattern {
     }
 
     restApiResouseParams.forEach((resorceParam: RestApiResouseParam) => {
+      // Create resouse
       const resource: Resource = APIGatewayCreator.addResouceToRestApi(
         restApi,
         resorceParam.path
       )
 
+      // Enable cors option
       if (resorceParam.cors) {
         APIGatewayCreator.addCors(resource)
       }
 
       resorceParam.lambdaParams.forEach((lambdaParam: LambdaParam) => {
+        // Create lambda function
         const lambdaFunction: Function = LambdaFunctionCreator.createFunction(
           self,
           lambdaParam
         )
+        // Create integration
         const integration: Integration = new LambdaIntegration(lambdaFunction)
 
+        // Add method to resource
         APIGatewayCreator.addMethodToResource(
           resource,
           lambdaParam.method,
