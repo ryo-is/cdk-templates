@@ -12,7 +12,7 @@ export class LambdaFunctionCreator {
   ): Function {
     return new Function(self, params.nameValue, {
       functionName: params.nameValue,
-      runtime: Runtime.NODEJS_10_X,
+      runtime: Runtime.NODEJS_12_X,
       code: Code.fromAsset(params.codeDirectory),
       handler: params.handlerValue ? params.handlerValue : "index.handler",
       memorySize: params.memorySizeValue ? params.memorySizeValue : 128,
