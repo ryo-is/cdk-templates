@@ -15,7 +15,9 @@
     "inlineSourceMap": true,
     "inlineSources": true,
     "experimentalDecorators": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "exclude": [
     "./lambda-src/**"

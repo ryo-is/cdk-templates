@@ -1,7 +1,9 @@
 import cdk = require("@aws-cdk/core")
 
-import { RestApiParam, RestApiResouseParam } from "../types"
-import { ServerlessPattern } from "../patterns/serverless_pattern"
+import { RestApiParam, RestApiResouseParam } from "../../types"
+import { ServerlessPattern } from "../../patterns/serverless_pattern"
+
+import lambdaParamsJson from "./parameters/lambdaParams.json"
 
 export class RestAPIs extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
@@ -16,18 +18,7 @@ export class RestAPIs extends cdk.Stack {
       {
         path: "test",
         cors: true,
-        lambdaParams: [
-          {
-            nameValue: "serverlessPatternGetFunction",
-            codeDirectory: "lambdaSources/demo_function",
-            method: "GET"
-          },
-          {
-            nameValue: "serverlessPatternPostFunction",
-            codeDirectory: "lambdaSources/demo_function",
-            method: "POST"
-          }
-        ]
+        lambdaParams: lambdaParamsJson
       }
     ]
 
