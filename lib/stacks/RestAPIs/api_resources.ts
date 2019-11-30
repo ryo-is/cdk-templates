@@ -1,40 +1,38 @@
 import cdk = require("@aws-cdk/core")
-import { RestApiParam, LambdaParam, RestApiResouceParam } from "../types"
 
+import { RestApiParam, RestApiResouceParam, LambdaParam } from "../../types"
 import {
+  MethodOptions,
   RestApi,
   Integration,
   LambdaIntegration,
   Resource,
-  MethodOptions,
   CfnAuthorizer,
   AuthorizationType
 } from "@aws-cdk/aws-apigateway"
 import { Function } from "@aws-cdk/aws-lambda"
 
-import { APIGatewayCreator } from "../services/apigateway/creator"
-import { LambdaFunctionCreator } from "../services/lambda_function/creator"
+import { APIGatewayCreator } from "../../services/apigateway/creator"
+import { LambdaFunctionCreator } from "../../services/lambda_function/creator"
 
-export class ServerlessPattern {
+export class APIResourcesStack extends cdk.Stack {
   constructor(
-    self: cdk.Construct,
+    scope: cdk.App,
+    id: string,
+    restApi: RestApi,
     restApiParam: RestApiParam,
-    restApiResouseParams: RestApiResouceParam[]
+    restApiResouseParams: RestApiResouceParam[],
+    props?: cdk.StackProps
   ) {
-    // Create APIGateway
-    const restApi: RestApi = APIGatewayCreator.createRestApi(
-      self,
-      restApiParam.apiName,
-      restApiParam.apiDescription
-    )
-    let option: MethodOptions = {}
+    super(scope, id, props)
 
+    let option: MethodOptions = {}
     if (
       restApiParam.auth === "API_KEY" &&
       restApiParam.planName !== undefined
     ) {
       // Use API Key
-      APIGatewayCreator.createUsagePlan(self, restApiParam.planName, restApi)
+      APIGatewayCreator.createUsagePlan(this, restApiParam.planName, restApi)
       option = {
         apiKeyRequired: true
       }
@@ -45,7 +43,7 @@ export class ServerlessPattern {
     ) {
       // Use cognito authorizer
       const authorizer: CfnAuthorizer = APIGatewayCreator.createAuthorizer(
-        self,
+        this,
         restApiParam.authorizerName,
         restApi,
         restApiParam.providerArns
@@ -73,7 +71,7 @@ export class ServerlessPattern {
       resorceParam.lambdaParams.forEach((lambdaParam: LambdaParam) => {
         // Create lambda function
         const lambdaFunction: Function = LambdaFunctionCreator.createFunction(
-          self,
+          this,
           lambdaParam
         )
         // Create integration

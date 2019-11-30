@@ -7,7 +7,7 @@ export type RestApiParam = {
   providerArns?: string[]
 }
 
-export type RestApiResouseParam = {
+export type RestApiResouceParam = {
   path: string
   cors: boolean
   lambdaParams: LambdaParam[]

@@ -1,10 +1,24 @@
 #!/usr/bin/env node
 import cdk = require("@aws-cdk/core")
+
 import { VisitorManagementAppsync } from "../lib/stacks/visitor_management_appsync"
 import { CalendarAPIStack } from "../lib/stacks/calendar_api"
-import { RestAPIs } from "../lib/stacks/RestAPIs/rest_apis"
+import { RestAPIStack } from "../lib/stacks/RestAPIs/rest_api"
+import { APIResourcesStack } from "../lib/stacks/RestAPIs/api_resources"
+
+import RestApiParam from "./parameters/RestApiParam.json"
+import RestApiResouceParam from "./parameters/restApiResouceParams.json"
 
 const app: cdk.App = new cdk.App()
+
 new VisitorManagementAppsync(app, "VisitorManagementAppsync")
 new CalendarAPIStack(app, "CalendarAPIStack")
-new RestAPIs(app, "RestAPIs")
+
+const restApiStack = new RestAPIStack(app, "RestAPIStack", RestApiParam)
+new APIResourcesStack(
+  app,
+  "APIResourcesStack",
+  restApiStack.RestAPI,
+  RestApiParam,
+  RestApiResouceParam
+)
