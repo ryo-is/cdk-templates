@@ -1,0 +1,18 @@
+[
+  {
+    "path": "test",
+    "cors": true,
+    "lambdaParams": [
+      {
+        "nameValue": "serverlessPatternGetFunction",
+        "codeDirectory": "lambdaSources/demo_function",
+        "method": "GET"
+      },
+      {
+        "nameValue": "serverlessPatternPostFunction",
+        "codeDirectory": "lambdaSources/demo_function",
+        "method": "POST"
+      }
+    ]
+  }
+]
