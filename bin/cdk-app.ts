@@ -8,7 +8,6 @@ import { APIResourcesStack } from "../lib/stacks/RestAPIs/api_resources"
 
 import RestApiParam from "./parameters/RestApiParam.json"
 import RestApiResouceParam from "./parameters/restApiResouceParams.json"
-import DemoApiParam from "./parameters/DemoApiResouceParams.json"
 
 const app: cdk.App = new cdk.App()
 
@@ -22,11 +21,4 @@ new APIResourcesStack(
   restApiStack.RestAPI,
   RestApiParam,
   RestApiResouceParam
-)
-new APIResourcesStack(
-  app,
-  "DemoAPIResourcesStack",
-  restApiStack.RestAPI,
-  RestApiParam,
-  DemoApiParam
 )
