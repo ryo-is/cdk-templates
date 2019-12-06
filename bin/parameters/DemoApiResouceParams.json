@@ -1,0 +1,18 @@
+[
+  {
+    "path": "demo",
+    "cors": true,
+    "lambdaParams": [
+      {
+        "nameValue": "demoGetFunction",
+        "codeDirectory": "lambdaSources/demo_function",
+        "method": "GET"
+      },
+      {
+        "nameValue": "demoPostFunction",
+        "codeDirectory": "lambdaSources/demo_function",
+        "method": "POST"
+      }
+    ]
+  }
+]
