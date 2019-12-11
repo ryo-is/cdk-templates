@@ -5,6 +5,7 @@ import { VisitorManagementAppsync } from "../lib/stacks/visitor_management_appsy
 import { CalendarAPIStack } from "../lib/stacks/calendar_api"
 import { RestAPIStack } from "../lib/stacks/RestAPIs/rest_api"
 import { APIResourcesStack } from "../lib/stacks/RestAPIs/api_resources"
+import { LambdaLayerStack } from "../lib/stacks/lambda_layer"
 
 import RestApiParam from "./parameters/RestApiParam.json"
 import RestApiResouceParam from "./parameters/restApiResouceParams.json"
@@ -22,3 +23,5 @@ new APIResourcesStack(
   RestApiParam,
   RestApiResouceParam
 )
+
+new LambdaLayerStack(app, "LambdaLayerStack")
