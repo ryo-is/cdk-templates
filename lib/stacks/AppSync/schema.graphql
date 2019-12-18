@@ -1,0 +1,20 @@
+type User {
+  id: ID!,
+  name: String
+}
+type PaginatedUser {
+  items: [${tableNameValue}!]!
+  nextToken: String
+}
+type Query {
+  all(limit: Int, nextToken: String): PaginatedUser!
+  getOne(id: ID!): User
+}
+type Mutation {
+  save(name: String!): User
+  delete(id: ID!): User
+}
+type Schema {
+  query: Query
+  mutation: Mutation
+}
