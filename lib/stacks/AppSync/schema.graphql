@@ -1,0 +1,22 @@
+type Post {
+  id: String,
+  title: String,
+  create_time: String
+}
+input InputPost {
+  id: String
+  title: String,
+  create_time: String
+}
+type Query {
+  all: [Post]
+  query(id: String!, start: String!, end: String!): [Post]
+}
+type Mutation {
+  save(input: InputPost!): Post
+  delete(id: ID!): Post
+}
+type Schema {
+  query: Query
+  mutation: Mutation
+}
