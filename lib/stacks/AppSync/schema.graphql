@@ -1,18 +1,23 @@
-type User {
+type Post {
   id: ID!,
-  name: String
+  title: String,
+  create_time: String
 }
-type PaginatedUser {
-  items: [${tableNameValue}!]!
+type PaginatedPosts {
+  items: [Post!]!
   nextToken: String
 }
+input InputPost {
+  title: String,
+  create_time: String
+}
 type Query {
-  all(limit: Int, nextToken: String): PaginatedUser!
-  getOne(id: ID!): User
+  all(limit: Int, nextToken: String): PaginatedPosts!
+  query(create_time: String): PaginatedPosts!
 }
 type Mutation {
-  save(name: String!): User
-  delete(id: ID!): User
+  save(input: InputPost!): Post
+  delete(id: ID!): Post
 }
 type Schema {
   query: Query

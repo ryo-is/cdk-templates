@@ -7,6 +7,9 @@ import {
   FieldLogLevel,
   UserPoolDefaultAction
 } from "@aws-cdk/aws-appsync"
+import { TableProps, AttributeType, BillingMode } from "@aws-cdk/aws-dynamodb"
+
+import { DynamoDBCreator } from "../../services/dynamodb/creator"
 
 export class AppSyncStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
@@ -16,7 +19,23 @@ export class AppSyncStack extends cdk.Stack {
       signInType: SignInType.USERNAME
     })
 
-    const api = new GraphQLApi(this, "GraphQLAPI", {
+    const tableParam: TableProps = {
+      tableName: "CDKPostTable",
+      partitionKey: {
+        name: "id",
+        type: AttributeType.STRING
+      },
+      sortKey: {
+        name: "create_time",
+        type: AttributeType.STRING
+      },
+      billingMode: BillingMode.PROVISIONED,
+      readCapacity: 1,
+      writeCapacity: 1
+    }
+    const table = DynamoDBCreator.createTable(this, tableParam)
+
+    const api = new GraphQLApi(this, "PostAPI", {
       name: `demoapi`,
       logConfig: {
         fieldLogLevel: FieldLogLevel.ALL
@@ -27,6 +46,7 @@ export class AppSyncStack extends cdk.Stack {
       },
       schemaDefinitionFile: join(__dirname, "schema.graphql")
     })
-    console.log(api)
+
+    api.addDynamoDbDataSource("PostAPIDataSource", "", table)
   }
 }
