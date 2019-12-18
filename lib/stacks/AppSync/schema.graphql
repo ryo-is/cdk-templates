@@ -1,19 +1,16 @@
 type Post {
-  id: ID!,
+  id: String,
   title: String,
   create_time: String
 }
-type PaginatedPosts {
-  items: [Post!]!
-  nextToken: String
-}
 input InputPost {
+  id: String
   title: String,
   create_time: String
 }
 type Query {
-  all(limit: Int, nextToken: String): PaginatedPosts!
-  query(create_time: String): PaginatedPosts!
+  all: [Post]
+  query(id: String!, start: String!, end: String!): [Post]
 }
 type Mutation {
   save(input: InputPost!): Post

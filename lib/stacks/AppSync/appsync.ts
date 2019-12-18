@@ -1,11 +1,13 @@
 import cdk = require("@aws-cdk/core")
 import { join } from "path"
 
-import { UserPool, SignInType } from "@aws-cdk/aws-cognito"
+// import { UserPool, SignInType } from "@aws-cdk/aws-cognito"
 import {
   GraphQLApi,
   FieldLogLevel,
-  UserPoolDefaultAction
+  // UserPoolDefaultAction,
+  MappingTemplate,
+  CfnApiKey
 } from "@aws-cdk/aws-appsync"
 import { TableProps, AttributeType, BillingMode } from "@aws-cdk/aws-dynamodb"
 
@@ -15,9 +17,10 @@ export class AppSyncStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props)
 
-    const userPool = new UserPool(this, "UserPool", {
-      signInType: SignInType.USERNAME
-    })
+    // const userPool = new UserPool(this, "UserPool", {
+    //   userPoolName: "DemoAPIUserPool",
+    //   signInType: SignInType.USERNAME
+    // })
 
     const tableParam: TableProps = {
       tableName: "CDKPostTable",
@@ -36,17 +39,59 @@ export class AppSyncStack extends cdk.Stack {
     const table = DynamoDBCreator.createTable(this, tableParam)
 
     const api = new GraphQLApi(this, "PostAPI", {
-      name: `demoapi`,
+      name: "PostAPI",
       logConfig: {
         fieldLogLevel: FieldLogLevel.ALL
       },
-      userPoolConfig: {
-        userPool,
-        defaultAction: UserPoolDefaultAction.ALLOW
-      },
+      // userPoolConfig: {
+      //   userPool,
+      //   defaultAction: UserPoolDefaultAction.ALLOW
+      // },
       schemaDefinitionFile: join(__dirname, "schema.graphql")
     })
 
-    api.addDynamoDbDataSource("PostAPIDataSource", "", table)
+    new CfnApiKey(this, "PostAPIKey", {
+      apiId: api.apiId
+    })
+
+    const datasource = api.addDynamoDbDataSource("PostAPIDataSource", "", table)
+
+    datasource.createResolver({
+      typeName: "Query",
+      fieldName: "all",
+      requestMappingTemplate: MappingTemplate.dynamoDbScanTable(),
+      responseMappingTemplate: MappingTemplate.dynamoDbResultList()
+    })
+    datasource.createResolver({
+      typeName: "Mutation",
+      fieldName: "save",
+      requestMappingTemplate: MappingTemplate.dynamoDbPutItem("id", "input"),
+      responseMappingTemplate: MappingTemplate.dynamoDbResultItem()
+    })
+
+    const queryMappingTemplate = `
+      {
+        "version": "2017-02-28",
+        "operation": "Query",
+        "query": {
+          "expression": "#id = :id AND #createTime BETWEEN :start AND :end",
+          "expressionNames": {
+            "#id": "id"
+            "#createTime": "create_time"
+          },
+          "expressionValues": {
+            ":id": $util.dynamodb.toDynamoDBJson($ctx.args.id),
+            ":start": $util.dynamodb.toDynamoDBJson($ctx.args.start),
+            ":end": $util.dynamodb.toDynamoDBJson($ctx.args.end)
+          }
+        }
+      }
+    `
+    datasource.createResolver({
+      typeName: "Query",
+      fieldName: "query",
+      requestMappingTemplate: MappingTemplate.fromString(queryMappingTemplate),
+      responseMappingTemplate: MappingTemplate.dynamoDbResultList()
+    })
   }
 }
