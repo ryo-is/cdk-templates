@@ -1,13 +1,12 @@
 import cdk = require("@aws-cdk/core")
 import { join } from "path"
 
-// import { UserPool, SignInType } from "@aws-cdk/aws-cognito"
+import { UserPool, SignInType } from "@aws-cdk/aws-cognito"
 import {
   GraphQLApi,
   FieldLogLevel,
-  // UserPoolDefaultAction,
-  MappingTemplate,
-  CfnApiKey
+  UserPoolDefaultAction,
+  MappingTemplate
 } from "@aws-cdk/aws-appsync"
 import { TableProps, AttributeType, BillingMode } from "@aws-cdk/aws-dynamodb"
 
@@ -17,10 +16,10 @@ export class AppSyncStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props)
 
-    // const userPool = new UserPool(this, "UserPool", {
-    //   userPoolName: "DemoAPIUserPool",
-    //   signInType: SignInType.USERNAME
-    // })
+    const userPool = new UserPool(this, "UserPool", {
+      userPoolName: "DemoAPIUserPool",
+      signInType: SignInType.USERNAME
+    })
 
     const tableParam: TableProps = {
       tableName: "CDKPostTable",
@@ -43,15 +42,11 @@ export class AppSyncStack extends cdk.Stack {
       logConfig: {
         fieldLogLevel: FieldLogLevel.ALL
       },
-      // userPoolConfig: {
-      //   userPool,
-      //   defaultAction: UserPoolDefaultAction.ALLOW
-      // },
+      userPoolConfig: {
+        userPool,
+        defaultAction: UserPoolDefaultAction.ALLOW
+      },
       schemaDefinitionFile: join(__dirname, "schema.graphql")
-    })
-
-    new CfnApiKey(this, "PostAPIKey", {
-      apiId: api.apiId
     })
 
     const datasource = api.addDynamoDbDataSource("PostAPIDataSource", "", table)
@@ -66,6 +61,12 @@ export class AppSyncStack extends cdk.Stack {
       typeName: "Mutation",
       fieldName: "save",
       requestMappingTemplate: MappingTemplate.dynamoDbPutItem("id", "input"),
+      responseMappingTemplate: MappingTemplate.dynamoDbResultItem()
+    })
+    datasource.createResolver({
+      typeName: "Mutation",
+      fieldName: "delete",
+      requestMappingTemplate: MappingTemplate.dynamoDbDeleteItem("id", "id"),
       responseMappingTemplate: MappingTemplate.dynamoDbResultItem()
     })
 
