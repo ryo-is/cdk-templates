@@ -22,4 +22,5 @@ cdk.output
 !/lambdaSources/*/*.d.ts
 
 service_user_keys.ts
+api_key.json
 !types.d.ts
