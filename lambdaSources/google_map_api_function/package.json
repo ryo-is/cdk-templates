@@ -1,0 +1,23 @@
+{
+  "name": "calendar_api_function",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/maps": "^1.0.2",
+    "@types/google__maps": "^0.5.8",
+    "aws-sdk": "^2.476.0",
+    "dayjs": "^1.8.16",
+    "googleapis": "39"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.27",
+    "ts-loader": "^6.0.2",
+    "typescript": "^3.5.2"
+  }
+}
