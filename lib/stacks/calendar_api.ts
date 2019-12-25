@@ -13,6 +13,7 @@ export class CalendarAPIStack extends cdk.Stack {
 
     const lambda: Function = LambdaFunctionCreator.createFunction(this, {
       nameValue: "calendar_api_function",
+      description: "来客アプリのLambda",
       codeDirectory: "lambdaSources/calendar_api_function",
       environment: { TZ: "Asia/Tokyo" }
     })
