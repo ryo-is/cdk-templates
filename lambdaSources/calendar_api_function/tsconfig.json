@@ -3,6 +3,9 @@
     "target":"ES2018",
     "module": "commonjs",
     "lib": ["es2016", "es2017.object", "es2017.string"],
+    "types": [
+      "node"
+    ],
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
