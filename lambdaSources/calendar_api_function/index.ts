@@ -18,11 +18,13 @@ export const handler: Handler = async (
     .endOf("day")
     .format("YYYY-MM-DDTHH:mm:ss+09:00")
   try {
+    // CalenderAPIに対する認証
     const calendarJwtClient = new JWT(keys.client_email, "", keys.private_key, [
       "https://www.googleapis.com/auth/calendar"
     ])
     await calendarJwtClient.authorize()
 
+    // GSuiteAdminAPIに対する認証
     const adminJwtClient = new JWT(
       keys.client_email,
       "",
@@ -32,6 +34,7 @@ export const handler: Handler = async (
     )
     await adminJwtClient.authorize()
 
+    // イベント取得
     const carendar = new calendar_v3.Calendar({})
     const events = await carendar.events.list({
       auth: calendarJwtClient,
@@ -42,6 +45,7 @@ export const handler: Handler = async (
 
     const admin = new admin_directory_v1.Admin({})
 
+    // 取得したイベントからDDBにPUTするパラメータを生成する
     const usersPromises: any[] = []
     const updateParams: DynamoDB.DocumentClient.UpdateItemInput[] = []
     events.data.items?.forEach((item: calendar_v3.Schema$Event): void => {
@@ -84,9 +88,11 @@ export const handler: Handler = async (
       })
     })
 
+    // ユーザー情報取得
     // eslint-disable-next-line no-undef
     const users = await Promise.all(usersPromises)
 
+    // 取得したユーザー情報とイベントを結合する
     const putPromises: any[] = []
     updateParams.forEach(
       (param: DynamoDB.DocumentClient.UpdateItemInput, index: number) => {
@@ -97,6 +103,7 @@ export const handler: Handler = async (
       }
     )
 
+    // DynamoDBにPUTする
     // eslint-disable-next-line no-undef
     await Promise.all(putPromises)
   } catch (err) {

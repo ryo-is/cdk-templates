@@ -14,6 +14,7 @@
     "googleapis": "39"
   },
   "devDependencies": {
+    "@types/node": "^12.12.20",
     "@types/aws-lambda": "^8.10.27",
     "ts-loader": "^6.0.2",
     "typescript": "^3.5.2"
