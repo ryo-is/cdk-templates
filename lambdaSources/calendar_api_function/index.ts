@@ -1,9 +1,10 @@
 import { DynamoDB } from "aws-sdk/clients/all"
 import { Handler, APIGatewayEvent } from "aws-lambda"
 import { calendar_v3, admin_directory_v1 } from "googleapis"
-import keys from "./lib/service_user_keys"
+// import keys from "./lib/service_user_keys"
+import keys from "./service_user_keys.json"
 import { JWT } from "google-auth-library"
-import * as dayjs from "dayjs"
+import dayjs from "dayjs"
 
 const DDB = new DynamoDB.DocumentClient()
 

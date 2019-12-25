@@ -21,6 +21,6 @@ cdk.output
 !.eslintrc.js
 !/lambdaSources/*/*.d.ts
 
-service_user_keys.ts
+service_user_keys.*
 api_key.json
 !types.d.ts

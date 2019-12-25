@@ -3,9 +3,6 @@
     "target":"ES2018",
     "module": "commonjs",
     "lib": ["es2016", "es2017.object", "es2017.string"],
-    "types": [
-      "node"
-    ],
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -18,9 +15,11 @@
     "inlineSourceMap": true,
     "inlineSources": true,
     "experimentalDecorators": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "exclude": [
-    "node_modules"
+    "./lambda-src/**"
   ]
 }
