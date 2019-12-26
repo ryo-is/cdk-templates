@@ -1,17 +1,13 @@
 import { DynamoDB } from "aws-sdk/clients/all"
-import { Handler, APIGatewayEvent } from "aws-lambda"
+import { Handler } from "aws-lambda"
 import { calendar_v3, admin_directory_v1 } from "googleapis"
-// import keys from "./lib/service_user_keys"
 import keys from "./service_user_keys.json"
 import { JWT } from "google-auth-library"
 import dayjs from "dayjs"
 
 const DDB = new DynamoDB.DocumentClient()
 
-export const handler: Handler = async (
-  event: APIGatewayEvent
-): Promise<void> => {
-  console.log(JSON.stringify(event))
+export const handler: Handler = async (): Promise<void> => {
   const startTime = dayjs()
     .startOf("day")
     .format("YYYY-MM-DDTHH:mm:ss+09:00")
@@ -57,6 +53,29 @@ export const handler: Handler = async (
           userKey: userKey
         })
       )
+      const prace =
+        item.location === undefined ? "-" : item.location.split("---")[0]
+      console.log(prace)
+
+      let praceValue = "-"
+      switch (prace) {
+        case "KYOSO 京都本社":
+          praceValue = "kyoto"
+          break
+        case "KYOSO 大阪オフィス":
+          praceValue = "osaka"
+          break
+        case "KYOSO 東京オフィス":
+          praceValue = "tokyo"
+          break
+        case "KYOSO 名古屋オフィス":
+          praceValue = "nagoya"
+          break
+        default:
+          break
+      }
+      console.log(praceValue)
+
       const location =
         item.location === undefined
           ? "-"
@@ -75,7 +94,7 @@ export const handler: Handler = async (
           "#owner_name": "owner_name"
         },
         ExpressionAttributeValues: {
-          ":prace": "kyoto",
+          ":prace": praceValue,
           ":location": location,
           ":start_time": dayjs(
             (item.start as calendar_v3.Schema$EventDateTime).dateTime
