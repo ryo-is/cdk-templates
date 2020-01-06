@@ -20,6 +20,7 @@ export const handler: Handler = async (): Promise<void> => {
       "https://www.googleapis.com/auth/calendar"
     ])
     await calendarJwtClient.authorize()
+    console.log("auth calendar OK!!!")
 
     // GSuiteAdminAPIに対する認証
     const adminJwtClient = new JWT(
@@ -30,6 +31,7 @@ export const handler: Handler = async (): Promise<void> => {
       keys.admin_user_address
     )
     await adminJwtClient.authorize()
+    console.log("auth GSuite Admin OK!!!")
 
     // イベント取得
     const carendar = new calendar_v3.Calendar({})
