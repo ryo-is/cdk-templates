@@ -20,3 +20,11 @@ type Schema {
   query: Query
   mutation: Mutation
 }
+type Subscription {
+  onSavePost(
+    id: String,
+    title: String,
+    create_time: String
+  ): Post
+    @aws_subscribe(mutations: ["save"])
+}
