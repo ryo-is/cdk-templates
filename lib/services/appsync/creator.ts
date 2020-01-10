@@ -30,7 +30,7 @@ export class AppSyncCreator {
       userPoolConfig: {
         awsRegion: "ap-northeast-1",
         defaultAction: "ALLOW",
-        userPoolId: "ap-northeast-1_FEf7I2gK7"
+        userPoolId: "ap-northeast-1_tqGpIfXKu"
       }
     })
   }
