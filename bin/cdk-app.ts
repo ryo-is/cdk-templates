@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import cdk = require("@aws-cdk/core")
 
-// import { VisitorManagementAppsync } from "../lib/stacks/visitor_management_appsync"
+import { VisitorManagementAppsync } from "../lib/stacks/visitor_management_appsync"
 import { CalendarAPIStack } from "../lib/stacks/calendar_api"
 // import { LambdaLayerStack } from "../lib/stacks/lambda_layer"
 import { AppSyncStack } from "../lib/stacks/AppSync/appsync"
@@ -15,6 +15,7 @@ import { GoogleMapAPIStack } from "../lib/stacks/google_map_api"
 const app: cdk.App = new cdk.App()
 
 new CalendarAPIStack(app, "CalendarAPIStack")
+new VisitorManagementAppsync(app, "VisitorManagementAppsync")
 
 new AppSyncStack(app, "AppSyncStack")
 new GoogleMapAPIStack(app, "GoogleMapAPIStack")
