@@ -13,7 +13,7 @@ import { TableProps, AttributeType, BillingMode } from "@aws-cdk/aws-dynamodb"
 
 import { DynamoDBCreator } from "../../services/dynamodb/creator"
 
-const BASE_NAME: string = "CDKHanson"
+const BASE_NAME: string = "CDKHandson"
 
 export class AppSyncStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
