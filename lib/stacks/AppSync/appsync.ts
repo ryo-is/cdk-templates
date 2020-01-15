@@ -1,28 +1,31 @@
 import cdk = require("@aws-cdk/core")
 import { join } from "path"
 
-import { UserPool, SignInType } from "@aws-cdk/aws-cognito"
+// import { UserPool, SignInType } from "@aws-cdk/aws-cognito"
 import {
   GraphQLApi,
   FieldLogLevel,
-  UserPoolDefaultAction,
-  MappingTemplate
+  // UserPoolDefaultAction,
+  MappingTemplate,
+  CfnApiKey
 } from "@aws-cdk/aws-appsync"
 import { TableProps, AttributeType, BillingMode } from "@aws-cdk/aws-dynamodb"
 
 import { DynamoDBCreator } from "../../services/dynamodb/creator"
 
+const BASE_NAME: string = "CDKHanson"
+
 export class AppSyncStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props)
 
-    const userPool = new UserPool(this, "UserPool", {
-      userPoolName: "DemoAPIUserPool",
-      signInType: SignInType.USERNAME
-    })
+    // const userPool = new UserPool(this, "UserPool", {
+    //   userPoolName: "DemoAPIUserPool",
+    //   signInType: SignInType.USERNAME
+    // })
 
     const tableParam: TableProps = {
-      tableName: "CDKPostTable",
+      tableName: `${BASE_NAME}_TABLE`,
       partitionKey: {
         name: "id",
         type: AttributeType.STRING
@@ -37,16 +40,20 @@ export class AppSyncStack extends cdk.Stack {
     }
     const table = DynamoDBCreator.createTable(this, tableParam)
 
-    const api = new GraphQLApi(this, "PostAPI", {
-      name: "PostAPI",
+    const api = new GraphQLApi(this, "GraphQLAPI", {
+      name: `${BASE_NAME}_API`,
       logConfig: {
         fieldLogLevel: FieldLogLevel.ALL
       },
-      userPoolConfig: {
-        userPool,
-        defaultAction: UserPoolDefaultAction.ALLOW
-      },
+      // userPoolConfig: {
+      //   userPool,
+      //   defaultAction: UserPoolDefaultAction.ALLOW
+      // },
       schemaDefinitionFile: join(__dirname, "schema.graphql")
+    })
+
+    new CfnApiKey(this, "appsyncKey", {
+      apiId: api.apiId
     })
 
     const datasource = api.addDynamoDbDataSource("PostAPIDataSource", "", table)
