@@ -67,7 +67,11 @@ export class AppSyncStack extends cdk.Stack {
     datasource.createResolver({
       typeName: "Mutation",
       fieldName: "save",
-      requestMappingTemplate: MappingTemplate.dynamoDbPutItem("id", "input"),
+      requestMappingTemplate: MappingTemplate.dynamoDbPutItem(
+        "id",
+        "input",
+        "input.id"
+      ),
       responseMappingTemplate: MappingTemplate.dynamoDbResultItem()
     })
     datasource.createResolver({

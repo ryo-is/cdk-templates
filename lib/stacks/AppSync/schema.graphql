@@ -14,7 +14,7 @@ type Query {
 }
 type Mutation {
   save(input: InputPost!): Post
-  delete(id: ID!): Post
+  delete(id: String!, create_time: String!): Post
 }
 type Schema {
   query: Query
