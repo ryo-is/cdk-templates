@@ -9,7 +9,12 @@ import {
   MappingTemplate,
   CfnApiKey
 } from "@aws-cdk/aws-appsync"
-import { TableProps, AttributeType, BillingMode } from "@aws-cdk/aws-dynamodb"
+import {
+  TableProps,
+  AttributeType,
+  BillingMode,
+  Table
+} from "@aws-cdk/aws-dynamodb"
 
 import { DynamoDBCreator } from "../../services/dynamodb/creator"
 
@@ -38,7 +43,15 @@ export class AppSyncStack extends cdk.Stack {
       readCapacity: 1,
       writeCapacity: 1
     }
-    const table = DynamoDBCreator.createTable(this, tableParam)
+    const table: Table = DynamoDBCreator.createTable(this, tableParam)
+    const cfnTable = table.node.findChild("Resource") as cdk.CfnResource
+    cfnTable.applyRemovalPolicy(cdk.RemovalPolicy.DESTROY)
+
+    // const table = Table.fromTableName(
+    //   this,
+    //   `${BASE_NAME}_TABLE`,
+    //   `${BASE_NAME}_TABLE`
+    // ) as Table
 
     const api = new GraphQLApi(this, "GraphQLAPI", {
       name: `${BASE_NAME}_API`,
