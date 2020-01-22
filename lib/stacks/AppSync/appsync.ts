@@ -101,7 +101,7 @@ export class AppSyncStack extends cdk.Stack {
         "query": {
           "expression": "#id = :id AND #createTime BETWEEN :start AND :end",
           "expressionNames": {
-            "#id": "id"
+            "#id": "id",
             "#createTime": "create_time"
           },
           "expressionValues": {
