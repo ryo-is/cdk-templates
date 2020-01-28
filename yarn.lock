@@ -243,7 +243,7 @@
     "@aws-cdk/aws-iam" "1.22.0"
     "@aws-cdk/core" "1.22.0"
 
-"@aws-cdk/aws-ec2@1.22.0":
+"@aws-cdk/aws-ec2@1.22.0", "@aws-cdk/aws-ec2@^1.22.0":
   version "1.22.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-ec2/-/aws-ec2-1.22.0.tgz#d09dd428faa8a47ad3040118a7f92b1225c4bf32"
   integrity sha512-N05VOmT7/v0YcziPRyl9EHdQzmo12hcm/1RAe/i7j4ZGrxuupBPY4LLHIrv+91k+Rd2zq8W1HyHbJx45U2iTxg==
