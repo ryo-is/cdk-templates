@@ -14,6 +14,7 @@ cloudformation.yaml
 # python
 .mypy_cache
 .cache
+lambdaSources/*/.build
 
 cdk.out
 cdk.output

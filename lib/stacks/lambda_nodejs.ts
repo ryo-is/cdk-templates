@@ -7,7 +7,8 @@ export class NodejsFunctionStack extends cdk.Stack {
 
     new NodejsFunction(this, "NodejsFunction", {
       entry: "lambdaSources/demo_function/index.ts",
-      handler: "handler"
+      handler: "handler",
+      minify: true
     })
   }
 }
