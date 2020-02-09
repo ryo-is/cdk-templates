@@ -4,6 +4,7 @@ import cdk = require("@aws-cdk/core")
 import { AppSyncStack } from "../lib/stacks/AppSync/appsync"
 import { GoogleMapAPIStack } from "../lib/stacks/google_map_api"
 import { CreateVPCStack } from "../lib/stacks/create_vpc"
+import { NodejsFunctionStack } from "../lib/stacks/lambda_nodejs"
 
 // import { RestAPIStack } from "../lib/stacks/RestAPIs/rest_api"
 // import { APIResourcesStack } from "../lib/stacks/RestAPIs/api_resources"
@@ -19,3 +20,4 @@ new CreateVPCStack(app, "CreateVPCStack", {
     region: "us-west-2"
   }
 })
+new NodejsFunctionStack(app, "NodejsFunctionStack")
