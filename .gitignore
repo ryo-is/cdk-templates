@@ -13,7 +13,7 @@ cloudformation.yaml
 
 # python
 .mypy_cache
-.vscode
+.cache
 
 cdk.out
 cdk.output
