@@ -5,6 +5,7 @@ import { AppSyncStack } from "../lib/stacks/AppSync/appsync"
 import { GoogleMapAPIStack } from "../lib/stacks/google_map_api"
 import { CreateVPCStack } from "../lib/stacks/create_vpc"
 import { NodejsFunctionStack } from "../lib/stacks/lambda_nodejs"
+import { XRayDemoStack } from "../lib/stacks/xray_demo_stack"
 
 // import { RestAPIStack } from "../lib/stacks/RestAPIs/rest_api"
 // import { APIResourcesStack } from "../lib/stacks/RestAPIs/api_resources"
@@ -21,3 +22,4 @@ new CreateVPCStack(app, "CreateVPCStack", {
   }
 })
 new NodejsFunctionStack(app, "NodejsFunctionStack")
+new XRayDemoStack(app, "XRayDemoStack")
