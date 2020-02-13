@@ -1,8 +1,8 @@
 import { Handler } from "aws-lambda"
-import * as awsXRay from "aws-xray-sdk"
+import { express, captureAWS, captureFunc } from "aws-xray-sdk"
 import * as aws from "aws-sdk"
 import { DocumentClient } from "aws-sdk/clients/dynamodb"
-const AWS: any = awsXRay.captureAWS(aws)
+const AWS: any = captureAWS(aws)
 const DDB = new AWS.DynamoDB.DocumentClient({
   region: "ap-northeast-1"
 }) as DocumentClient
@@ -36,7 +36,14 @@ export const handler: Handler = async (): Promise<void> => {
     }
     const data_2 = await DDB.query(queryParam_2).promise()
     console.log(data_2)
+
+    express.openSegment("segment")
+    captureFunc("captureFunc", function() {
+      console.log("capture")
+    })
+    express.closeSegment()
   } catch (err) {
     console.error(err)
+    throw err
   }
 }

@@ -11,7 +11,8 @@ export class XRayDemoStack extends cdk.Stack {
       entry: "lambdaSources/xray_demo_function/index.ts",
       handler: "handler",
       minify: true,
-      tracing: Tracing.ACTIVE
+      tracing: Tracing.ACTIVE,
+      timeout: cdk.Duration.seconds(10)
     })
 
     const policyStatement = IAMCreator.createRoleStatement(
