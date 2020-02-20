@@ -7,7 +7,9 @@ import {
   FieldLogLevel,
   // UserPoolDefaultAction,
   MappingTemplate,
-  CfnApiKey
+  CfnApiKey,
+  PrimaryKey,
+  Values
 } from "@aws-cdk/aws-appsync"
 import {
   TableProps,
@@ -81,9 +83,8 @@ export class AppSyncStack extends cdk.Stack {
       typeName: "Mutation",
       fieldName: "save",
       requestMappingTemplate: MappingTemplate.dynamoDbPutItem(
-        "id",
-        "input",
-        "input.id"
+        PrimaryKey.partition("id").is("input.id"),
+        Values.projecting("input")
       ),
       responseMappingTemplate: MappingTemplate.dynamoDbResultItem()
     })
