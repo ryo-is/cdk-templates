@@ -1,11 +1,11 @@
 import cdk = require("@aws-cdk/core")
 import { join } from "path"
 
-// import { UserPool, SignInType } from "@aws-cdk/aws-cognito"
+import { UserPool } from "@aws-cdk/aws-cognito"
 import {
   GraphQLApi,
   FieldLogLevel,
-  // UserPoolDefaultAction,
+  UserPoolDefaultAction,
   MappingTemplate,
   CfnApiKey,
   PrimaryKey,
@@ -26,10 +26,12 @@ export class AppSyncStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props)
 
-    // const userPool = new UserPool(this, "UserPool", {
-    //   userPoolName: "DemoAPIUserPool",
-    //   signInType: SignInType.USERNAME
-    // })
+    const userPool = new UserPool(this, "UserPool", {
+      userPoolName: "DemoAPIUserPool",
+      signInAliases: {
+        email: true
+      }
+    })
 
     const tableParam: TableProps = {
       tableName: `${BASE_NAME}_TABLE`,
@@ -60,10 +62,12 @@ export class AppSyncStack extends cdk.Stack {
       logConfig: {
         fieldLogLevel: FieldLogLevel.ALL
       },
-      // userPoolConfig: {
-      //   userPool,
-      //   defaultAction: UserPoolDefaultAction.ALLOW
-      // },
+      authorizationConfig: {
+        defaultAuthorization: {
+          userPool,
+          defaultAction: UserPoolDefaultAction.ALLOW
+        }
+      },
       schemaDefinitionFile: join(__dirname, "schema.graphql")
     })
 
