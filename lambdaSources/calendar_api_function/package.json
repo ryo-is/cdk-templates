@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.476.0",
+    "aws-sdk": "^2.814.0",
     "dayjs": "^1.8.16",
     "googleapis": "39"
   },
